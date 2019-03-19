@@ -1,0 +1,14 @@
+
+TMDB_API:
+MOVIE_TEMPLATE: "\
+{{target_path}}/\
+{% if video_format == '2K' or video_format == '4K' %}Movies_HQ/\
+{% elsif video_codec == 'HEVC'%}Movies_HEVC/\
+{% else %}Movies/\
+{%endif%}\
+{{title}} ({{year}}){% if tag %} {{tags}}{% endif %}/\
+{{title}} ({{year}}) {% if tag %}{{tags}} {% endif %}[{{video_format}}] \
+{% if video_codec == 'HEVC' %}[HEVC] {%endif%}\
+[{{audio_codec}}].{{ext}}"
+TV_TEMPLATE: "{{target_path}}/TV/{{title}}/{{title}} S{{tv_season}}/\
+{{title}} S{{tv_season}}E{{tv_episode}} [{{video_format}}].{{ext}}"

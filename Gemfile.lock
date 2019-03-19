@@ -1,0 +1,55 @@
+GIT
+  remote: git@github.com:redronin/rubyplex.git
+  revision: 4d5bf028a7d3f1a26d122b027f27e04e5b393c7d
+  specs:
+    rubyplex (0.2.0)
+      activesupport (~> 5.2.1)
+      dalli
+      json
+      rest-client
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (5.2.2.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    concurrent-ruby (1.1.5)
+    dalli (2.7.10)
+    domain_name (0.5.20180417)
+      unf (>= 0.0.5, < 1.0.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    i18n (1.6.0)
+      concurrent-ruby (~> 1.0)
+    json (2.2.0)
+    liquid (4.0.3)
+    mime-types (3.2.2)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2018.0812)
+    minitest (5.11.3)
+    netrc (0.11.0)
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
+    thor (0.20.3)
+    thread_safe (0.3.6)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  liquid
+  rubyplex!
+  thor
+
+BUNDLED WITH
+   2.0.1

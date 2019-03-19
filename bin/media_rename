@@ -1,0 +1,119 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "media_rename"
+require 'thor'
+
+
+class MediaRenameCLI < Thor
+
+
+  desc "rename <file>|<path>", "Renames media files found in path or specific file"
+  method_option :force, 
+                aliases: '-f', 
+                default: false,
+                type: :boolean,
+                desc: "Force delete non-video files and paths, without prompting for confirmation"
+  method_option :root_path, 
+                aliases: '-p',
+                type: :string,
+                desc: "Root path (default is path passed in)"
+  method_option :target_path, 
+                aliases: '-t', 
+                desc: "Specify target directory to save renamed files in"
+  method_option :delete_files,
+                aliases: '-D',
+                type: :boolean,
+                default: false,
+                desc: "delete files and empty directories (default moves them to ~/.deleteable)"
+  method_option :debug,
+                default: false,
+                type: :boolean,
+                desc: "Debug mode"
+  method_option :preview,
+                type: :boolean,
+                default: false,
+                desc: "Dry run - don't actually make changes"
+  method_option :tv,
+                type: :boolean,
+                default: false,
+                desc: "TV shows - video files TV shows"
+
+  def rename(file)
+    params = process_args(file, options)
+    # files = params.delete(:files)
+    # log.info("[Rename] Starting...found #{files.count} files/paths")
+
+    # files.reject! {|f| f.include?(MediaRename::Utils::DELETEABLE_PATH)}
+    # files.each do |file|
+    #   mediafile = MediaRename::Mediafile.new(file)
+    #   case mediafile.type
+    #   when :directory
+    #     next if file == params[:root_path]
+    #     next if file.include?("_deleteable")
+    #     MediaRename::Utils.delete_dir(file, params)
+    #   when :video
+    #     puts "--------------------------------------------------------------------------------"
+    #     puts "Processing [#{file}]\n\n"
+
+    #     if mediafile.duration < MediaRename::Mediafile::MIN_TV_TIME
+    #       MediaRename::Utils.delete_file(file, params) 
+    #     else
+    #       MediaRename::Utils.rename_file(mediafile, file, params)
+    #     end
+    #   when :audio
+    #       log.debug("Audio file - skip.")
+    #   else
+    #     MediaRename::Utils.delete_file(file, params.merge(confirmation_required: false))
+    #   end
+    # end    
+  end
+
+
+  private
+
+  def log
+    MediaRename.logger
+  end
+
+  def process_args(file, options)
+    file = File.expand_path(file)    
+    if !File.exist?(file)
+      puts "Invalid file or path - does not exist" 
+      exit
+    end
+
+    debug = options.fetch(:debug)
+    orig_path = File.directory?(file) ? file : File.dirname(file)
+    # set root path
+    root_path   = File.expand_path(options.fetch(:root_path, File.directory?(file) ? file : File.dirname(file)))
+    root_path = root_path.gsub(/\/\z/,'') #strip off ending /
+    
+    # set target path
+    target_path = File.expand_path(options.fetch(:target_path, root_path))
+    target_path = target_path.gsub(/\/\z/,'') #strip off ending /
+    # array of files to be processed
+    files       = File.file?(file) ? [file] : Dir.glob(File.join(escape_glob(file), "/**/*")).sort.reverse
+    
+    params = {
+      orig_path: orig_path,
+      root_path: root_path,
+      target_path: target_path,
+      debug: debug,
+      delete_files: options.fetch(:delete_files),
+      confirmation_required: !options.fetch(:force),
+      preview: options.fetch(:preview),
+      tv: options.fetch(:tv),
+      files: files
+    }
+    log.debug JSON.pretty_generate(params) if debug
+    params
+  end
+
+  def escape_glob(s)
+    s.gsub(/[\\\{\}\[\]\*\?]/) { |x| "\\"+x }
+  end
+end
+
+
+MediaRenameCLI.start
