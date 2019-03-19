@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require "bundler/setup"
 require "media_rename"
 require 'thor'
@@ -8,65 +7,15 @@ require 'thor'
 class MediaRenameCLI < Thor
 
 
-  desc "rename <file>|<path>", "Renames media files found in path or specific file"
-  method_option :force, 
-                aliases: '-f', 
-                default: false,
-                type: :boolean,
-                desc: "Force delete non-video files and paths, without prompting for confirmation"
-  method_option :root_path, 
-                aliases: '-p',
-                type: :string,
-                desc: "Root path (default is path passed in)"
-  method_option :target_path, 
-                aliases: '-t', 
-                desc: "Specify target directory to save renamed files in"
-  method_option :delete_files,
-                aliases: '-D',
-                type: :boolean,
-                default: false,
-                desc: "delete files and empty directories (default moves them to ~/.deleteable)"
-  method_option :debug,
-                default: false,
-                type: :boolean,
-                desc: "Debug mode"
+  desc "rename_from_plex <path>", "Renames media files from plexDB"
   method_option :preview,
                 type: :boolean,
                 default: false,
                 desc: "Dry run - don't actually make changes"
-  method_option :tv,
-                type: :boolean,
-                default: false,
-                desc: "TV shows - video files TV shows"
 
-  def rename(file)
-    params = process_args(file, options)
-    # files = params.delete(:files)
-    # log.info("[Rename] Starting...found #{files.count} files/paths")
-
-    # files.reject! {|f| f.include?(MediaRename::Utils::DELETEABLE_PATH)}
-    # files.each do |file|
-    #   mediafile = MediaRename::Mediafile.new(file)
-    #   case mediafile.type
-    #   when :directory
-    #     next if file == params[:root_path]
-    #     next if file.include?("_deleteable")
-    #     MediaRename::Utils.delete_dir(file, params)
-    #   when :video
-    #     puts "--------------------------------------------------------------------------------"
-    #     puts "Processing [#{file}]\n\n"
-
-    #     if mediafile.duration < MediaRename::Mediafile::MIN_TV_TIME
-    #       MediaRename::Utils.delete_file(file, params) 
-    #     else
-    #       MediaRename::Utils.rename_file(mediafile, file, params)
-    #     end
-    #   when :audio
-    #       log.debug("Audio file - skip.")
-    #   else
-    #     MediaRename::Utils.delete_file(file, params.merge(confirmation_required: false))
-    #   end
-    # end    
+  def rename_from_plex(path)
+    params = process_args(path, options)
+    log.info("renaming files in #{path} from Plex Database")
   end
 
 

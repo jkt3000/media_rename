@@ -3,15 +3,7 @@ $LOAD_PATH.unshift File.dirname(__FILE__)
 require 'yaml'
 require 'liquid'
 require 'logger'
-require 'active_support'
 require "media_rename/version"
-require "media_rename/templates"
-require "media_rename/tmdb"
-require "media_rename/movie"
-require "media_rename/tv"
-require 'media_rename/file_parser'
-require "media_rename/mediafile"
-require "media_rename/utils"
 
 module MediaRename
 
