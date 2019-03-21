@@ -3,7 +3,12 @@ $LOAD_PATH.unshift File.dirname(__FILE__)
 require 'yaml'
 require 'liquid'
 require 'logger'
+require 'rubyplex'
 require "media_rename/version"
+require "media_rename/media"
+require "media_rename/utils"
+require "media_rename/plex_renamer"
+
 
 module MediaRename
 
@@ -29,4 +34,5 @@ module MediaRename
 
   class InvalidFileError < StandardError; end
 
+  class LibraryNotFound < StandardError; end
 end

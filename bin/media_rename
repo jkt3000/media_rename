@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path(File.join(File.dirname(__FILE__), "../lib"))
+
 require "bundler/setup"
 require "media_rename"
 require 'thor'
@@ -14,54 +17,14 @@ class MediaRenameCLI < Thor
                 desc: "Dry run - don't actually make changes"
 
   def rename_from_plex(path)
-    params = process_args(path, options)
-    log.info("renaming files in #{path} from Plex Database")
+    options = {}
+    renamer = MediaRename::PlexRenamer.new(path)
+    renamer.run(options)
   end
-
+  
 
   private
 
-  def log
-    MediaRename.logger
-  end
-
-  def process_args(file, options)
-    file = File.expand_path(file)    
-    if !File.exist?(file)
-      puts "Invalid file or path - does not exist" 
-      exit
-    end
-
-    debug = options.fetch(:debug)
-    orig_path = File.directory?(file) ? file : File.dirname(file)
-    # set root path
-    root_path   = File.expand_path(options.fetch(:root_path, File.directory?(file) ? file : File.dirname(file)))
-    root_path = root_path.gsub(/\/\z/,'') #strip off ending /
-    
-    # set target path
-    target_path = File.expand_path(options.fetch(:target_path, root_path))
-    target_path = target_path.gsub(/\/\z/,'') #strip off ending /
-    # array of files to be processed
-    files       = File.file?(file) ? [file] : Dir.glob(File.join(escape_glob(file), "/**/*")).sort.reverse
-    
-    params = {
-      orig_path: orig_path,
-      root_path: root_path,
-      target_path: target_path,
-      debug: debug,
-      delete_files: options.fetch(:delete_files),
-      confirmation_required: !options.fetch(:force),
-      preview: options.fetch(:preview),
-      tv: options.fetch(:tv),
-      files: files
-    }
-    log.debug JSON.pretty_generate(params) if debug
-    params
-  end
-
-  def escape_glob(s)
-    s.gsub(/[\\\{\}\[\]\*\?]/) { |x| "\\"+x }
-  end
 end
 
 
