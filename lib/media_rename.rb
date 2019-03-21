@@ -8,6 +8,7 @@ require "media_rename/version"
 require "media_rename/media"
 require "media_rename/utils"
 require "media_rename/plex_renamer"
+require "media_rename/templates"
 
 
 module MediaRename

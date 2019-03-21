@@ -2,10 +2,13 @@ module MediaRename
 
   class PlexRenamer
 
-    attr_reader :plex
+    attr_reader :plex, :options
     attr_accessor :path
 
+    DEFAULT_OPTIONS = { preview: true }
+
     def initialize(path, options = {})
+      @options = DEFAULT_OPTIONS.dup.merge(options)
       @path = File.expand_path(path)
       @plex = if plex_id = options.fetch(:plex_library, nil)
         Plex.server.section(plex_id)
@@ -24,35 +27,49 @@ module MediaRename
     end
 
     def process_path(path)
-      log.debug("Processing [#{path}]")
+      log.debug("\n\nProcessing: #{path}")
+      
       media_files = MediaRename::Utils.detect_media_files(path)
-      log.debug("Found Media files: #{media_files}")
-      log.debug("Searching Plex library for file")
-      if movie = media_files.map {|file| @plex.find_by_filename(file) }.first
-        log.debug("Matched movie #{movie.title}")
+      log.debug("-- media files: #{media_files}")
+      
+      matches = media_files.map do |file| 
+        next unless movie = @plex.find_by_filename(file)
+        { movie: movie, file: file }
+      end
+      
+      if entry = matches.first
+        log.debug("-- Match movie \"#{entry[:movie].title}\"")
+        create_movie(entry)
+        remove_file_and_parent(entry[:file])
       else
         log.debug("[Warn] No movie matching filename found. Skip.")
         return
       end
-
-
-      
-
-      # for each movie file in subdirectory
-        # if file exists in plex
-          # get movie 
-          # move file and contents to new path
-          # remove old subdirectory
-        # else
-          # skip
+      raise
     end
 
     def process_file(file)
+      # if any root files to process
+    end
+
+    def create_movie(entry)
+      old_file = entry[:file]
+      new_file = File.join(root_path, MediaRename::Templates.render_from_plex(entry[:file], entry[:movie]))
+      
+      MediaRename::Utils.mv(old_file, new_file, options)
+      MediaRename::Utils.mv_subtitles(old_file, options)
+    end
+
+    def remove_file_and_parent(file)
+      MediaRename::Utils.rm_parent(file, options)
     end
 
 
-
     private
+
+    def root_path
+      File.expand_path(File.join(path, "../"))
+    end
 
     def log
       @log ||= MediaRename.logger
