@@ -18,7 +18,7 @@ module MediaRename
 
     def folders(path)
       list = ls(path).first
-      log.debug("Paths: #{list}")
+      log.debug("-- folders found: #{list}")
       list
     end
 
@@ -41,6 +41,7 @@ module MediaRename
     end
 
     def mkdir(path, options = {})
+      return if File.directory?(path)
       FileUtils.mkdir_p path, verbose: true, noop: options[:preview]
     end
 

@@ -15,11 +15,15 @@ class MediaRenameCLI < Thor
                 type: :boolean,
                 default: false,
                 desc: "Dry run - don't actually make changes"
+  method_option :plex_library,
+                type: :string,
+                aliases: 'p',
+                desc: "Plex Library to search against"
 
   def rename_from_plex(path)
-    options = {}
-    renamer = MediaRename::PlexRenamer.new(path)
-    renamer.run(options)
+    params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+    renamer = MediaRename::PlexRenamer.new(path, params)
+    renamer.run
   end
   
 

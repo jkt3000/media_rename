@@ -1,26 +1,28 @@
 module MediaRename
 
-  class PlexRenamer
+  class PlexRenamer 
 
     attr_reader :plex, :options, :target_path
     attr_accessor :path
 
-    DEFAULT_OPTIONS = { preview: true }
+    DEFAULT_OPTIONS = { 
+      preview: true 
+    }.freeze
 
     def initialize(path, options = {})
       @options     = DEFAULT_OPTIONS.dup.merge(options)
       @path        = File.expand_path(path)
       @target_path = @options.fetch(:target_path, root_path)
+
       @plex = if plex_id = options.fetch(:plex_library, nil)
         Plex.server.section(plex_id)
       else
         Plex.server.section_by_path(@path)
       end
       raise MediaRename::LibraryNotFound unless @plex
+      log.debug("Invoking on #{path} [#{plex.title}] options: #{options} ")
     end
 
-    # options parameters
-    #   :preview => true|false
     def run(options = {})
       MediaRename::Utils.folders(path).each {|path| process_path(path) }
       MediaRename::Utils.files(path).each {|file| process_file(file) }
@@ -36,7 +38,7 @@ module MediaRename
         return
       end
 
-      entries.map do |entry|
+      entries.each do |entry|
         log.debug("-- Match media [#{entry[:media].movie.title}]")
         create_movie(entry)
       end
@@ -58,13 +60,12 @@ module MediaRename
     end
     
     def create_movie(entry)
-      old_file = entry[:file]
-      path     = File.dirname(old_file)
-      new_file = File.join(target_path, MediaRename::Templates.render_template(entry[:media]))
-      
-      MediaRename::Utils.mv(old_file, new_file, options)
-      MediaRename::Utils.mv_subtitles(path, new_file, options)
-      MediaRename::Utils.mv_subfolders(path, new_file, options)      
+      curr_file = entry[:file]
+      curr_path = File.dirname(curr_file)
+      new_file  = File.join(target_path, MediaRename::Templates.render_template(entry[:media]))
+      MediaRename::Utils.mv(curr_file, new_file, options)
+      MediaRename::Utils.mv_subtitles(curr_path, new_file, options)
+      MediaRename::Utils.mv_subfolders(curr_path, new_file, options)      
     end
 
 
