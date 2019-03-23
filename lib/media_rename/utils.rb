@@ -31,16 +31,12 @@ module MediaRename
     end
 
     def subtitle_files(path)
-      log.debug("Looking for subtitle files in #{path}")
       found = files(path).select {|f| SUB_FILES.include?(File.extname(f)) }
-      log.debug("-- subtitle files: #{found}")
       found
     end
 
     def key_subfolders(path)
-      log.debug("Looking for key folders in #{path}")
       found = folders(path).select {|p| KEY_FOLDERS.include?(File.basename(p.downcase)) }
-      log.debug("-- important subdirectories found #{found}")
       found
     end
 
@@ -82,8 +78,6 @@ module MediaRename
     def ls(path)
       path = File.expand_path(File.directory?(path) ? path : File.dirname(path))
       paths, files = Dir.glob(escape_glob("#{path}/*")).partition {|e| Dir.exist?(e) }
-      log.debug("-- ls: paths: #{paths}  files: #{files}")
-      [paths, files]
     end
 
     def escape_glob(s)

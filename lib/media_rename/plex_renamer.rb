@@ -41,8 +41,6 @@ module MediaRename
         create_movie(entry)
       end
       MediaRename::Utils.rm_path(path, options)
-
-      raise StandardError, "Breaking"
     end
 
     def process_file(file)
