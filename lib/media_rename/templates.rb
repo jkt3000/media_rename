@@ -11,50 +11,21 @@ module MediaRename
       @tv_template ||= Liquid::Template.parse(SETTINGS['TV_TEMPLATE'], error_mode: :strict)
     end
 
-    def render_from_plex(file, movie, options = {})
-      template = movie.type == 'movie' ? movie_template : tv_template
-      media = movie.medias.find {|m| File.basename(m.file) == File.basename(file) }
+    def render_template(media, options = {})
+      movie      = media.movie
+      template   = movie.type == 'movie' ? movie_template : tv_template
       attributes = {
         title: movie.title,
         year: movie.year,
         video_format: MediaRename::Media.video_format(media.width, media.height),
         video_codec: MediaRename::Media.video_codec(media.video_codec),
-        audio_codec: MediaRename::Media.audio_codec(media.audio_codec,media.audio_channels),
+        audio_codec: MediaRename::Media.audio_codec(media.audio_codec, media.audio_channels),
         tags: "",
-        ext: File.extname(file).gsub(".",'')
+        ext: media.container
       }
       template.render(attributes.stringify_keys)
     end
 
-    def render_movie(movie, mediafile, options = {})
-      attributes = {
-        title: movie.title,
-        year: movie.year,
-        video_format: mediafile.video_format,
-        video_codec: mediafile.video_codec,
-        audio_codec: mediafile.audio_codec,
-        tags: mediafile.tags,
-        ext: mediafile.ext,
-        target_path: options[:target_path]
-      }
-      movie_template.render(attributes.stringify_keys)
-    end
-
-    def render_tv(tv, mediafile, options = {})
-      attributes = {
-        title: tv.title,
-        year: tv.year,
-        tv_season: mediafile.tv_season,
-        tv_episode: mediafile.tv_episode,
-        video_format: mediafile.video_format,
-        video_codec: mediafile.video_codec,
-        audio_codec: mediafile.audio_codec,
-        tags: mediafile.tags,
-        ext: mediafile.ext,
-        target_path: options[:target_path]
-      }
-      tv_template.render(attributes.stringify_keys)
-    end
   end
 
 end

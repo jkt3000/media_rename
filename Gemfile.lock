@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:redronin/rubyplex.git
-  revision: 32cef02022982abb802ad16317f2d4ec9067cd24
+  revision: b973f88bcd9d85231c6b5265ccedff959253322b
   specs:
-    rubyplex (0.3.0)
+    rubyplex (0.3.1)
       activesupport (~> 5.2.1)
       dalli
       json
