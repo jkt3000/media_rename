@@ -18,8 +18,8 @@ module MediaRename
         title: movie.title,
         year: movie.year,
         video_format: MediaRename::Media.video_format(media.width, media.height),
-        video_codec: media.video_codec,
-        audio_codec: media.audio_codec,
+        video_codec: MediaRename::Media.video_codec(media.video_codec),
+        audio_codec: MediaRename::Media.audio_codec(media.audio_codec,media.audio_channels),
         tags: "",
         ext: File.extname(file).gsub(".",'')
       }

@@ -13,7 +13,7 @@ module MediaRename
       @plex = if plex_id = options.fetch(:plex_library, nil)
         Plex.server.section(plex_id)
       else
-        detect_plex_library(@path)
+        Plex.server.section_by_path(@path)
       end
       raise MediaRename::LibraryNotFound unless @plex
     end
@@ -21,34 +21,38 @@ module MediaRename
     # options parameters
     #   :preview => true|false
     def run(options = {})
-      paths, files = get_files_and_paths(path)
-      paths.each {|path| process_path(path) }
-      files.each {|file| process_file(file) }
+      MediaRename::Utils.subdirs(path).each {|path| process_path(path) }
+      MediaRename::Utils.files(path).each {|file| process_file(file) }
     end
 
     def process_path(path)
-      log.debug("\n\nProcessing: #{path}")
+      log.debug("---------------------------\n\n")
+      log.debug("Processing subdirectory: #{path}")
       
-      media_files = MediaRename::Utils.detect_media_files(path)
-      log.debug("-- media files: #{media_files}")
-      
-      matches = media_files.map do |file| 
-        next unless movie = @plex.find_by_filename(file)
-        { movie: movie, file: file }
-      end
-      
-      if entry = matches.first
-        log.debug("-- Match movie \"#{entry[:movie].title}\"")
-        create_movie(entry)
-        remove_file_and_parent(entry[:file])
-      else
+      entries = find_plex_entry(path)
+      if entries.empty?
         log.debug("[Warn] No movie matching filename found. Skip.")
         return
       end
-      raise
+
+      entries.map do |entry|    
+        log.debug("-- Match movie [#{entry[:movie].title}]")
+        create_movie(entry)
+      end
+
+      raise StandardError, "Breaking"
+    end
+
+    def find_plex_entry(path)
+      matches = MediaRename::Utils.media_files(path).map do |file| 
+        next unless movie = @plex.find_by_filename(file)
+        { movie: movie, file: file }
+      end
     end
 
     def process_file(file)
+      log.debug("\n\n")
+      log.debug("Processing file: #{file}")
       # if any root files to process
     end
 
@@ -58,10 +62,9 @@ module MediaRename
       
       MediaRename::Utils.mv(old_file, new_file, options)
       MediaRename::Utils.mv_subtitles(old_file, options)
-    end
-
-    def remove_file_and_parent(file)
-      MediaRename::Utils.rm_parent(file, options)
+      # move subs folder
+      # move featurettes folder
+      # MediaRename::Utils.rm_parent(file, options)
     end
 
 
@@ -73,16 +76,6 @@ module MediaRename
 
     def log
       @log ||= MediaRename.logger
-    end
-
-    def get_files_and_paths(path)
-      paths, files = Dir.glob(MediaRename::Utils.escape_glob("#{path}/*")).partition {|e| Dir.exist?(e) }
-      log.debug("Found in [#{path}] Paths: #{paths.count} Files: #{files.count}")
-      [paths, files]
-    end
-
-    def detect_plex_library(path)
-      section = Plex.server.sections.detect {|section| section.locations.include?(path) }
     end
 
   end

@@ -13,16 +13,24 @@ module MediaRename
 
 
     # return array of all media files in a given path
-    def detect_media_files(path)
-      _, files = Dir.glob(escape_glob("#{path}/*")).partition {|e| Dir.exist?(e) }
-      files.select do |f| 
+    def media_files(path)
+      found = files(path).select do |f| 
         MEDIA_FILES.include?(File.extname(f)) && File.size?(f) > MIN_MEDIA_SIZE
       end
+      log.debug("-- media files: #{found}")
+      found
     end
 
-    def detect_subtitle_files(path)
-      _, files = Dir.glob(escape_glob("#{path}/*")).partition {|e| Dir.exist?(e) }
-      files.select {|f| SUB_FILES.include?(File.extname(f)) }
+    def subtitle_files(path)
+      found = files(path).select {|f| SUB_FILES.include?(File.extname(f)) }
+      log.debug("-- subtitle files: #{found}")
+      found
+    end
+
+    def key_subdirectories(path)
+      found = subdirs(path).select {|p| SUBDIRECTORIES.include?(File.basename(p.downcase)) }
+      log.debug("-- important subdirectories found #{found}")
+      found
     end
 
     def mkdir(path, options = {})
@@ -48,8 +56,19 @@ module MediaRename
       s.gsub(/[\[\]\{\}]/) {|x| "\\" + x }
     end
 
+    def files(path)
+      ls(path).last
+    end
+
+    def subdirs(path)
+      ls(path).first
+    end
 
     private
+
+    def ls(path)
+      paths, files = Dir.glob(escape_glob("#{path}/*")).partition {|e| Dir.exist?(e) }
+    end
 
 
     def log
