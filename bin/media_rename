@@ -19,16 +19,35 @@ class MediaRenameCLI < Thor
                 type: :string,
                 aliases: 'p',
                 desc: "Plex Library to search against"
+  method_option :plex_host, type: :string
+  method_option :plex_port, type: :string
+  method_option :plex_token, type: :string
+  
 
   def rename_from_plex(path)
+    init_plex(options)
     params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
     renamer = MediaRename::PlexRenamer.new(path, params)
     renamer.run
   end
   
 
+
   private
 
+  def init_plex(options)
+    Plex.configure do |config|
+      if host = options.fetch(:plex_host, nil)
+        config[:host] = host
+      end
+      if port = options.fetch(:plex_port, nil)
+        config[:port] = port
+      end
+      if token = options.fetch(:plex_token, nil)
+        config[:token] = token
+      end
+    end
+  end
 end
 
 
