@@ -19,9 +19,16 @@ class MediaRenameCLI < Thor
                 type: :string,
                 aliases: 'p',
                 desc: "Plex Library to search against"
-  method_option :plex_host, type: :string
-  method_option :plex_port, type: :string
-  method_option :plex_token, type: :string
+  method_option :plex_host, 
+                type: :string,
+                desc: "Plex Server IP address" 
+  method_option :plex_port, 
+                type: :string,
+                desc: "Plex Server port" 
+  method_option :plex_token, 
+                type: :string,
+                desc: "Plex token" 
+
   
 
   def rename_from_plex(path)
