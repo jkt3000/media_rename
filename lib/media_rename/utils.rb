@@ -42,7 +42,7 @@ module MediaRename
 
     def mkdir(path, options = {})
       return if File.directory?(path)
-      FileUtils.mkdir_p path, verbose: true, noop: options[:preview]
+      FileUtils.mkdir_p path, verbose: options[:verbose], noop: options[:preview]
     end
 
     def mv_subtitles(source, dest, options = {})
@@ -64,12 +64,12 @@ module MediaRename
     def mv(source, dest, options = {})
       log.debug("moving file to #{dest}")
       mkdir(File.dirname(dest), options)
-      FileUtils.mv source, dest, verbose: true, noop: options[:preview]
+      FileUtils.mv source, dest, verbose: options[:verbose], noop: options[:preview]
     end
 
     def rm_path(path, options = {})
       log.debug("deleting directory #{path}")
-      FileUtils.rm_rf path, verbose: true, noop: options[:preview] 
+      FileUtils.rm_rf path, verbose: options[:verbose], noop: options[:preview] 
     end
 
 

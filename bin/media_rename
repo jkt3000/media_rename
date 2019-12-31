@@ -28,11 +28,18 @@ class MediaRenameCLI < Thor
   method_option :plex_token, 
                 type: :string,
                 desc: "Plex token" 
+  method_option :verbose,
+                type: :boolean,
+                aliases: 'v',
+                default: false,
+                desc: "Verbose"
 
   
 
   def rename_from_plex(path)
+    p options
     init_plex(options)
+    set_log_level(options[:verbose])
     params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
     renamer = MediaRename::PlexRenamer.new(path, params)
     renamer.run
@@ -41,6 +48,10 @@ class MediaRenameCLI < Thor
 
 
   private
+
+  def set_log_level(verbose)
+    MediaRename.logger.level = verbose ? :debug : :info
+  end
 
   def init_plex(options)
     Plex.configure do |config|

@@ -20,26 +20,26 @@ module MediaRename
         Plex.server.section_by_path(@path)
       end
       raise MediaRename::LibraryNotFound unless @plex
-      log.debug("Invoking on #{path} [#{plex.title}] options: #{options} ")
+      log.debug("Checking files in path #{path} against Plex Library [#{plex.title}]\n Options: #{options} ")
     end
 
     def run(options = {})
       MediaRename::Utils.folders(path).each {|path| process_path(path) }
-      MediaRename::Utils.files(path).each {|file| process_file(file) }
+      MediaRename::Utils.files(path).each {|file| process_file(file) }      
     end
 
     def process_path(path)
-      log.debug("---------------------------\n\n")
-      log.debug("Processing subdirectory: #{path}")
+      log.info("\n---------------------------\n")
+      log.info("Processing: #{path}")
       
       entries = find_plex_medias(path)
       if entries.empty?
-        log.debug("[Warn] No movie matching filename found. Skip.")
+        log.debug("No movie matching filename found. Skip.")
         return
       end
 
       entries.each do |entry|
-        log.debug("-- Match media [#{entry[:media].movie.title}]")
+        log.info("Match: [#{entry[:media].movie.title}]")
         create_movie(entry)
       end
       MediaRename::Utils.rm_path(path, options)
@@ -65,7 +65,8 @@ module MediaRename
       new_file  = File.join(target_path, MediaRename::Templates.render_template(entry[:media]))
       MediaRename::Utils.mv(curr_file, new_file, options)
       MediaRename::Utils.mv_subtitles(curr_path, new_file, options)
-      MediaRename::Utils.mv_subfolders(curr_path, new_file, options)      
+      MediaRename::Utils.mv_subfolders(curr_path, new_file, options) 
+      log.info("Added [#{new_file}]")
     end
 
 
