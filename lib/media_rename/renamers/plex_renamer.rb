@@ -2,7 +2,7 @@ module MediaRename
 
   class PlexRenamer 
 
-    attr_reader :plex, :options, :target_path
+    attr_reader :library, :options, :target_path
     attr_accessor :path
 
     DEFAULT_OPTIONS = { 
@@ -10,21 +10,18 @@ module MediaRename
     }.freeze
 
     def initialize(path, options = {})
-      @options     = DEFAULT_OPTIONS.dup.merge(options)
+      @options     = DEFAULT_OPTIONS.merge(options)
       @path        = File.expand_path(path)
       @target_path = @options.fetch(:target_path, root_path)
-
-      @plex = if plex_id = options.fetch(:plex_library, nil)
-        Plex.server.section(plex_id)
-      else
-        Plex.server.section_by_path(@path)
-      end
-      raise MediaRename::LibraryNotFound unless @plex
-      log.debug("Checking files in path #{path} against Plex Library [#{plex.title}]\n Options: #{options} ")
+      @library     = load_library(options)
+      log.debug("Checking files in path #{path} against Plex Library [#{library.title}]\n Options: #{options} ")
     end
 
     def run(options = {})
+      # process each subfolder in main path
       MediaRename::Utils.folders(path).each {|path| process_path(path) }
+
+      # process each file in main path
       MediaRename::Utils.files(path).each {|file| process_file(file) }      
     end
 
@@ -39,8 +36,10 @@ module MediaRename
       end
 
       entries.each do |entry|
-        log.info("Match: [#{entry[:media].movie.title}]")
-        create_movie(entry)
+        file  = entry[:file]
+        media = entry[:media]
+        log.info("Match: [#{library.movie_library? ? media.parent.title : "%s S%d E%d" % [media.parent.show_title, media.parent.season, media.parent.episode] }] for #{File.basename(file)}")
+        create_entry(file, media)
       end
       MediaRename::Utils.rm_path(path, options)
     end
@@ -53,16 +52,16 @@ module MediaRename
 
 
     def find_plex_medias(path)
-      matches = MediaRename::Utils.media_files(path).map do |file| 
-        next unless movie = @plex.find_by_filename(file)
-        {file: file, media: movie.media_by_file(file)}
+      MediaRename::Utils.media_files(path).map do |file| 
+        {file: file, media: @library.find_by_filename(file)}
       end.compact
     end
     
-    def create_movie(entry)
-      curr_file = entry[:file]
+    def create_entry(file, plex_media)
+      templateKlass = library.movie_library? ? MediaRename::MovieTemplate : MediaRename::ShowTemplate 
+      curr_file = file
       curr_path = File.dirname(curr_file)
-      new_file  = File.join(target_path, MediaRename::Templates.render_template(entry[:media]))
+      new_file  = File.join(target_path, templateKlass.new(plex_media).render)
       MediaRename::Utils.mv(curr_file, new_file, options)
       MediaRename::Utils.mv_subtitles(curr_path, new_file, options)
       MediaRename::Utils.mv_subfolders(curr_path, new_file, options) 
@@ -75,6 +74,17 @@ module MediaRename
     def root_path
       File.expand_path(File.join(path, "../"))
     end
+
+    def load_library(options)
+      library = if plex_id = options.fetch(:plex_library, nil)
+        Plex.server.library(plex_id)
+      else
+        Plex.server.library_by_path(@path)
+      end
+      raise MediaRename::LibraryNotFound unless library
+      library
+    end
+      
 
     def log
       @log ||= MediaRename.logger

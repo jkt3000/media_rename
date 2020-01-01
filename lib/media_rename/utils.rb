@@ -6,7 +6,7 @@ module MediaRename
 
     MEDIA_FILES    = %w| .mp4 .mov .mkv .avi |
     SUB_FILES      = %w| .srt .idx .sub |
-    MIN_MEDIA_SIZE = 838860800 # 800.megabytes
+    MIN_MEDIA_SIZE = 200000000 #838860800 # 800.megabytes
     KEY_FOLDERS = %w| subs subtitles featurettes | # case insensitive
 
     extend self
