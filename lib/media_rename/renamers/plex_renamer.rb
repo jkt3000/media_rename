@@ -14,6 +14,7 @@ module MediaRename
       @path        = File.expand_path(path)
       @target_path = @options.fetch(:target_path, root_path)
       @library     = load_library(options)
+      log.info("Using library [#{library.title}]")
       log.debug("Checking files in path #{path} against Plex Library [#{library.title}]\n Options: #{options} ")
     end
 
@@ -84,7 +85,6 @@ module MediaRename
       raise MediaRename::LibraryNotFound unless library
       library
     end
-      
 
     def log
       @log ||= MediaRename.logger
