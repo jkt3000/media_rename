@@ -33,6 +33,10 @@ class MediaRenameCLI < Thor
                 aliases: 'v',
                 default: false,
                 desc: "Verbose"
+  method_option :target_path,
+                type: :string,
+                aliases: 't',
+                desc: "Target path"
 
   
 

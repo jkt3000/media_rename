@@ -36,21 +36,28 @@ module MediaRename
         return
       end
 
-      entries.each do |entry|
-        file  = entry[:file]
-        media = entry[:media]
-        log.info("Match: [#{library.movie_library? ? media.parent.title : "%s S%d E%d" % [media.parent.show_title, media.parent.season, media.parent.episode] }] for #{File.basename(file)}")
-        create_entry(file, media)
-      end
+      process_entries(entries)
       MediaRename::Utils.rm_path(path, options)
     end
 
     def process_file(file)
       log.debug("\n\n")
       log.debug("Processing file: #{file}")
-      # if any root files to process
+      if MediaRename::Utils.media_file?(file)
+        entry = {file: file, media: @library.find_by_filename(file)}
+        process_entries([entry])
+      end
     end
 
+
+    def process_entries(entries)
+      entries.each do |entry|
+        file  = entry[:file]
+        media = entry[:media]
+        log.info("Match: [#{library.movie_library? ? media.parent.title : "%s S%d E%d" % [media.parent.show_title, media.parent.season, media.parent.episode] }] for #{File.basename(file)}")
+        create_entry(file, media)
+      end
+    end
 
     def find_plex_medias(path)
       MediaRename::Utils.media_files(path).map do |file| 

@@ -23,11 +23,13 @@ module MediaRename
     end
 
     def media_files(path)
-      found = files(path).select do |f| 
-        MEDIA_FILES.include?(File.extname(f)) && File.size?(f) > MIN_MEDIA_SIZE
-      end
+      found = files(path).select {|file| media_file?(file)}
       log.debug("-- media files: #{found}")
       found
+    end
+
+    def media_file?(file)
+      MEDIA_FILES.include?(File.extname(file)) && File.size?(file) > MIN_MEDIA_SIZE
     end
 
     def subtitle_files(path)
