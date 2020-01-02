@@ -1,7 +1,6 @@
 GIT
   remote: git@github.com:redronin/rubyplex.git
-  revision: 5f24f15d7c1096fd34f7f9a67372314cddf2523a
-  branch: v2-start
+  revision: c7d6d6a54d8c71a238dd9540e09c9c068718da3d
   specs:
     rubyplex (0.4.4)
       activesupport

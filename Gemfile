@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
 
-gem 'rubyplex', git: 'git@github.com:redronin/rubyplex.git', branch: 'v2-start'
+gem 'rubyplex', git: 'git@github.com:redronin/rubyplex.git'
 gem 'thor'
 gem 'liquid'
