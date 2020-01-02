@@ -19,16 +19,57 @@ class MediaRenameCLI < Thor
                 type: :string,
                 aliases: 'p',
                 desc: "Plex Library to search against"
+  method_option :plex_host, 
+                type: :string,
+                desc: "Plex Server IP address" 
+  method_option :plex_port, 
+                type: :string,
+                desc: "Plex Server port" 
+  method_option :plex_token, 
+                type: :string,
+                desc: "Plex token" 
+  method_option :verbose,
+                type: :boolean,
+                aliases: 'v',
+                default: false,
+                desc: "Verbose"
+  method_option :target_path,
+                type: :string,
+                aliases: 't',
+                desc: "Target path"
+
+  
 
   def rename_from_plex(path)
+    p options
+    init_plex(options)
+    set_log_level(options[:verbose])
     params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
     renamer = MediaRename::PlexRenamer.new(path, params)
     renamer.run
   end
   
 
+
   private
 
+  def set_log_level(verbose)
+    MediaRename.logger.level = verbose ? :debug : :info
+  end
+
+  def init_plex(options)
+    Plex.configure do |config|
+      if host = options.fetch(:plex_host, nil)
+        config[:host] = host
+      end
+      if port = options.fetch(:plex_port, nil)
+        config[:port] = port
+      end
+      if token = options.fetch(:plex_token, nil)
+        config[:token] = token
+      end
+    end
+  end
 end
 
 

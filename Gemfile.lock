@@ -1,47 +1,50 @@
 GIT
   remote: git@github.com:redronin/rubyplex.git
-  revision: b973f88bcd9d85231c6b5265ccedff959253322b
+  revision: 5f24f15d7c1096fd34f7f9a67372314cddf2523a
+  branch: v2-start
   specs:
-    rubyplex (0.3.1)
-      activesupport (~> 5.2.1)
-      dalli
+    rubyplex (0.4.4)
+      activesupport
       json
       rest-client
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.2.1)
+    activesupport (6.0.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.2)
     concurrent-ruby (1.1.5)
-    dalli (2.7.10)
-    domain_name (0.5.20180417)
+    domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (1.6.0)
+    i18n (1.7.0)
       concurrent-ruby (~> 1.0)
-    json (2.2.0)
+    json (2.3.0)
     liquid (4.0.3)
-    mime-types (3.2.2)
+    mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2018.0812)
-    minitest (5.11.3)
+    mime-types-data (3.2019.1009)
+    minitest (5.13.0)
     netrc (0.11.0)
-    rest-client (2.0.2)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    thor (0.20.3)
+    thor (1.0.1)
     thread_safe (0.3.6)
-    tzinfo (1.2.5)
+    tzinfo (1.2.6)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.5)
+    unf_ext (0.0.7.6)
+    zeitwerk (2.2.2)
 
 PLATFORMS
   ruby
@@ -52,4 +55,4 @@ DEPENDENCIES
   thor
 
 BUNDLED WITH
-   2.0.1
+   2.0.2

@@ -6,8 +6,11 @@ module MediaRename
 
     MEDIA_FILES    = %w| .mp4 .mov .mkv .avi |
     SUB_FILES      = %w| .srt .idx .sub |
-    MIN_MEDIA_SIZE = 838860800 # 800.megabytes
-    KEY_FOLDERS = %w| subs subtitles featurettes | # case insensitive
+    MIN_MEDIA_SIZE = 200000000 #838860800 # 800.megabytes
+    KEY_FOLDERS = [
+      "subs", "subtitles", "featurettes", "extras", "Featurettes",
+      "Bonus Disc"
+    ]
 
     extend self
 
@@ -23,26 +26,26 @@ module MediaRename
     end
 
     def media_files(path)
-      found = files(path).select do |f| 
-        MEDIA_FILES.include?(File.extname(f)) && File.size?(f) > MIN_MEDIA_SIZE
-      end
+      found = files(path).select {|file| media_file?(file)}
       log.debug("-- media files: #{found}")
       found
     end
 
+    def media_file?(file)
+      MEDIA_FILES.include?(File.extname(file))
+    end
+
     def subtitle_files(path)
-      found = files(path).select {|f| SUB_FILES.include?(File.extname(f)) }
-      found
+      files(path).select {|f| SUB_FILES.include?(File.extname(f)) }
     end
 
     def key_subfolders(path)
-      found = folders(path).select {|p| KEY_FOLDERS.include?(File.basename(p.downcase)) }
-      found
+      folders(path).select {|p| KEY_FOLDERS.include?(File.basename(p.downcase)) }
     end
 
     def mkdir(path, options = {})
       return if File.directory?(path)
-      FileUtils.mkdir_p path, verbose: true, noop: options[:preview]
+      FileUtils.mkdir_p path, verbose: options[:verbose], noop: options[:preview]
     end
 
     def mv_subtitles(source, dest, options = {})
@@ -64,17 +67,16 @@ module MediaRename
     def mv(source, dest, options = {})
       log.debug("moving file to #{dest}")
       mkdir(File.dirname(dest), options)
-      FileUtils.mv source, dest, verbose: true, noop: options[:preview]
+      FileUtils.mv source, dest, verbose: options[:verbose], noop: options[:preview]
     end
 
     def rm_path(path, options = {})
       log.debug("deleting directory #{path}")
-      FileUtils.rm_rf path, verbose: true, noop: options[:preview] 
+      FileUtils.rm_rf path, verbose: options[:verbose], noop: options[:preview] 
     end
 
 
     private
-
 
     def ls(path)
       path = File.expand_path(File.directory?(path) ? path : File.dirname(path))
@@ -84,7 +86,6 @@ module MediaRename
     def escape_glob(s)
       s.gsub(/[\[\]\{\}]/) {|x| "\\" + x }
     end
-
 
     def log
       @log ||= MediaRename.logger
