@@ -7,7 +7,10 @@ module MediaRename
     MEDIA_FILES    = %w| .mp4 .mov .mkv .avi |
     SUB_FILES      = %w| .srt .idx .sub |
     MIN_MEDIA_SIZE = 200000000 #838860800 # 800.megabytes
-    KEY_FOLDERS = %w| subs subtitles featurettes | # case insensitive
+    KEY_FOLDERS = [
+      "subs", "subtitles", "featurettes", "extras", "Featurettes",
+      "Bonus Disc"
+    ]
 
     extend self
 
@@ -29,17 +32,15 @@ module MediaRename
     end
 
     def media_file?(file)
-      MEDIA_FILES.include?(File.extname(file)) && File.size?(file) > MIN_MEDIA_SIZE
+      MEDIA_FILES.include?(File.extname(file))
     end
 
     def subtitle_files(path)
-      found = files(path).select {|f| SUB_FILES.include?(File.extname(f)) }
-      found
+      files(path).select {|f| SUB_FILES.include?(File.extname(f)) }
     end
 
     def key_subfolders(path)
-      found = folders(path).select {|p| KEY_FOLDERS.include?(File.basename(p.downcase)) }
-      found
+      folders(path).select {|p| KEY_FOLDERS.include?(File.basename(p.downcase)) }
     end
 
     def mkdir(path, options = {})
@@ -77,7 +78,6 @@ module MediaRename
 
     private
 
-
     def ls(path)
       path = File.expand_path(File.directory?(path) ? path : File.dirname(path))
       paths, files = Dir.glob(escape_glob("#{path}/*")).partition {|e| Dir.exist?(e) }
@@ -86,7 +86,6 @@ module MediaRename
     def escape_glob(s)
       s.gsub(/[\[\]\{\}]/) {|x| "\\" + x }
     end
-
 
     def log
       @log ||= MediaRename.logger
