@@ -17,3 +17,9 @@ Options:
     ./bin/media_rename rename_from_plex /Volumes/Media/downloads -p Movies --preview
 
 
+
+eg:
+
+bin/media_rename rename_from_plex /Volumes/Media/downloads_tv -p 2 --preview
+bin/media_rename rename_from_plex /Volumes/Media/downloads -p 1 --preview
+bin/media_rename rename_from_plex /Volumes/Media/downloads_hq -p 3 --preview
