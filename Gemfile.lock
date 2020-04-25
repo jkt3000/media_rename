@@ -7,6 +7,13 @@ GIT
       json
       rest-client
 
+PATH
+  remote: .
+  specs:
+    media_rename (0.1.0)
+      liquid
+      thor
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -30,7 +37,9 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
     minitest (5.13.0)
+    mocha (1.11.2)
     netrc (0.11.0)
+    rake (13.0.1)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -49,9 +58,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  liquid
+  bundler
+  media_rename!
+  minitest
+  mocha
+  rake
   rubyplex!
-  thor
 
 BUNDLED WITH
    2.0.2
