@@ -28,25 +28,25 @@ module MediaRename
 
     def process_path(path)
       log.info("\n---------------------------\n")
-      log.info("Processing: #{path}")
+      log.info("Processing Path: #{path}")
       
       entries = find_plex_medias(path)
       if entries.empty?
-        log.debug("No movie matching filename found. Skip.")
+        log.debug("No Plex Media matching filename found. Skip.")
         return
       end
+      log.debug("PRocessing entries: #{entries}")
 
       process_entries(entries)
       MediaRename::Utils.rm_path(path, options)
     end
 
     def process_file(file)
-      log.debug("\n\n")
-      log.debug("Processing file: #{file}")
-      if MediaRename::Utils.media_file?(file)
-        entry = {file: file, media: @library.find_by_filename(file)}
-        process_entries([entry])
-      end
+      log.debug("Processing File: #{file}")
+      return unless MediaRename::Utils.media_file?(file)
+      return unless media = @library.find_by_filename(file)
+    
+      process_entries([{file: file, media: media}])
     end
 
 
@@ -61,7 +61,8 @@ module MediaRename
 
     def find_plex_medias(path)
       MediaRename::Utils.media_files(path).map do |file| 
-        {file: file, media: @library.find_by_filename(file)}
+        next unless media = @library.find_by_filename(file)
+        {file: file, media: media}
       end.compact
     end
     
@@ -73,7 +74,7 @@ module MediaRename
       MediaRename::Utils.mv(curr_file, new_file, options)
       MediaRename::Utils.mv_subtitles(curr_path, new_file, options)
       MediaRename::Utils.mv_subfolders(curr_path, new_file, options) 
-      log.info("Added [#{new_file}]")
+      log.info("Done [#{new_file}]")
     end
 
 

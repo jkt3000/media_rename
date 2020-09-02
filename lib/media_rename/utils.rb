@@ -8,9 +8,9 @@ module MediaRename
     SUB_FILES      = %w| .srt .idx .sub |
     MIN_MEDIA_SIZE = 200000000 #838860800 # 800.megabytes
     KEY_FOLDERS = [
-      "subs", "subtitles", "featurettes", "extras", "Featurettes",
-      "Bonus Disc"
-    ]
+      "subs", "Subtitles", "Extras", "Featurettes",
+      "Bonus Disc", "Deleted Scenes"
+    ].map(&:downcase)
 
     extend self
 
@@ -51,27 +51,30 @@ module MediaRename
     def mv_subtitles(source, dest, options = {})
       dest_path = File.dirname(dest)
       subtitle_files(source).each do |file|
+        log.debug("Copy Subtitle files")
         dest_file = File.join(dest_path, File.basename(file))
         mv(file, dest_file, options)
       end
     end
 
     def mv_subfolders(source, dest, options = {})
+      log.debug("Looking for key subfolders in #{source}")
       dest_path = File.dirname(dest)
       key_subfolders(source).each do |file|
+        log.debug("Copy Subfolder [#{file}]")
         dest_file = File.join(dest_path, File.basename(file))
         mv(file, dest_file, options)
       end
     end
     
     def mv(source, dest, options = {})
-      log.debug("moving file to #{dest}")
+      log.debug("Move [#{File.basename(source)}] to #{dest}")
       mkdir(File.dirname(dest), options)
       FileUtils.mv source, dest, verbose: options[:verbose], noop: options[:preview]
     end
 
     def rm_path(path, options = {})
-      log.debug("deleting directory #{path}")
+      log.debug("deleting directory [#{path}]")
       FileUtils.rm_rf path, verbose: options[:verbose], noop: options[:preview] 
     end
 
