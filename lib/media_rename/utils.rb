@@ -4,7 +4,7 @@ module MediaRename
 
   module Utils
 
-    MEDIA_FILES    = %w| .mp4 .mov .mkv .avi |
+    MEDIA_FILES    = %w| .mp4 .mov .mkv .avi .m4v |
     SUB_FILES      = %w| .srt .idx .sub |
     MIN_MEDIA_SIZE = 200000000 #838860800 # 800.megabytes
     KEY_FOLDERS = [
