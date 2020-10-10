@@ -5,7 +5,7 @@ $LOAD_PATH.unshift File.expand_path(File.join(File.dirname(__FILE__), "../lib"))
 require "bundler/setup"
 require "media_rename"
 require 'thor'
-
+require 'io/console'
 
 class MediaRenameCLI < Thor
 
@@ -78,26 +78,46 @@ class MediaRenameCLI < Thor
 
   def rename_colon(path)
     p options
-    init_plex(options)
     set_log_level(options[:verbose])
     params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
     folders, junk =  MediaRename::Utils.folders(path).partition {|f| f.include?(':')}
     folders.sort.each do |folder|
       files = MediaRename::Utils.files(folder)
-      files.each do |file|
-        new_dest = file.gsub(":", "-")
-        puts "Move [#{file}] => [#{new_dest}]"
-        MediaRename::Utils.mv(file, new_dest, params)
+      actions = files.map do |f|
+        "mv [#{f}]\n=> [#{f.gsub(":", "-")}]"
+      end.join("\n")
+      msg = "Folder [#{folder}]\n" + actions 
 
+      if confirmation(msg, {confirmation_required: true})
+        files.each do |file|
+          new_dest = file.gsub(":", "-")
+          MediaRename::Utils.mv(file, new_dest, params)
+        end
+        MediaRename::Utils.rm_path(folder, params)        
       end
-      puts "remove old path #{folder}"
-      MediaRename::Utils.rm_path(folder, params)
     end
   end
   
 
 
   private
+
+  def confirmation(msg, options)
+    return true unless options[:confirmation_required] == true
+    puts "> #{msg}?\nCONFIRM? [Y/n/q]"
+    value = STDIN.getch
+    case value
+    when 'q', "Q", "\u0003"
+      puts
+      abort("Quitting...")
+    when 'y', "Y", "\r", "\n"
+      puts
+      true
+    else
+      log.debug "Skipping."
+      false
+    end
+  end
 
   def set_log_level(verbose)
     MediaRename.logger.level = verbose ? :debug : :info
