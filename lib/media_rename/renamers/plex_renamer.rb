@@ -44,7 +44,7 @@ module MediaRename
     def process_file(file)
       log.debug("Processing File: #{file}")
       return unless MediaRename::Utils.media_file?(file)
-      return unless media = @library.find_by_filename(file)
+      return unless media = @library.find_by_filename(file) || @library.find_by_filename(file.gsub(':', ''))
     
       process_entries([{file: file, media: media}])
     end
@@ -61,7 +61,7 @@ module MediaRename
 
     def find_plex_medias(path)
       MediaRename::Utils.media_files(path).map do |file| 
-        next unless media = @library.find_by_filename(file)
+        next unless media = @library.find_by_filename(file) || @library.find_by_filename(file.gsub(':', ''))
         {file: file, media: media}
       end.compact
     end
