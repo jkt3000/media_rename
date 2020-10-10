@@ -52,7 +52,7 @@ module MediaRename
       dest_path = File.dirname(dest)
       subtitle_files(source).each do |file|
         log.debug("Copy Subtitle files")
-        dest_file = File.join(dest_path, File.basename(file))
+        dest_file = File.join(dest_path, File.basename(file.gsub(":","-")))
         mv(file, dest_file, options)
       end
     end
