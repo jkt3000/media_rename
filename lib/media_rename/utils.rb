@@ -32,11 +32,11 @@ module MediaRename
     end
 
     def media_file?(file)
-      MEDIA_FILES.include?(File.extname(file))
+      MEDIA_FILES.include?(File.extname(file).downcase)
     end
 
     def subtitle_files(path)
-      files(path).select {|f| SUB_FILES.include?(File.extname(f)) }
+      files(path).select {|f| SUB_FILES.include?(File.extname(f).downcase) }
     end
 
     def key_subfolders(path)
