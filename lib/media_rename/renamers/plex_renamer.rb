@@ -67,16 +67,19 @@ module MediaRename
     end
     
     def create_entry(file, plex_media)
-      templateKlass = library.movie_library? ? MediaRename::MovieTemplate : MediaRename::ShowTemplate 
       curr_file = file
       curr_path = File.dirname(curr_file)
-      new_file  = File.join(target_path, templateKlass.new(plex_media).render)
+      new_file  = target_name(plex_media)
       MediaRename::Utils.mv(curr_file, new_file, options)
       MediaRename::Utils.mv_subtitles(curr_path, new_file, options)
       MediaRename::Utils.mv_subfolders(curr_path, new_file, options) 
       log.info("Done [#{new_file}]")
     end
 
+    def target_name(plex_media)
+      templateKlass = library.movie_library? ? MediaRename::MovieTemplate : MediaRename::ShowTemplate 
+      File.join(target_path, templateKlass.new(plex_media).render)
+    end
 
     private
 
