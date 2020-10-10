@@ -8,7 +8,7 @@ module MediaRename
       @template   = Liquid::Template.parse(SETTINGS['MOVIE_TEMPLATE'], error_mode: :strict)
       @media      = media
       @attributes = {
-        title: media.parent.title.gsub(':', '-'),
+        title: media.parent.title.to_s.gsub(':', '-'),
         year: media.parent.year,
         video_format: MediaRename::Media.video_format(media.width, media.height),
         video_codec: MediaRename::Media.video_codec(media.video_codec),
