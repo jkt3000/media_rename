@@ -10,7 +10,7 @@ require 'io/console'
 class MediaRenameCLI < Thor
 
 
-  desc "rename_from_plex <path>", "Renames media files from plexDB"
+  desc "plex <path>", "Renames media files from plexDB"
   method_option :preview,
                 type: :boolean,
                 default: false,
@@ -38,7 +38,7 @@ class MediaRenameCLI < Thor
                 aliases: 't',
                 desc: "Target path"
 
-  def rename_from_plex(path)
+  def plex(path)
     p options
     init_plex(options)
     set_log_level(options[:verbose])
