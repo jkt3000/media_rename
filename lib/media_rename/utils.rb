@@ -69,6 +69,7 @@ module MediaRename
     
     def mv(source, dest, options = {})
       log.debug("Move [#{File.basename(source)}] to #{dest}")
+      return if source == dest
       mkdir(File.dirname(dest), options)
       FileUtils.mv source, dest, verbose: options[:verbose], noop: options[:preview]
     end
