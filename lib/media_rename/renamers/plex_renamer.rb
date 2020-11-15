@@ -50,7 +50,10 @@ module MediaRename
           puts "[Error] #{file} not found in Plex"
         end
       end
-      MediaRename::Utils.rm_path(path, options) if MediaRename::Utils.empty?(path)
+      if MediaRename::Utils.empty?(path)
+        puts "old path is empty - removing"
+        MediaRename::Utils.rm_path(path, options)
+      end
       puts
     end
 
