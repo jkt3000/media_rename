@@ -43,14 +43,14 @@ module MediaRename
           old_dir = File.dirname(file)
           new_dir = File.dirname(target)
           if old_dir != new_dir
-            MediaRename::Utils.mv_subtitles(old_dir, new_dir, options)
-            MediaRename::Utils.mv_subfolders(old_dir, new_dir, options)
+            MediaRename::Utils.mv_subtitles(old_dir, target, options)
+            MediaRename::Utils.mv_subfolders(old_dir, target, options)
           end
         else
           puts "[Error] #{file} not found in Plex"
         end
       end
-      MediaRename::Utils.rm_rf(path, options) if MediaRename::Utils.empty?(path)
+      MediaRename::Utils.rm_path(path, options) if MediaRename::Utils.empty?(path)
       puts
     end
 
