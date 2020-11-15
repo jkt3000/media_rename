@@ -204,10 +204,31 @@ class MediaRenameCLI < Thor
     init_plex(options)
     set_log_level(options[:verbose])
     params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+    rename_media_files(path, params)
+    rename_folders(path, params) if File.exists?(path)
+  end
+
+
+  private
+
+
+  def rename_media_files(path, params)
+    files = MediaRename::Utils.media_files(path).sort
+    puts "Found [#{files.count}] media files"
+    
+    return unless files.count > 0
+    return unless confirmation(path, options)
+
+    parent_path = File.dirname(path)
+    renamer = MediaRename::PlexRenamer.new(parent_path, params)
+    puts "processing parent folder #{parent_path} for #{files.count} files"
+    renamer.rename(path)
+  end
+
+  def rename_folders(path, params)
     renamer = MediaRename::PlexRenamer.new(path, params)
     folders = MediaRename::Utils.folders(path).sort
-    files   = MediaRename::Utils.files(path).sort
-    puts "Found [#{folders.count}] folders and [#{files.count}] files"
+    puts "Found [#{folders.count}] folders"
     folders.each do |folder|
       if confirmation(folder, options)
         puts "processing #{folder}"
@@ -216,17 +237,7 @@ class MediaRenameCLI < Thor
         puts "skip"
       end
     end
-    if (files.count > 0) and confirmation(path, options) 
-      parent_path = File.dirname(path)
-      renamer = MediaRename::PlexRenamer.new(parent_path, params)
-      puts "processing parent folder #{parent_path} for #{files.count} files"
-      renamer.rename(path)
-    end    
   end
-
-
-
-  private
 
   def confirmation(msg, options)
     return true unless options[:confirmation_required] == true
