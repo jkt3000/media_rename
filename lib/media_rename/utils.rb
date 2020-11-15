@@ -79,8 +79,12 @@ module MediaRename
       FileUtils.rm_rf path, verbose: options[:verbose], noop: options[:preview] 
     end
 
+    def empty?(path)
+      Dir.glob(escape_glob("#{path}/*")).empty?
+    end
 
     private
+
 
     def ls(path)
       path = File.expand_path(File.directory?(path) ? path : File.dirname(path))

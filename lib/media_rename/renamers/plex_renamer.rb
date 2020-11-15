@@ -20,10 +20,38 @@ module MediaRename
 
     def run(options = {})
       # process each subfolder in main path
-      MediaRename::Utils.folders(path).each {|path| process_path(path) }
+      MediaRename::Utils.folders(path).each {|path| process_path(path)}
 
       # process each file in main path
-      MediaRename::Utils.files(path).each {|file| process_file(file) }      
+      MediaRename::Utils.files(path).each {|file| process_file(file)}
+    end
+
+    def rename(path)
+      # find plex entry for media files
+      MediaRename::Utils.files(path).each do |file|
+        if plex_media = @library.find_by_filename(file)
+          target = target_name(plex_media)
+          p "curr: #{file}"
+          p "====> #{target}"
+
+          if file == target 
+            puts "NO change. Skip."
+            next
+          end
+          
+          MediaRename::Utils.mv(file, target, options)
+          old_dir = File.dirname(file)
+          new_dir = File.dirname(target)
+          if old_dir != new_dir
+            MediaRename::Utils.mv_subtitles(old_dir, new_dir, options)
+            MediaRename::Utils.mv_subfolders(old_dir, new_dir, options)
+          end
+        else
+          puts "[Error] #{file} not found in Plex"
+        end
+      end
+      MediaRename::Utils.rm_rf(path, options) if MediaRename::Utils.empty?(path)
+      puts
     end
 
     def process_path(path)
@@ -81,7 +109,26 @@ module MediaRename
       File.join(target_path, templateKlass.new(plex_media).render)
     end
 
+
     private
+
+
+    def confirmation(msg = "Continue", options = @options)
+      return true unless options[:confirmation_required] == true
+      puts "> #{msg}?\nCONFIRM? [Y/n/q]"
+      value = STDIN.getch
+      case value
+      when 'q', "Q", "\u0003"
+        puts
+        abort("Quitting...")
+      when 'y', "Y", "\r", "\n"
+        puts
+        true
+      else
+        puts "No - skip"
+        false
+      end
+    end
 
     def root_path
       File.expand_path(File.join(path, "../"))

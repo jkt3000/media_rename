@@ -38,6 +38,12 @@ class MediaRenameCLI < Thor
                 aliases: 't',
                 desc: "Target path"
 
+  method_option :confirmation_required,
+                type: :boolean,
+                aliases: 'c',
+                default: true,
+                desc: "Require Confirmation"
+
   def plex(path)
     p options
     init_plex(options)
@@ -163,6 +169,53 @@ class MediaRenameCLI < Thor
       end
     end
   end
+
+  desc "rename <path>", "rename files in path and subpaths based on latest Plex info"
+  method_option :preview,
+                type: :boolean,
+                default: false,
+                desc: "Dry run - don't actually make changes"
+  method_option :plex_library,
+                type: :string,
+                aliases: 'p',
+                desc: "Plex Library to search against"
+  method_option :plex_host, 
+                type: :string,
+                desc: "Plex Server IP address" 
+  method_option :plex_port, 
+                type: :string,
+                desc: "Plex Server port" 
+  method_option :plex_token, 
+                type: :string,
+                desc: "Plex token" 
+  method_option :verbose,
+                type: :boolean,
+                aliases: 'v',
+                default: false,
+                desc: "Verbose"
+  method_option :confirmation_required,
+                type: :boolean,
+                aliases: 'c',
+                default: true,
+                desc: "Require Confirmation"
+
+  def rename(path)
+    p options, path
+    init_plex(options)
+    set_log_level(options[:verbose])
+    params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+    renamer = MediaRename::PlexRenamer.new(path, params)
+    folders = MediaRename::Utils.folders(path).sort
+    folders.each do |folder|
+      if confirmation(folder, options)
+        puts "processing #{folder}"
+        renamer.rename(folder)
+      else
+        puts "skip"
+      end
+    end
+  end
+
 
 
   private
