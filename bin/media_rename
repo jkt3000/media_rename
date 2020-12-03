@@ -260,17 +260,19 @@ class MediaRenameCLI < Thor
   end
 
   def init_plex(options)
+    settings = MediaRename::SETTINGS
     Plex.configure do |config|
-      if host = options.fetch(:plex_host, nil)
+      if host = options.fetch(:plex_host, settings.fetch("PLEX_HOST", nil))
         config[:host] = host
       end
-      if port = options.fetch(:plex_port, nil)
+      if port = options.fetch(:plex_port, settings.fetch("PLEX_PORT", nil))
         config[:port] = port
       end
-      if token = options.fetch(:plex_token, nil)
+      if token = options.fetch(:plex_token, settings.fetch("PLEX_TOKEN", nil))
         config[:token] = token
       end
     end
+    p Plex.config
   end
 end
 

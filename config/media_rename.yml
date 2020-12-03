@@ -1,5 +1,6 @@
-
 TMDB_API:
+PLEX_TOKEN:
+PLEX_HOST:  
 MOVIE_TEMPLATE: "\
 {{target_path}}/\
 {% if video_format == '2K' or video_format == '4K' %}Movies_HQ/\
