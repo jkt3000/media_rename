@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MediaRename::UtilsTest < ActiveSupport::TestCase
+class MediaRename::UtilsTest < MiniTest::Test
 
   def setup
   end

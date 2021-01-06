@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TemplatesTest < ActiveSupport::TestCase
+class TemplatesTest < MiniTest::Test
 
   def setup
   end
