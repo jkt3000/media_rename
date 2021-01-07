@@ -6,6 +6,8 @@ require 'active_support'
 require 'active_support/test_case'
 require 'active_support/testing/autorun'
 
+require 'mocha/minitest'
+
 
 FILE_PATH = File.expand_path('./../files', __FILE__)
 

@@ -9,6 +9,7 @@ module MediaRename
       preview: true 
     }.freeze
 
+
     def initialize(path, options = {})
       @options     = DEFAULT_OPTIONS.merge(options)
       @path        = File.expand_path(path)
@@ -17,6 +18,22 @@ module MediaRename
       log.info("Using library [#{library.title}]")
       log.debug("Checking files in path #{path} against Plex Library [#{library.title}]\n Options: #{options} ")
     end
+
+    # returns sub folders under path
+    def folders
+      MediaRename::Utils.folders(path)
+    end
+
+    # returns files under path
+    def root_files
+      MediaRename::Utils.files(path)
+    end
+
+    # returns all files under path and subfolders
+    def all_files
+
+    end
+
 
     def run(options = {})
       # process each subfolder in main path

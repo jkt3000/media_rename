@@ -21,14 +21,14 @@ module MediaRename
 
     def folders(path)
       list = ls(path).first
-      log.debug("-- folders found: #{list}")
+      log("Folders found: [#{list.count}] #{list}")
       list
     end
 
     def media_files(path)
-      found = files(path).select {|file| media_file?(file)}
-      log.debug("-- media files: #{found}")
-      found
+      list = files(path).select {|file| media_file?(file) }
+      log("Media files found: [#{list.count}] #{list}")
+      list
     end
 
     def media_file?(file)
@@ -45,43 +45,42 @@ module MediaRename
 
     def mkdir(path, options = {})
       return if File.directory?(path)
+      log("Creating directory [#{path}]")
       FileUtils.mkdir_p path, verbose: options[:verbose], noop: options[:preview]
     end
 
     def mv_subtitles(source, dest, options = {})
       dest_path = File.dirname(dest)
       subtitle_files(source).each do |file|
-        log.debug("Copy Subtitle files")
         dest_file = File.join(dest_path, File.basename(file.gsub(":","-")))
         mv(file, dest_file, options)
       end
     end
 
     def mv_subfolders(source, dest, options = {})
-      log.debug("Looking for key subfolders in #{source}")
       dest_path = File.dirname(dest)
       key_subfolders(source).each do |file|
-        log.debug("Copy Subfolder [#{file}]")
         dest_file = File.join(dest_path, File.basename(file))
         mv(file, dest_file, options)
       end
     end
     
     def mv(source, dest, options = {})
-      log.debug("Move [#{File.basename(source)}] to #{dest}")
+      log("Moving [#{File.basename(source)}] => #{dest}")
       return if source == dest
       mkdir(File.dirname(dest), options)
       FileUtils.mv source, dest, verbose: options[:verbose], noop: options[:preview]
     end
 
     def rm_path(path, options = {})
-      log.debug("deleting directory [#{path}]")
+      log("Deleting directory [#{path}]")
       FileUtils.rm_rf path, verbose: options[:verbose], noop: options[:preview] 
     end
 
     def empty?(path)
       Dir.glob(escape_glob("#{path}/*")).empty?
     end
+
 
     private
 
@@ -95,8 +94,12 @@ module MediaRename
       s.gsub(/[\[\]\{\}]/) {|x| "\\" + x }
     end
 
-    def log
-      @log ||= MediaRename.logger
+    def log(msg)
+      logger.debug(msg) 
+    end
+
+    def logger
+      @logger ||= MediaRename.logger
     end
 
   end
