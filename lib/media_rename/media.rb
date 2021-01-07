@@ -33,10 +33,11 @@ module MediaRename
 
     # hevc, h264, mpeg4, msmpeg4, vc1
     def video_codec(codec)
+      codec = codec.to_s.downcase
       case codec
       when "h264"
         'H264'
-      when "mpeg4"
+      when "mpeg4", "mp4"
         'MP4'
       when 'hevc', 'h265'
         "HEVC"
@@ -50,7 +51,7 @@ module MediaRename
       text = case codec
         when 'aac', 'ac3', 'mp3', 'eac3'
           codec.upcase
-        when 'dca'
+        when 'dca', 'dts'
           'DTS'
         when 'truehd'
           'TRUEHD'
