@@ -21,7 +21,7 @@ class MediaRename::UtilsTest < ActiveSupport::TestCase
     path = File.expand_path("./test") # ./test/
 
     paths = MediaRename::Utils.folders(path)
-    assert_equal 1, paths.count
+    assert_equal 2, paths.count
     assert File.directory?(paths.first)
   end
 

@@ -1,0 +1,745 @@
+{
+  "MediaContainer": {
+    "size": 10,
+    "allowSync": true,
+    "art": "/library/metadata/10401/art/1575740225",
+    "banner": "/library/metadata/10401/banner/1575740225",
+    "identifier": "com.plexapp.plugins.library",
+    "key": "10401",
+    "librarySectionID": 2,
+    "librarySectionTitle": "TV Shows",
+    "librarySectionUUID": "70ba12bf-8ab7-40df-93c4-383b080589d5",
+    "mediaTagPrefix": "/system/bundle/media/flags/",
+    "mediaTagVersion": 1574417695,
+    "mixedParents": true,
+    "nocache": true,
+    "parentIndex": 1,
+    "parentTitle": "Band of Brothers",
+    "parentYear": 2001,
+    "theme": "/library/metadata/10401/theme/1575740225",
+    "title1": "TV Shows",
+    "title2": "Band of Brothers",
+    "viewGroup": "episode",
+    "viewMode": 65592,
+    "Metadata": [
+      {
+        "ratingKey": "10403",
+        "key": "/library/metadata/10403",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/1?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "Currahee",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "Easy Company is introduced to Captain Sobel, who has the group undergo hard and unfair training. As a result, Sobel comes into conflict with his men, including Richard Winters, his executive officer. The company is shipped to England to prepare for D-Day. ",
+        "index": 1,
+        "parentIndex": 1,
+        "rating": 8.4,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10403/thumb/1575742460",
+        "art": "/library/metadata/10401/art/1575740153",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740153",
+        "grandparentArt": "/library/metadata/10401/art/1575740153",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740153",
+        "duration": 4394181,
+        "originallyAvailableAt": "2001-09-09",
+        "addedAt": 1575740153,
+        "updatedAt": 1575742460,
+        "Media": [
+          {
+            "id": 23534,
+            "duration": 4394181,
+            "bitrate": 2466,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23534,
+                "key": "/library/parts/23534/1385541322/file.mp4",
+                "duration": 4394181,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E01 [1080p].mp4",
+                "size": 1357577313,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Erik Jendreson"
+          },
+          {
+            "tag": "Tom Hanks"
+          }
+        ]
+      },
+      {
+        "ratingKey": "10404",
+        "key": "/library/metadata/10404",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/2?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "Day of Days",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "Easy Company lands in Normandy, scattered all across and away from their drop zone. 1st Lt. Meehan, commander of Easy, is killed when his plane suffers a direct hit and 1st Lt. Winters must take command and 1st Lt. Speirs is introduced.",
+        "index": 2,
+        "parentIndex": 1,
+        "rating": 8.8,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10404/thumb/1575742461",
+        "art": "/library/metadata/10401/art/1575740153",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740153",
+        "grandparentArt": "/library/metadata/10401/art/1575740153",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740153",
+        "duration": 3121952,
+        "originallyAvailableAt": "2001-09-09",
+        "addedAt": 1575740153,
+        "updatedAt": 1575742461,
+        "Media": [
+          {
+            "id": 23535,
+            "duration": 3121952,
+            "bitrate": 2464,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23535,
+                "key": "/library/parts/23535/1385544314/file.mp4",
+                "duration": 3121952,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E02 [1080p].mp4",
+                "size": 963759781,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Erik Jendreson"
+          },
+          {
+            "tag": "Tom Hanks"
+          }
+        ]
+      },
+      {
+        "ratingKey": "10405",
+        "key": "/library/metadata/10405",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/3?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "Carentan",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "Easy Company are sent to liberate the French village of Carentan, where they lose several men in heavy fighting. The episode focuses on Private Albert Blithe, who struggles with crippling anxiety following the battle.",
+        "index": 3,
+        "parentIndex": 1,
+        "rating": 8.5,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10405/thumb/1575742463",
+        "art": "/library/metadata/10401/art/1575740153",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740153",
+        "grandparentArt": "/library/metadata/10401/art/1575740153",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740153",
+        "duration": 3921642,
+        "originallyAvailableAt": "2001-09-16",
+        "addedAt": 1575740153,
+        "updatedAt": 1575742463,
+        "Media": [
+          {
+            "id": 23536,
+            "duration": 3921642,
+            "bitrate": 2466,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23536,
+                "key": "/library/parts/23536/1385544309/file.mp4",
+                "duration": 3921642,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E03 [1080p].mp4",
+                "size": 1211376697,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "E. Max Frye"
+          }
+        ]
+      },
+      {
+        "ratingKey": "10406",
+        "key": "/library/metadata/10406",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/4?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "Replacements",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "New characters are introduced when replacements join Easy Company, who struggle to be accepted by the veterans who fought at Normandy. The Company is sent to parachute into and fight in the Netherlands as part of Operation Market Garden, where they liberate Eindhoven. During combat in Nuenen, the replacements integrate themselves with the Company, but the Company is forced to retreat. The episode follows Sergeant Denver \"Bull\" Randleman, the replacements' immediate superior.",
+        "index": 4,
+        "parentIndex": 1,
+        "rating": 8.4,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10406/thumb/1575742464",
+        "art": "/library/metadata/10401/art/1575740154",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740154",
+        "grandparentArt": "/library/metadata/10401/art/1575740154",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740154",
+        "duration": 3583488,
+        "originallyAvailableAt": "2001-09-23",
+        "addedAt": 1575740154,
+        "updatedAt": 1575742464,
+        "Media": [
+          {
+            "id": 23537,
+            "duration": 3583488,
+            "bitrate": 2466,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23537,
+                "key": "/library/parts/23537/1385544317/file.mp4",
+                "duration": 3583488,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E04 [1080p].mp4",
+                "size": 1106853610,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Graham Yost"
+          }
+        ]
+      },
+      {
+        "ratingKey": "10407",
+        "key": "/library/metadata/10407",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/5?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "Crossroads",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "Winters writes a report on the challenge of an unexpected resistance to a German attack, and is haunted by his conscience after shooting a teenage German soldier. Operation Pegasus is depicted. Easy Company is called to Bastogne to repel the sudden German counterattack. ",
+        "index": 5,
+        "parentIndex": 1,
+        "rating": 8.3,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10407/thumb/1575742465",
+        "art": "/library/metadata/10401/art/1575740154",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740154",
+        "grandparentArt": "/library/metadata/10401/art/1575740154",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740154",
+        "duration": 3342357,
+        "originallyAvailableAt": "2001-09-30",
+        "addedAt": 1575740154,
+        "updatedAt": 1575742465,
+        "Media": [
+          {
+            "id": 23538,
+            "duration": 3342357,
+            "bitrate": 2465,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23538,
+                "key": "/library/parts/23538/1385544262/file.mp4",
+                "duration": 3342357,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E05 [1080p].mp4",
+                "size": 1032082214,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Erik Jendreson"
+          }
+        ]
+      },
+      {
+        "ratingKey": "10408",
+        "key": "/library/metadata/10408",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/6?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "Bastogne",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "Easy Company experiences the Battle of the Bulge and have to hold ground near Bastogne while running low on ammunition and other supplies. The episode focuses on medic Eugene \"Doc\" Roe as he helps out his fellow soldiers where he can, while also scrounging for medical supplies, of which the Company is dangerously low. ",
+        "index": 6,
+        "parentIndex": 1,
+        "rating": 8.4,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10408/thumb/1575742467",
+        "art": "/library/metadata/10401/art/1575740155",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740155",
+        "grandparentArt": "/library/metadata/10401/art/1575740155",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740155",
+        "duration": 4040682,
+        "originallyAvailableAt": "2001-10-07",
+        "addedAt": 1575740155,
+        "updatedAt": 1575742467,
+        "Media": [
+          {
+            "id": 23539,
+            "duration": 4040682,
+            "bitrate": 2466,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23539,
+                "key": "/library/parts/23539/1385544171/file.mp4",
+                "duration": 4040682,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E06 [1080p].mp4",
+                "size": 1248185907,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Bruce McKenna"
+          }
+        ]
+      },
+      {
+        "ratingKey": "10409",
+        "key": "/library/metadata/10409",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/7?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "The Breaking Point",
+        "titleSort": "Breaking Point",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "Easy Company battles near Foy, Belgium, losing numerous men. In the episode, the actions of 1st Lt. Norman Dike, the Company's commander, are examined and questioned. Serving as narrator is 1st Sgt. Carwood Lipton, who attempts to keep the morale of the men up as they endure their trials in the forest near Foy.",
+        "index": 7,
+        "parentIndex": 1,
+        "rating": 8.4,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10409/thumb/1575742468",
+        "art": "/library/metadata/10401/art/1575740155",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740155",
+        "grandparentArt": "/library/metadata/10401/art/1575740155",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740155",
+        "duration": 4370816,
+        "originallyAvailableAt": "2001-10-14",
+        "addedAt": 1575740155,
+        "updatedAt": 1575742468,
+        "Media": [
+          {
+            "id": 23540,
+            "duration": 4370816,
+            "bitrate": 2466,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23540,
+                "key": "/library/parts/23540/1385544248/file.mp4",
+                "duration": 4370816,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E07 [1080p].mp4",
+                "size": 1349913571,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Graham Yost"
+          }
+        ]
+      },
+      {
+        "ratingKey": "10410",
+        "key": "/library/metadata/10410",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/8?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "The Last Patrol",
+        "titleSort": "Last Patrol",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "Easy Company carries out a dangerous mission in Haguenau as David Webster  returns from a hospital. Together with new replacement 2nd Lt. Jones, he eventually (re)integrates with the other soldiers, whose experiences at Bastogne have made them weary and closed off from Webster due to the fact he didn't try and leave hospital early unlike other soldiers in the company. ",
+        "index": 8,
+        "parentIndex": 1,
+        "rating": 8.2,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10410/thumb/1575742469",
+        "art": "/library/metadata/10401/art/1575740155",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740155",
+        "grandparentArt": "/library/metadata/10401/art/1575740155",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740155",
+        "duration": 3539903,
+        "originallyAvailableAt": "2001-10-21",
+        "addedAt": 1575740155,
+        "updatedAt": 1575742469,
+        "Media": [
+          {
+            "id": 23541,
+            "duration": 3539903,
+            "bitrate": 2465,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23541,
+                "key": "/library/parts/23541/1385544095/file.mp4",
+                "duration": 3539903,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E08 [1080p].mp4",
+                "size": 1093270352,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Erik Jendresen"
+          }
+        ]
+      },
+      {
+        "ratingKey": "10411",
+        "key": "/library/metadata/10411",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/9?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "Why We Fight",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "As Nixon battles alcoholism, Easy Company enters Germany. A concentration camp near Landsberg is discovered by a patrol. This site leaves many soldiers both shocked and disgusted at what they're witnessing at the hands of the Nazi Germans. The episode was based on the liberation of Kaufering IV in the area of Hurlach. ",
+        "index": 9,
+        "parentIndex": 1,
+        "rating": 8.4,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10411/thumb/1575742471",
+        "art": "/library/metadata/10401/art/1575740155",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740155",
+        "grandparentArt": "/library/metadata/10401/art/1575740155",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740155",
+        "duration": 3491863,
+        "originallyAvailableAt": "2001-10-28",
+        "addedAt": 1575740155,
+        "updatedAt": 1575742471,
+        "Media": [
+          {
+            "id": 23542,
+            "duration": 3491863,
+            "bitrate": 2465,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23542,
+                "key": "/library/parts/23542/1385544209/file.mp4",
+                "duration": 3491863,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E09 [1080p].mp4",
+                "size": 1078118642,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Erik Jendresen"
+          }
+        ]
+      },
+      {
+        "ratingKey": "10412",
+        "key": "/library/metadata/10412",
+        "parentRatingKey": "10402",
+        "grandparentRatingKey": "10401",
+        "guid": "com.plexapp.agents.thetvdb://74205/1/10?lang=en",
+        "studio": "HBO",
+        "type": "episode",
+        "title": "Points",
+        "grandparentKey": "/library/metadata/10401",
+        "parentKey": "/library/metadata/10402",
+        "grandparentTitle": "Band of Brothers",
+        "parentTitle": "Season 1",
+        "contentRating": "TV-MA",
+        "summary": "Easy Company enters the Bavarian town of Berchtesgaden, once home to Hitler's top officers. They find the town deserted and rush on to capture Hitler's famed \"Eagle's Nest\" before the French can get there. Here they learn of the German army's surrender.",
+        "index": 10,
+        "parentIndex": 1,
+        "rating": 8.8,
+        "viewCount": 1,
+        "lastViewedAt": 1576775147,
+        "year": 2001,
+        "thumb": "/library/metadata/10412/thumb/1575742472",
+        "art": "/library/metadata/10401/art/1575740155",
+        "parentThumb": "/library/metadata/10402/thumb/1575740222",
+        "grandparentThumb": "/library/metadata/10401/thumb/1575740155",
+        "grandparentArt": "/library/metadata/10401/art/1575740155",
+        "grandparentTheme": "/library/metadata/10401/theme/1575740155",
+        "duration": 3735523,
+        "originallyAvailableAt": "2001-11-04",
+        "addedAt": 1575740155,
+        "updatedAt": 1575742472,
+        "Media": [
+          {
+            "id": 23543,
+            "duration": 3735523,
+            "bitrate": 2465,
+            "width": 1920,
+            "height": 1080,
+            "aspectRatio": 1.78,
+            "audioChannels": 6,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 23543,
+                "key": "/library/parts/23543/1385544150/file.mp4",
+                "duration": 3735523,
+                "file": "/volume1/Media/TV/Band of Brothers/Band of Brothers S01/Band of Brothers S01E10 [1080p].mp4",
+                "size": 1153658293,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Not Available"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,479 @@
+{
+  "MediaContainer": {
+    "size": 5,
+    "totalSize": 2148,
+    "allowSync": true,
+    "art": "/:/resources/movie-fanart.jpg",
+    "identifier": "com.plexapp.plugins.library",
+    "librarySectionID": 1,
+    "librarySectionTitle": "Movies",
+    "librarySectionUUID": "0f2755ad-7ed8-42fb-909a-eb2678369768",
+    "mediaTagPrefix": "/system/bundle/media/flags/",
+    "mediaTagVersion": 1574417695,
+    "offset": 1,
+    "thumb": "/:/resources/movie.png",
+    "title1": "Movies",
+    "title2": "All Movies",
+    "viewGroup": "movie",
+    "viewMode": 65592,
+    "Metadata": [
+      {
+        "ratingKey": "17911",
+        "key": "/library/metadata/17911",
+        "guid": "com.plexapp.agents.imdb://tt1272878?lang=en",
+        "studio": "Universal Pictures",
+        "type": "movie",
+        "title": "2 Guns",
+        "contentRating": "R",
+        "summary": "A DEA agent and an undercover Naval Intelligence officer who have been tasked with investigating one another find they have been set up by the mob -- the very organization the two men believe they have been stealing money from.",
+        "rating": 6.4,
+        "audienceRating": 6.6,
+        "year": 2013,
+        "tagline": "2 Guns, 1 Bank.",
+        "thumb": "/library/metadata/17911/thumb/1575865139",
+        "art": "/library/metadata/17911/art/1575865139",
+        "duration": 6555382,
+        "originallyAvailableAt": "2013-08-02",
+        "addedAt": 1575853393,
+        "updatedAt": 1575865139,
+        "audienceRatingImage": "rottentomatoes://image.rating.upright",
+        "primaryExtraKey": "/library/metadata/26552",
+        "ratingImage": "rottentomatoes://image.rating.ripe",
+        "Media": [
+          {
+            "id": 39545,
+            "duration": 6555382,
+            "bitrate": 2144,
+            "width": 1920,
+            "height": 800,
+            "aspectRatio": 2.35,
+            "audioChannels": 2,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 39546,
+                "key": "/library/parts/39546/1383905481/file.mp4",
+                "duration": 6555382,
+                "file": "/volume1/Media/Movies/2 Guns (2013)/2 Guns (2013) [1080p] [AAC 2ch].mp4",
+                "size": 1760468767,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Genre": [
+          {
+            "tag": "Action"
+          },
+          {
+            "tag": "Comedy"
+          }
+        ],
+        "Director": [
+          {
+            "tag": "Baltasar Kormákur"
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Blake Masters"
+          }
+        ],
+        "Country": [
+          {
+            "tag": "USA"
+          }
+        ],
+        "Role": [
+          {
+            "tag": "Denzel Washington"
+          },
+          {
+            "tag": "Mark Wahlberg"
+          },
+          {
+            "tag": "Paula Patton"
+          }
+        ]
+      },
+      {
+        "ratingKey": "17901",
+        "key": "/library/metadata/17901",
+        "guid": "com.plexapp.agents.imdb://tt2172934?lang=en",
+        "studio": "Wonderland Sound and Vision",
+        "type": "movie",
+        "title": "3 Days to Kill",
+        "contentRating": "PG-13",
+        "summary": "A dangerous international spy is determined to give up his high stakes life to finally build a closer relationship with his estranged wife and daughter. But first, he must complete one last mission - even if it means juggling the two toughest assignments yet: hunting down the world's most ruthless terrorist and looking after his teenage daughter for the first time in ten years, while his wife is out of town.",
+        "rating": 2.7,
+        "audienceRating": 4.3,
+        "year": 2014,
+        "thumb": "/library/metadata/17901/thumb/1575865083",
+        "art": "/library/metadata/17901/art/1575865083",
+        "duration": 7338873,
+        "originallyAvailableAt": "2014-02-14",
+        "addedAt": 1575853391,
+        "updatedAt": 1575865083,
+        "audienceRatingImage": "rottentomatoes://image.rating.spilled",
+        "primaryExtraKey": "/library/metadata/26513",
+        "ratingImage": "rottentomatoes://image.rating.rotten",
+        "Media": [
+          {
+            "id": 39535,
+            "duration": 7338873,
+            "bitrate": 2156,
+            "width": 1920,
+            "height": 808,
+            "aspectRatio": 2.35,
+            "audioChannels": 2,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 39536,
+                "key": "/library/parts/39536/1405933914/file.mp4",
+                "duration": 7338873,
+                "file": "/volume1/Media/Movies/3 Days to Kill (2014)/3 Days to Kill (2014) [1080p] [AAC 2ch].mp4",
+                "size": 1981957797,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Genre": [
+          {
+            "tag": "Action"
+          },
+          {
+            "tag": "Drama"
+          }
+        ],
+        "Director": [
+          {
+            "tag": "McG"
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Luc Besson"
+          },
+          {
+            "tag": "Adi Hasak"
+          }
+        ],
+        "Country": [
+          {
+            "tag": "USA"
+          }
+        ],
+        "Role": [
+          {
+            "tag": "Kevin Costner"
+          },
+          {
+            "tag": "Amber Heard"
+          },
+          {
+            "tag": "Hailee Steinfeld"
+          }
+        ]
+      },
+      {
+        "ratingKey": "17896",
+        "key": "/library/metadata/17896",
+        "guid": "com.plexapp.agents.imdb://tt0381849?lang=en",
+        "studio": "Tree Line Films",
+        "type": "movie",
+        "title": "3:10 to Yuma",
+        "contentRating": "R",
+        "summary": "In Arizona in the late 1800s, infamous outlaw Ben Wade and his vicious gang of thieves and murderers have plagued the Southern Railroad. When Wade is captured, Civil War veteran Dan Evans, struggling to survive on his drought-plagued ranch, volunteers to deliver him alive to the \"3:10 to Yuma\", a train that will take the killer to trial.",
+        "rating": 8.9,
+        "audienceRating": 8.6,
+        "year": 2007,
+        "tagline": "Time waits for one man.",
+        "thumb": "/library/metadata/17896/thumb/1575865068",
+        "art": "/library/metadata/17896/art/1575865068",
+        "duration": 7350634,
+        "originallyAvailableAt": "2007-09-06",
+        "addedAt": 1575853390,
+        "updatedAt": 1575865068,
+        "audienceRatingImage": "rottentomatoes://image.rating.upright",
+        "primaryExtraKey": "/library/metadata/26510",
+        "ratingImage": "rottentomatoes://image.rating.ripe",
+        "Media": [
+          {
+            "id": 39530,
+            "duration": 7350634,
+            "bitrate": 1985,
+            "width": 1920,
+            "height": 800,
+            "aspectRatio": 2.35,
+            "audioChannels": 2,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 39531,
+                "key": "/library/parts/39531/1382803659/file.mp4",
+                "duration": 7350634,
+                "file": "/volume1/Media/Movies/310 to Yuma (2007)/310 to Yuma (2007) [1080p] [AAC 2ch].mp4",
+                "size": 1827586441,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Genre": [
+          {
+            "tag": "Action"
+          },
+          {
+            "tag": "Crime"
+          }
+        ],
+        "Director": [
+          {
+            "tag": "James Mangold"
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Michael Brandt"
+          },
+          {
+            "tag": "Derek Haas"
+          }
+        ],
+        "Country": [
+          {
+            "tag": "USA"
+          }
+        ],
+        "Role": [
+          {
+            "tag": "Russell Crowe"
+          },
+          {
+            "tag": "Christian Bale"
+          },
+          {
+            "tag": "Logan Lerman"
+          }
+        ]
+      },
+      {
+        "ratingKey": "17893",
+        "key": "/library/metadata/17893",
+        "guid": "com.plexapp.agents.imdb://tt3165632?lang=en",
+        "studio": "PIB Productions",
+        "type": "movie",
+        "title": "5th Passenger",
+        "contentRating": "PG",
+        "summary": "Set in the aftermath of an oppressive class war, a pregnant officer aboard an escape pod must struggle to survive with her remaining crew when a mysterious and vicious life form attacks, determined to become the dominant species.",
+        "rating": 3.1,
+        "year": 2018,
+        "tagline": "Question your humanity",
+        "thumb": "/library/metadata/17893/thumb/1575865049",
+        "art": "/library/metadata/17893/art/1575865049",
+        "duration": 5364233,
+        "originallyAvailableAt": "2018-05-30",
+        "addedAt": 1575853390,
+        "updatedAt": 1575865049,
+        "chapterSource": "media",
+        "primaryExtraKey": "/library/metadata/26489",
+        "ratingImage": "imdb://image.rating",
+        "Media": [
+          {
+            "id": 39527,
+            "duration": 5364233,
+            "bitrate": 4908,
+            "width": 1908,
+            "height": 776,
+            "aspectRatio": 2.35,
+            "audioChannels": 6,
+            "audioCodec": "ac3",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mkv",
+            "videoFrameRate": "24p",
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 39528,
+                "key": "/library/parts/39528/1531242380/file.mkv",
+                "duration": 5364233,
+                "file": "/volume1/Media/Movies/5th Passenger (2018)/5th Passenger (2018) [1080p] [AC3 6ch].mkv",
+                "size": 3292276585,
+                "container": "mkv",
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Genre": [
+          {
+            "tag": "Sci-Fi"
+          },
+          {
+            "tag": "Thriller"
+          }
+        ],
+        "Director": [
+          {
+            "tag": "Scotty Baker"
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Scotty Baker"
+          },
+          {
+            "tag": "Morgan Lariah"
+          }
+        ],
+        "Country": [
+          {
+            "tag": "USA"
+          }
+        ],
+        "Role": [
+          {
+            "tag": "Doug Jones"
+          },
+          {
+            "tag": "Tim Russ"
+          },
+          {
+            "tag": "Marina Sirtis"
+          }
+        ]
+      },
+      {
+        "ratingKey": "16380",
+        "key": "/library/metadata/16380",
+        "guid": "com.plexapp.agents.imdb://tt2304933?lang=en",
+        "studio": "Columbia Pictures",
+        "type": "movie",
+        "title": "The 5th Wave",
+        "titleSort": "5th Wave",
+        "contentRating": "PG-13",
+        "summary": "16-year-old Cassie Sullivan tries to survive in a world devastated by the waves of an alien invasion that has already decimated the population and knocked mankind back to the Stone Age.",
+        "rating": 1.5,
+        "audienceRating": 3.8,
+        "year": 2016,
+        "tagline": "Protect Your Own",
+        "thumb": "/library/metadata/16380/thumb/1575860472",
+        "art": "/library/metadata/16380/art/1575860472",
+        "duration": 6742739,
+        "originallyAvailableAt": "2016-01-14",
+        "addedAt": 1575853102,
+        "updatedAt": 1575860472,
+        "audienceRatingImage": "rottentomatoes://image.rating.spilled",
+        "chapterSource": "media",
+        "primaryExtraKey": "/library/metadata/20338",
+        "ratingImage": "rottentomatoes://image.rating.rotten",
+        "Media": [
+          {
+            "id": 37833,
+            "duration": 6742739,
+            "bitrate": 4710,
+            "width": 1280,
+            "height": 536,
+            "aspectRatio": 2.35,
+            "audioChannels": 6,
+            "audioCodec": "dca",
+            "videoCodec": "h264",
+            "videoResolution": "720",
+            "container": "mkv",
+            "videoFrameRate": "24p",
+            "audioProfile": "dts",
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 37834,
+                "key": "/library/parts/37834/1470000958/file.mkv",
+                "duration": 6742739,
+                "file": "/volume1/Media/Movies/The 5th Wave (2016)/The 5th Wave (2016) [720p] [DCA 6ch].mkv",
+                "size": 3971672377,
+                "audioProfile": "dts",
+                "container": "mkv",
+                "videoProfile": "high"
+              }
+            ]
+          }
+        ],
+        "Genre": [
+          {
+            "tag": "Action"
+          },
+          {
+            "tag": "Adventure"
+          }
+        ],
+        "Director": [
+          {
+            "tag": "J Blakeson"
+          }
+        ],
+        "Writer": [
+          {
+            "tag": "Akiva Goldsman"
+          },
+          {
+            "tag": "Susannah Grant"
+          }
+        ],
+        "Country": [
+          {
+            "tag": "USA"
+          }
+        ],
+        "Role": [
+          {
+            "tag": "Chloë Grace Moretz"
+          },
+          {
+            "tag": "Nick Robinson"
+          },
+          {
+            "tag": "Alex Roe"
+          }
+        ]
+      }
+    ]
+  }
+}
