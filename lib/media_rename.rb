@@ -1,9 +1,9 @@
 $LOAD_PATH.unshift File.dirname(__FILE__)
 
+require 'rubyplex'
 require 'yaml'
 require 'liquid'
 require 'logger'
-require 'rubyplex'
 require "media_rename/version"
 require "media_rename/media"
 require "media_rename/utils"
@@ -33,7 +33,13 @@ module MediaRename
     end
   end
 
+  def load_plex(options = {})
+    plex_options = options.slice(:host, :port, :token)
+    Plex.server(Plex.config.merge(plex_options))
+  end
+
+
   class InvalidFileError < StandardError; end
 
-  class LibraryNotFound < StandardError; end
+  class LibraryNotFoundError < StandardError; end
 end

@@ -1,6 +1,6 @@
 TMDB_API:
 PLEX_TOKEN:
-PLEX_PORT: 
+PLEX_PORT:
 PLEX_HOST:  
 MOVIE_TEMPLATE: "\
 {{target_path}}/\

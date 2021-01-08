@@ -15,13 +15,13 @@ class MediaRenameCLI < Thor
                 type: :boolean,
                 default: false,
                 desc: "Dry run - don't actually make changes"
-  method_option :plex_host, 
+  method_option :host, 
                 type: :string,
-                desc: "Plex Server IP address" 
-  method_option :plex_port, 
+                desc: "Plex Server host/ip address (use https://x.x.x.x for https or ip address for http)" 
+  method_option :port, 
                 type: :string,
                 desc: "Plex Server port" 
-  method_option :plex_token, 
+  method_option :token, 
                 type: :string,
                 desc: "Plex token" 
   method_option :verbose,
@@ -34,20 +34,15 @@ class MediaRenameCLI < Thor
                 aliases: 't',
                 desc: "Target path"
 
-  method_option :confirmation_required,
+  method_option :confirm,
                 type: :boolean,
                 aliases: 'c',
                 default: true,
                 desc: "Require Confirmation"
 
   def plex(path)
-    set_log_level(options[:verbose])
-    init_plex(options)
-    p options
-    params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-    p params
-    renamer = MediaRename::PlexRenamer.new(path, params)
-    renamer.run
+    renamer = MediaRename::PlexRenamer.new(path, options)
+    renamer.rename
   end
 
 

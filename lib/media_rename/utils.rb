@@ -87,7 +87,7 @@ module MediaRename
 
     def ls(path)
       path = File.expand_path(File.directory?(path) ? path : File.dirname(path))
-      paths, files = Dir.glob(escape_glob("#{path}/*")).partition {|e| Dir.exist?(e) }
+      Dir.glob(escape_glob("#{path}/*")).partition {|e| Dir.exist?(e) }
     end
 
     def escape_glob(s)
