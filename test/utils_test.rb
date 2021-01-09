@@ -33,21 +33,24 @@ class MediaRename::UtilsTest < ActiveSupport::TestCase
     assert_equal 2, files.count
   end
 
-  # media_file?()
-
-  test "#media_files?() returns true if file has video extension" do
-    file = File.expand_path("./test/files/RARBG.mp4")
-    assert MediaRename::Utils.media_file?(file)
-  end
-
-  test "#media_file?() returns false if file does not have video extension" do
-    file = File.expand_path("./test/files/sample_files.txt")
-    assert !MediaRename::Utils.media_file?(file)
-  end
-
   # subtitle_files()
 
+  test "#subtitle_files() returns array of subtitle files in path" do
+  end
+
+  test "#subtitle_files() returns empty array if no subtitle files found in path" do  
+  end
+
   # key_subfolders()
+
+  test "#key_subfolders() returns array of valid subfolders in path" do
+  end
+
+  # mv_subtitle_files()
+
+  # mv_subfolders()
+
+  # mv
 
   # mkdir
 
@@ -63,14 +66,7 @@ class MediaRename::UtilsTest < ActiveSupport::TestCase
     MediaRename::Utils.mkdir(path)
   end
 
-  # mv_subtitles()
-
-  # mv_subfolders()
-
-  # mv
-
   # rm_path
-
 
   # empty?
 

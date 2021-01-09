@@ -13,36 +13,32 @@ module MediaRename
       log.info("Using library [#{library.title}]")
     end
 
-
-    # works for root path has root media files, but what about 
-    # specifying path that has key subfolders?
-    def rename_files
-      files = MediaRename::Utils.media_files(path)
-      log.debug("Found #{files.count} files in path #{path}")
-      log.debug("RENAMING MEDIA FILES") unless files.empty?
+    def rename_files(curr_path = @path)
+      files = MediaRename::Utils.media_files(curr_path)
+      log.debug("Scanning [#{curr_path}]: Found #{files.count} files")
       files.each do |file| 
-        log.debug("\n")
+        log.debug("===== Processing [#{file}]")
         target_file = target_filename(file)
         rename_file(file, target_file)
       end
 
-      folders = MediaRename::Utils.folders(path)
-      log.debug("Found #{folders.count} subfolders in path #{path}")
-      log.debug("RENAMING SUBFOLDERS") unless folders.empty?
-      folders.each {|folder| rename_path(folder) }
+      log.debug("")
+      log.debug("==== Rename Subfolders")
+      subfolders = MediaRename::Utils.folders(curr_path)
+      log.debug("Scanning [#{curr_path}]: Found #{subfolders.count} subfolders")
+      subfolders.each do |subfolder|
+        rename_files(subfolder)
+      end
     end
 
     def rename_file(source, target_file = nil)
-      log.debug("Rename: Could not find file in Plex..skip") && return if target_file.nil?
-      log.debug("Rename: Src and dest are same..skip [#{source} v #{target_file}]") && return if source == target_file
-      log.debug("Rename: Renaming => [#{target_file}]")
-      MediaRename::Utils.mkdir(File.dirname(target_file), options)
       MediaRename::Utils.mv(source, target_file, options)
-      MediaRename::Utils.mv_subtitles(path, target_file, options)
+      subpath = File.dirname(source)
+      MediaRename::Utils.mv_subtitle_files(subpath, target_file, options)
+      MediaRename::Utils.mv_subfolders(subpath, target_file, options)
     end
 
     def rename_path(path)
-      log.debug("\n")
       log.debug("Renaming path [#{path}]")
       target_file = nil
       MediaRename::Utils.media_files(path).each do |file|
@@ -57,9 +53,14 @@ module MediaRename
     def target_filename(file)
       plexrecord = library.find_by_filename(file)
       log.debug("No plex record found for [#{file}]") && return unless plexrecord
-      plexmedia = plexrecord.find_by_filename(file)
-      templateKlass = library.movie_library? ? MediaRename::MovieTemplate : MediaRename::ShowTemplate 
-      File.join(target_path, templateKlass.new({record: plexrecord, media: plexmedia}).render)
+      if library.movie_library?
+        media = plexrecord.find_by_filename(file)
+        File.join(target_path, MediaRename::MovieTemplate.new({record: plexrecord, media: media}).render)
+      else
+        episode = plexrecord.find_by_filename(file)
+        media   = episode.media_by_filename(file)
+        File.join(target_path, MediaRename::ShowTemplate.new({record: episode, media: media}).render)
+      end
     end
 
 

@@ -6,7 +6,6 @@ module MediaRename
 
     MEDIA_FILES    = %w| .mp4 .mov .mkv .avi .m4v |
     SUB_FILES      = %w| .srt .idx .sub |
-    MIN_MEDIA_SIZE = 200000000 #838860800 # 800.megabytes
     KEY_FOLDERS = [
       "subs", "Subtitles", "Extras", "Featurettes",
       "Bonus Disc", "Deleted Scenes"
@@ -20,62 +19,60 @@ module MediaRename
     end
 
     def folders(path)
-      list = ls(path).first
-      log("Folders found: [#{list.count}] #{list}")
-      list
+      ls(path).first
     end
 
     def media_files(path)
-      list = files(path).select {|file| media_file?(file) }
-      log("Media files found: [#{list.count}] #{list}")
+      list = files(path).select {|file| MEDIA_FILES.include?(File.extname(file).downcase) }
+      log.debug("Found #{list.count} media files: #{list}")
       list
     end
 
-    def media_file?(file)
-      MEDIA_FILES.include?(File.extname(file).downcase)
-    end
-
     def subtitle_files(path)
-      files(path).select {|f| SUB_FILES.include?(File.extname(f).downcase) }
+      list = files(path).select {|f| SUB_FILES.include?(File.extname(f).downcase) }
+      log.debug("Found #{list.count} subtitle files: #{list}")
+      list
     end
 
     def key_subfolders(path)
-      folders(path).select {|p| KEY_FOLDERS.include?(File.basename(p.downcase)) }
+      list = folders(path).select {|p| KEY_FOLDERS.include?(File.basename(p.downcase)) }
+      log.debug("Found #{list.count} subfolders: #{list}")
+      list
     end
 
-    def mkdir(path, options = {})
-      return if File.directory?(path)
-      log("Creating directory [#{path}]")
-      FileUtils.mkdir_p path, verbose: options[:verbose], noop: options[:preview]
-    end
-
-    def mv_subtitles(source, dest, options = {})
-      dest_path = File.dirname(dest)
-      files = subtitle_files(source)
-      log("Found [#{files.count}] subtitle files #{files}")
-      files.each do |file|
-        dest_file = File.join(dest_path, File.basename(file.gsub(":","-")))
+    def mv_subtitle_files(path, target_file, options = {})
+      dest_path = File.dirname(target_file)
+      subtitle_files(path).each do |file|
+        dest_file = File.join(dest_path, [File.basename(target_file), File.extname(file)].join)
         mv(file, dest_file, options)
       end
     end
 
-    def mv_subfolders(source, dest, options = {})
-      dest_path = File.dirname(dest)
-      key_subfolders(source).each do |file|
-        dest_file = File.join(dest_path, File.basename(file))
-        mv(file, dest_file, options)
+    def mv_subfolders(path, target_file, options = {})
+      dest_path = File.dirname(target_file)
+      key_subfolders(path).each do |subfolder|
+        dest_file = File.join(dest_path, File.basename(subfolder))
+        mv(subfolder, dest_file, options)
       end
     end
     
     def mv(source, dest, options = {})
-      log("Moving [#{File.basename(source)}] => #{dest}")
-      return if source == dest
+      log.debug("Move: Dest does not exist..skip") && return if dest.nil?
+      log.debug("Move: Source does not exist..skip") && return unless File.exist?(source)
+      log.debug("Move: Source and Dest are the same...skip.") && return if source == dest
+      log.debug("Move: #{File.basename(source)} => #{dest}")
       mkdir(File.dirname(dest), options)
       FileUtils.mv source, dest, verbose: options[:verbose], noop: options[:preview]
     end
 
+    def mkdir(path, options = {})
+      return if File.directory?(path)
+      log.debug("Creating directory [#{path}]")
+      FileUtils.mkdir_p path, verbose: options[:verbose], noop: options[:preview]
+    end
+
     def rm_path(path, options = {})
-      log("Deleting directory [#{path}]")
+      log.debug("Deleting directory [#{path}]")
       FileUtils.rm_rf path, verbose: options[:verbose], noop: options[:preview] 
     end
 
@@ -96,12 +93,8 @@ module MediaRename
       s.gsub(/[\[\]\{\}]/) {|x| "\\" + x }
     end
 
-    def log(msg)
-      logger.debug(msg) 
-    end
-
-    def logger
-      @logger ||= MediaRename.logger
+    def log
+      @log ||= MediaRename.logger
     end
 
   end
