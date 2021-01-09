@@ -43,7 +43,7 @@ module MediaRename
     def mv_subtitle_files(path, target_file, options = {})
       dest_path = File.dirname(target_file)
       subtitle_files(path).each do |file|
-        dest_file = File.join(dest_path, [File.basename(target_file), File.extname(file)].join)
+        dest_file = File.join(dest_path, [File.basename(target_file, ".*"), File.extname(file)].join)
         mv(file, dest_file, options)
       end
     end
