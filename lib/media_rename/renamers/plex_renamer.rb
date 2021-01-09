@@ -5,60 +5,54 @@ module MediaRename
     attr_reader :library, :options, :target_path, :settings
     attr_accessor :path
 
-    DEFAULT_OPTIONS = { 
-      preview: true 
-    }.freeze
-
-
-    # options => :preview, :verbose, :host, :port, :token, :target_path, :confirmation_required
+    # options => :preview, :verbose, :host, :port, :token, :target_path, :confirm
     def initialize(path, options = {})
       @path = path.to_s
       sanitize_options(options)
       set_log_level
       @library = plex_library_from_path(@path)
-      # set library based on path
-      # 
-      # @options     = DEFAULT_OPTIONS.merge(options)
-      # @path        = File.expand_path(path)
-      # @target_path = @options.fetch(:target_path, root_path)
-      # @library     = load_library(options)
       log.info("Using library [#{library.title}]")
-      # log.debug("Checking files in path #{path} against Plex Library [#{library.title}]\n Options: #{options} ")
     end
 
-    def rename
+    def rename_files
       files = MediaRename::Utils.media_files(path)
-      files.each do |file|
-        rename_file(file)
+      files.each do |file| 
+        target_file = target_filename(file)
+        rename_file(file, target_file)
       end
 
       folders = MediaRename::Utils.folders(path)
-      folders.each do |folder|
-        rename_folder(folder)
+      folders.each {|folder| rename_path(folder) }
+    end
+
+    def rename_file(source, dest = nil)
+      log.debug("Rename: Could not find file in Plex..skip") && return if dest.nil?
+      log.debug("Rename: Source and destination are same..skip") && return if source == dest
+      log.debug("Rename: Renaming [#{source}]")
+      MediaRename::Utils.mkdir(File.dirname(dest), options)
+      MediaRename::Utils.mv(source, dest, options)
+    end
+
+    def rename_path(path)
+      log.debug("Renaming path [#{path}]")
+      MediaRename::Utils.media_files(path).each do |file|
+        next unless target_file = target_filename(file)
+        rename_file(file, target_file)
+        rename_subfolders(path, target_file)
+        MediaRename::Utils.rm_path(path, options) if MediaRename::Utils.empty?(path)
       end
     end
 
-    def rename_file(file)
-      # get plexentry for file
-      # return if no plexfile
-
+    def rename_subfolders(path, target_file)
+      dest_dir   = File.dirname(target_file)
+      if path == dest_dir
+        log.debug("Source and dest paths are the same...skip") && return
+        MediaRename::Utils.mv_subtitles(path, target_file, options)
+        MediaRename::Utils.mv_subfolders(old_dir, target_file, options)
+      end
     end
 
-    def rename_folder(folder)
-    end
-
-    # return Plex::Movie | Plex::Show for given file    
-    def plexmedia_for_file(file)
-    end
     
-    # def run(options = {})
-    #   # process each subfolder in main path
-    #   MediaRename::Utils.folders(path).each {|path| process_path(path)}
-
-    #   # process each file in main path
-    #   MediaRename::Utils.files(path).each {|file| process_file(file)}
-    # end
-
     # def rename(path)
     #   # find plex entry for media files
     #   MediaRename::Utils.files(path).each do |file|
@@ -140,10 +134,14 @@ module MediaRename
     #   log.info("Done [#{new_file}]")
     # end
 
-    # def target_name(plex_media)
-    #   templateKlass = library.movie_library? ? MediaRename::MovieTemplate : MediaRename::ShowTemplate 
-    #   File.join(target_path, templateKlass.new(plex_media).render)
-    # end
+    
+    def target_filename(file)
+      plexrecord = library.find_by_filename(file)
+      log.debug("No plex record found for [#{file}]") && return unless plexrecord
+      plexmedia = plexrecord.find_by_filename(file)
+      templateKlass = library.movie_library? ? MediaRename::MovieTemplate : MediaRename::ShowTemplate 
+      File.join(target_path, templateKlass.new({record: plexrecord, media: plexmedia}).render)
+    end
 
 
     private
@@ -173,6 +171,10 @@ module MediaRename
 
     def verbose?
       options.fetch(:verbose, false)
+    end
+
+    def target_path
+      options.fetch(:target_path, "")
     end
 
     def sanitize_options(options)
