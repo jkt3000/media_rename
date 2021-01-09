@@ -9,7 +9,6 @@ require 'io/console'
 
 class MediaRenameCLI < Thor
 
-
   desc "plex <path>", "Rename media files based on data from Plex database"
   method_option :preview,
                 type: :boolean,
@@ -42,74 +41,7 @@ class MediaRenameCLI < Thor
 
   def plex(path)
     renamer = MediaRename::PlexRenamer.new(path, options)
-    renamer.rename
-  end
-
-
-  private
-
-
-  def rename_media_files(path, params)
-    files = MediaRename::Utils.media_files(path).sort
-    puts "Found [#{files.count}] media files"
-    
-    return unless files.count > 0
-    return unless confirmation(path, options)
-
-    parent_path = File.dirname(path)
-    renamer = MediaRename::PlexRenamer.new(parent_path, params)
-    puts "processing parent folder #{parent_path} for #{files.count} files"
-    renamer.rename(path)
-  end
-
-  def rename_folders(path, params)
-    renamer = MediaRename::PlexRenamer.new(path, params)
-    folders = MediaRename::Utils.folders(path).sort
-    puts "Found [#{folders.count}] folders"
-    folders.each do |folder|
-      if confirmation(folder, options)
-        puts "processing #{folder}"
-        renamer.rename(folder)
-      else
-        puts "skip"
-      end
-    end
-  end
-
-  def confirmation(msg, options)
-    return true unless options[:confirmation_required] == true
-    puts "> #{msg}?\nCONFIRM? [Y/n/q]"
-    value = STDIN.getch
-    case value
-    when 'q', "Q", "\u0003"
-      puts
-      abort("Quitting...")
-    when 'y', "Y", "\r", "\n"
-      puts
-      true
-    else
-      false
-    end
-  end
-
-  def set_log_level(verbose)
-    MediaRename.logger.level = verbose ? :debug : :info
-  end
-
-  def init_plex(options)
-    settings = MediaRename::SETTINGS
-    Plex.configure do |config|
-      if host = options.fetch(:plex_host, settings.fetch("PLEX_HOST", nil))
-        config[:host] = host
-      end
-      if port = options.fetch(:plex_port, settings.fetch("PLEX_PORT", nil))
-        config[:port] = port
-      end
-      if token = options.fetch(:plex_token, settings.fetch("PLEX_TOKEN", nil))
-        config[:token] = token
-      end
-    end
-    p Plex.config
+    renamer.rename_files
   end
 end
 

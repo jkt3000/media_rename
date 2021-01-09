@@ -51,7 +51,9 @@ module MediaRename
 
     def mv_subtitles(source, dest, options = {})
       dest_path = File.dirname(dest)
-      subtitle_files(source).each do |file|
+      files = subtitle_files(source)
+      log("Found [#{files.count}] subtitle files #{files}")
+      files.each do |file|
         dest_file = File.join(dest_path, File.basename(file.gsub(":","-")))
         mv(file, dest_file, options)
       end

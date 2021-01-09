@@ -19,7 +19,8 @@ module MediaRename
     end
 
     def render
-      template.render(attributes.stringify_keys)
+      params = attributes.inject({}){|memo,(k,v)| memo[k.to_s] = v; memo}
+      template.render(params)
     end
   end
 
