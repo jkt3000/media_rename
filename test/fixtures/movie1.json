@@ -1,0 +1,605 @@
+{
+  "MediaContainer": {
+    "size": 1,
+    "allowSync": true,
+    "identifier": "com.plexapp.plugins.library",
+    "librarySectionID": 1,
+    "librarySectionTitle": "Movies",
+    "librarySectionUUID": "0f2755ad-7ed8-42fb-909a-eb2678369768",
+    "mediaTagPrefix": "/system/bundle/media/flags/",
+    "mediaTagVersion": 1574417695,
+    "Metadata": [
+      {
+        "ratingKey": "17911",
+        "key": "/library/metadata/17911",
+        "guid": "com.plexapp.agents.imdb://tt1272878?lang=en",
+        "studio": "Universal Pictures",
+        "type": "movie",
+        "title": "2 Guns",
+        "librarySectionTitle": "Movies",
+        "librarySectionID": 1,
+        "librarySectionKey": "/library/sections/1",
+        "contentRating": "R",
+        "summary": "A DEA agent and an undercover Naval Intelligence officer who have been tasked with investigating one another find they have been set up by the mob -- the very organization the two men believe they have been stealing money from.",
+        "rating": 6.4,
+        "audienceRating": 6.6,
+        "year": 2013,
+        "tagline": "2 Guns, 1 Bank.",
+        "thumb": "/library/metadata/17911/thumb/1575865139",
+        "art": "/library/metadata/17911/art/1575865139",
+        "duration": 6555382,
+        "originallyAvailableAt": "2013-08-02",
+        "addedAt": 1575853393,
+        "updatedAt": 1575865139,
+        "audienceRatingImage": "rottentomatoes://image.rating.upright",
+        "primaryExtraKey": "/library/metadata/26552",
+        "ratingImage": "rottentomatoes://image.rating.ripe",
+        "Media": [
+          {
+            "id": 39545,
+            "duration": 6555382,
+            "bitrate": 2144,
+            "width": 1920,
+            "height": 800,
+            "aspectRatio": 2.35,
+            "audioChannels": 2,
+            "audioCodec": "aac",
+            "videoCodec": "h264",
+            "videoResolution": "1080",
+            "container": "mp4",
+            "videoFrameRate": "24p",
+            "optimizedForStreaming": 1,
+            "audioProfile": "lc",
+            "has64bitOffsets": false,
+            "videoProfile": "high",
+            "Part": [
+              {
+                "id": 39546,
+                "key": "/library/parts/39546/1383905481/file.mp4",
+                "duration": 6555382,
+                "file": "/volume1/Media/Movies/2 Guns (2013)/2 Guns (2013) [1080p] [AAC 2ch].mp4",
+                "size": 1760468767,
+                "audioProfile": "lc",
+                "container": "mp4",
+                "has64bitOffsets": false,
+                "optimizedForStreaming": true,
+                "videoProfile": "high",
+                "Stream": [
+                  {
+                    "id": 119985,
+                    "streamType": 1,
+                    "default": true,
+                    "codec": "h264",
+                    "index": 0,
+                    "bitrate": 2051,
+                    "bitDepth": 8,
+                    "chromaLocation": "left",
+                    "chromaSubsampling": "4:2:0",
+                    "colorPrimaries": "bt709",
+                    "colorRange": "tv",
+                    "colorSpace": "bt709",
+                    "frameRate": 23.976,
+                    "hasScalingMatrix": false,
+                    "height": 800,
+                    "level": 41,
+                    "profile": "high",
+                    "refFrames": 4,
+                    "streamIdentifier": "1",
+                    "width": 1920,
+                    "displayTitle": "1080p (H.264)"
+                  },
+                  {
+                    "id": 119986,
+                    "streamType": 2,
+                    "selected": true,
+                    "default": true,
+                    "codec": "aac",
+                    "index": 1,
+                    "channels": 2,
+                    "bitrate": 94,
+                    "language": "English",
+                    "languageCode": "eng",
+                    "profile": "lc",
+                    "samplingRate": 48000,
+                    "streamIdentifier": "2",
+                    "displayTitle": "English (AAC Stereo)"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "Genre": [
+          {
+            "id": 22,
+            "filter": "genre=22",
+            "tag": "Action"
+          },
+          {
+            "id": 23,
+            "filter": "genre=23",
+            "tag": "Comedy"
+          },
+          {
+            "id": 24,
+            "filter": "genre=24",
+            "tag": "Crime"
+          },
+          {
+            "id": 25,
+            "filter": "genre=25",
+            "tag": "Thriller"
+          }
+        ],
+        "Director": [
+          {
+            "id": 51454,
+            "filter": "director=51454",
+            "tag": "Baltasar Kormákur"
+          }
+        ],
+        "Writer": [
+          {
+            "id": 61894,
+            "filter": "writer=61894",
+            "tag": "Blake Masters"
+          }
+        ],
+        "Producer": [
+          {
+            "id": 6086,
+            "filter": "producer=6086",
+            "tag": "George Furla"
+          },
+          {
+            "id": 1288,
+            "filter": "producer=1288",
+            "tag": "Randall Emmett"
+          },
+          {
+            "id": 3574,
+            "filter": "producer=3574",
+            "tag": "Marc Platt"
+          },
+          {
+            "id": 44672,
+            "filter": "producer=44672",
+            "tag": "Adam Siegel"
+          },
+          {
+            "id": 22189,
+            "filter": "producer=22189",
+            "tag": "Norton Herrick"
+          },
+          {
+            "id": 61907,
+            "filter": "producer=61907",
+            "tag": "Ross Richie"
+          },
+          {
+            "id": 61908,
+            "filter": "producer=61908",
+            "tag": "Andrew Cosby"
+          }
+        ],
+        "Country": [
+          {
+            "id": 31,
+            "filter": "country=31",
+            "tag": "USA"
+          }
+        ],
+        "Role": [
+          {
+            "id": 5980,
+            "filter": "actor=5980",
+            "tag": "Denzel Washington",
+            "role": "Robert 'Bobby' Trench",
+            "thumb": "http://image.tmdb.org/t/p/original/t9arcZbg1nLt8GZt2SkWm227YoK.jpg"
+          },
+          {
+            "id": 8699,
+            "filter": "actor=8699",
+            "tag": "Mark Wahlberg",
+            "role": "Michael 'Stig' Stigman",
+            "thumb": "http://image.tmdb.org/t/p/original/z2wJh5n7qZRUE1y9uB8UrivAV2b.jpg"
+          },
+          {
+            "id": 5270,
+            "filter": "actor=5270",
+            "tag": "Paula Patton",
+            "role": "Deb",
+            "thumb": "http://image.tmdb.org/t/p/original/l3Tx5cS0S0mSYSxD8zN0Q8Pq0LX.jpg"
+          },
+          {
+            "id": 4644,
+            "filter": "actor=4644",
+            "tag": "Bill Paxton",
+            "role": "Earl",
+            "thumb": "http://image.tmdb.org/t/p/original/53Ln1wTC0OCLzBF4HNlwhMXYgOU.jpg"
+          },
+          {
+            "id": 8316,
+            "filter": "actor=8316",
+            "tag": "Fred Ward",
+            "role": "Admiral Tuwey",
+            "thumb": "http://image.tmdb.org/t/p/original/uIeK4ffPlg6vIl53iImW9ofF0uI.jpg"
+          },
+          {
+            "id": 1891,
+            "filter": "actor=1891",
+            "tag": "James Marsden",
+            "role": "Quince",
+            "thumb": "http://image.tmdb.org/t/p/original/tJK1PbhcJj5cBNqnuFKHtAFPQKz.jpg"
+          },
+          {
+            "id": 26889,
+            "filter": "actor=26889",
+            "tag": "Edward James Olmos",
+            "role": "Papi Greco",
+            "thumb": "http://image.tmdb.org/t/p/original/i7zKqsFqL5L1HPmAMeSA1xZzlD5.jpg"
+          },
+          {
+            "id": 8203,
+            "filter": "actor=8203",
+            "tag": "Robert John Burke",
+            "role": "Jessup",
+            "thumb": "http://image.tmdb.org/t/p/original/ctVRWqY0KfSBIpaGulJMbhyE3jy.jpg"
+          },
+          {
+            "id": 4506,
+            "filter": "actor=4506",
+            "tag": "Tait Fletcher",
+            "role": "Mini",
+            "thumb": "http://image.tmdb.org/t/p/original/b70bowmWAiXqlSCBXy0IFC1Mcw4.jpg"
+          },
+          {
+            "id": 6039,
+            "filter": "actor=6039",
+            "tag": "Ambyr Childers",
+            "role": "Ms. Young",
+            "thumb": "http://image.tmdb.org/t/p/original/boFipGlGLBVQ9xTW69wXzWW6OAD.jpg"
+          },
+          {
+            "id": 18143,
+            "filter": "actor=18143",
+            "tag": "Doris Morgado",
+            "role": "Daisie",
+            "thumb": "http://image.tmdb.org/t/p/original/g2qQLzvqK0kRjlMjAQ56eDKjoUO.jpg"
+          },
+          {
+            "id": 23470,
+            "filter": "actor=23470",
+            "tag": "Evie Thompson",
+            "role": "Patsy (Dr. Ken's Assistant)",
+            "thumb": "http://image.tmdb.org/t/p/original/fMS7hvhTw5TRtC5TbW4JKTxtct1.jpg"
+          },
+          {
+            "id": 61895,
+            "filter": "actor=61895",
+            "tag": "Azure Parsons",
+            "role": "Waitress Maggie",
+            "thumb": "http://image.tmdb.org/t/p/original/xW0s5zSXqaZb5AOZR20JLuAwIKO.jpg"
+          },
+          {
+            "id": 28698,
+            "filter": "actor=28698",
+            "tag": "Edgar Arreola",
+            "role": "Rudy (Papi's Men)",
+            "thumb": "http://image.tmdb.org/t/p/original/pUvpVhpU3c68v6qWE1Vysq1MGQY.jpg"
+          },
+          {
+            "id": 12430,
+            "filter": "actor=12430",
+            "tag": "Patrick Fischler",
+            "role": "Dr. Ken",
+            "thumb": "http://image.tmdb.org/t/p/original/x7btvLV8RnW5dw9Of1uYRp86E7V.jpg"
+          },
+          {
+            "id": 44549,
+            "filter": "actor=44549",
+            "tag": "Christopher Matthew Cook",
+            "role": "Thick",
+            "thumb": "http://image.tmdb.org/t/p/original/nKsExP9PCRKkRnuHXONBp9V0NpY.jpg"
+          },
+          {
+            "id": 51597,
+            "filter": "actor=51597",
+            "tag": "Tim Bell",
+            "role": "Lean",
+            "thumb": "http://image.tmdb.org/t/p/original/vLVgOTnJnigcPkm8kYOL6JAv2B9.jpg"
+          },
+          {
+            "id": 61896,
+            "filter": "actor=61896",
+            "tag": "Lindsey G. Smith",
+            "role": "Gina Corrales",
+            "thumb": "http://image.tmdb.org/t/p/original/keL4ago7ud1REGXeiLkG1J0Y9jY.jpg"
+          },
+          {
+            "id": 56129,
+            "filter": "actor=56129",
+            "tag": "Greg Sproles",
+            "role": "Chief Lucas",
+            "thumb": "http://image.tmdb.org/t/p/original/6rDyGkHkhmOedbhBeVo5zZCYEoL.jpg"
+          },
+          {
+            "id": 61897,
+            "filter": "actor=61897",
+            "tag": "Derek Solorsano",
+            "role": "Ferret Nose Julio"
+          },
+          {
+            "id": 3714,
+            "filter": "actor=3714",
+            "tag": "Kyle Clements",
+            "role": "Teemo",
+            "thumb": "http://image.tmdb.org/t/p/original/yvAz7YZyMEUemDruhZyND2dvZXv.jpg"
+          },
+          {
+            "id": 13948,
+            "filter": "actor=13948",
+            "tag": "John McConnell",
+            "role": "Officer Dave",
+            "thumb": "http://image.tmdb.org/t/p/original/gAHxNx9PhT2xVqct6ac61tKFabT.jpg"
+          },
+          {
+            "id": 61898,
+            "filter": "actor=61898",
+            "tag": "Jack Landry",
+            "role": "Officer Phil",
+            "thumb": "http://image.tmdb.org/t/p/original/dYpcvvdNwnkb4BXRNtdiZAFsu7V.jpg"
+          },
+          {
+            "id": 15846,
+            "filter": "actor=15846",
+            "tag": "Ritchie Montgomery",
+            "role": "Chief of Police",
+            "thumb": "http://image.tmdb.org/t/p/original/znNRxqrYkOskK3jlm3ftHyAzJDg.jpg"
+          },
+          {
+            "id": 34466,
+            "filter": "actor=34466",
+            "tag": "Robert Larriviere",
+            "role": "Bank Manager",
+            "thumb": "http://image.tmdb.org/t/p/original/8KdeWeZiM5HDV0K7AZjvJTKwiya.jpg"
+          },
+          {
+            "id": 37953,
+            "filter": "actor=37953",
+            "tag": "Lucy Faust",
+            "role": "Scared Woman",
+            "thumb": "http://image.tmdb.org/t/p/original/5mpec9zfVfsIp87M8Eb9Rare4Wz.jpg"
+          },
+          {
+            "id": 61899,
+            "filter": "actor=61899",
+            "tag": "George Wilson",
+            "role": "Bank Guard"
+          },
+          {
+            "id": 44548,
+            "filter": "actor=44548",
+            "tag": "Yohance Myles",
+            "role": "Lead Agent (FBI Man)",
+            "thumb": "http://image.tmdb.org/t/p/original/nfSaENqW1RbjlSg8gGhlNjwlqau.jpg"
+          },
+          {
+            "id": 50877,
+            "filter": "actor=50877",
+            "tag": "Jesus Jr.",
+            "role": "Roughneck (Papi's Men)",
+            "thumb": "http://image.tmdb.org/t/p/original/g9FFHKY95LLALg7DuqeX6akAJSG.jpg"
+          },
+          {
+            "id": 61900,
+            "filter": "actor=61900",
+            "tag": "Samuel Baca-Garcia",
+            "role": "Javier (Papi's Son)"
+          },
+          {
+            "id": 15234,
+            "filter": "actor=15234",
+            "tag": "Michael Beasley",
+            "role": "Hard Case Border Patrol",
+            "thumb": "http://image.tmdb.org/t/p/original/w1sqMMzBG4M5K9b4Wrhejh0LS5a.jpg"
+          },
+          {
+            "id": 50866,
+            "filter": "actor=50866",
+            "tag": "Christopher Dempsey",
+            "role": "Border Guard",
+            "thumb": "http://image.tmdb.org/t/p/original/nOX8sCxl0LRFYMkYauWFD0xwaDm.jpg"
+          },
+          {
+            "id": 58120,
+            "filter": "actor=58120",
+            "tag": "Bill Stinchcomb",
+            "role": "Uniformed Border Agent",
+            "thumb": "http://image.tmdb.org/t/p/original/qBMOG810vg277nsnFneoWAsXGEZ.jpg"
+          },
+          {
+            "id": 25062,
+            "filter": "actor=25062",
+            "tag": "Mark Adam",
+            "role": "Navy Firefighter",
+            "thumb": "http://image.tmdb.org/t/p/original/u0qp1b3WzcxfjFxgZ6TjReXIQNQ.jpg"
+          },
+          {
+            "id": 61901,
+            "filter": "actor=61901",
+            "tag": "David Kency",
+            "role": "Lead MP (Shore Patrol)"
+          },
+          {
+            "id": 40982,
+            "filter": "actor=40982",
+            "tag": "Gilbert Rosales",
+            "role": "Skinny Immigrant",
+            "thumb": "http://image.tmdb.org/t/p/original/gb60pzm0vP0X56BiHKIEkyg7wRq.jpg"
+          },
+          {
+            "id": 61902,
+            "filter": "actor=61902",
+            "tag": "Peter Gabb",
+            "role": "Doorman"
+          },
+          {
+            "id": 61903,
+            "filter": "actor=61903",
+            "tag": "Jason Kirkpatrick",
+            "role": "Tommy Boy"
+          },
+          {
+            "id": 61904,
+            "filter": "actor=61904",
+            "tag": "Tony Sanford",
+            "role": "Slim Jay"
+          },
+          {
+            "id": 41495,
+            "filter": "actor=41495",
+            "tag": "Lucky Johnson",
+            "role": "Tim Corrales",
+            "thumb": "http://image.tmdb.org/t/p/original/3LSBn12OMYVWbeE09OGBImUJXAn.jpg"
+          },
+          {
+            "id": 61905,
+            "filter": "actor=61905",
+            "tag": "Lindsey Gort",
+            "role": "Waitress Marjorie",
+            "thumb": "http://image.tmdb.org/t/p/original/pwZIFiSPltZbspDWEAtSB14Pcae.jpg"
+          },
+          {
+            "id": 61906,
+            "filter": "actor=61906",
+            "tag": "Hillel M. Sharman",
+            "role": "Roughneck #2"
+          },
+          {
+            "id": 25125,
+            "filter": "actor=25125",
+            "tag": "Aaron Zell",
+            "role": "Roughneck #3"
+          },
+          {
+            "id": 21182,
+            "filter": "actor=21182",
+            "tag": "Henry Penzi",
+            "role": "Roughneck #4",
+            "thumb": "http://image.tmdb.org/t/p/original/wK5JIVWjoNZV1QUYjCLm6F1n26g.jpg"
+          },
+          {
+            "id": 51748,
+            "filter": "actor=51748",
+            "tag": "Bonnie Bentley",
+            "role": "Admiral's Assistant",
+            "thumb": "http://image.tmdb.org/t/p/original/kJ2ewLmI9RFwFBQhMnJ4gRrCOZE.jpg"
+          }
+        ],
+        "Similar": [
+          {
+            "id": 4378,
+            "filter": "similar=4378",
+            "tag": "Pain & Gain"
+          },
+          {
+            "id": 4380,
+            "filter": "similar=4380",
+            "tag": "Safe House"
+          },
+          {
+            "id": 4374,
+            "filter": "similar=4374",
+            "tag": "RED 2"
+          },
+          {
+            "id": 19516,
+            "filter": "similar=19516",
+            "tag": "White House Down"
+          },
+          {
+            "id": 6460,
+            "filter": "similar=6460",
+            "tag": "Contraband"
+          },
+          {
+            "id": 4376,
+            "filter": "similar=4376",
+            "tag": "Escape Plan"
+          },
+          {
+            "id": 4372,
+            "filter": "similar=4372",
+            "tag": "Jack Ryan: Shadow Recruit"
+          },
+          {
+            "id": 4381,
+            "filter": "similar=4381",
+            "tag": "Shooter"
+          },
+          {
+            "id": 4375,
+            "filter": "similar=4375",
+            "tag": "R.I.P.D."
+          },
+          {
+            "id": 3735,
+            "filter": "similar=3735",
+            "tag": "Homefront"
+          },
+          {
+            "id": 4377,
+            "filter": "similar=4377",
+            "tag": "Unstoppable"
+          },
+          {
+            "id": 2583,
+            "filter": "similar=2583",
+            "tag": "Lone Survivor"
+          },
+          {
+            "id": 3744,
+            "filter": "similar=3744",
+            "tag": "Killer Elite"
+          },
+          {
+            "id": 3751,
+            "filter": "similar=3751",
+            "tag": "3 Days to Kill"
+          },
+          {
+            "id": 3738,
+            "filter": "similar=3738",
+            "tag": "Safe"
+          },
+          {
+            "id": 4383,
+            "filter": "similar=4383",
+            "tag": "The Taking of Pelham 1 2 3"
+          },
+          {
+            "id": 3741,
+            "filter": "similar=3741",
+            "tag": "The Mechanic"
+          },
+          {
+            "id": 4373,
+            "filter": "similar=4373",
+            "tag": "Non-Stop"
+          },
+          {
+            "id": 4382,
+            "filter": "similar=4382",
+            "tag": "The Last Stand"
+          },
+          {
+            "id": 3750,
+            "filter": "similar=3750",
+            "tag": "Faster"
+          }
+        ]
+      }
+    ]
+  }
+}

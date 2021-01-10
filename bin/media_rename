@@ -9,23 +9,18 @@ require 'io/console'
 
 class MediaRenameCLI < Thor
 
-
-  desc "plex <path>", "Renames media files from plexDB"
+  desc "plex <path>", "Rename media files based on data from Plex database"
   method_option :preview,
                 type: :boolean,
                 default: false,
                 desc: "Dry run - don't actually make changes"
-  method_option :plex_library,
+  method_option :host, 
                 type: :string,
-                aliases: 'p',
-                desc: "Plex Library to search against"
-  method_option :plex_host, 
-                type: :string,
-                desc: "Plex Server IP address" 
-  method_option :plex_port, 
+                desc: "Plex Server host/ip address (use https://x.x.x.x for https or ip address for http)" 
+  method_option :port, 
                 type: :string,
                 desc: "Plex Server port" 
-  method_option :plex_token, 
+  method_option :token, 
                 type: :string,
                 desc: "Plex token" 
   method_option :verbose,
@@ -38,241 +33,17 @@ class MediaRenameCLI < Thor
                 aliases: 't',
                 desc: "Target path"
 
-  method_option :confirmation_required,
+  method_option :confirm,
                 type: :boolean,
                 aliases: 'c',
                 default: true,
                 desc: "Require Confirmation"
 
   def plex(path)
-    p options
-    init_plex(options)
-    set_log_level(options[:verbose])
-    params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-    renamer = MediaRename::PlexRenamer.new(path, params)
-    renamer.run
-  end
-
-
-  desc "rename_colon <path>", "Fixes media files that have colon in them"
-  method_option :preview,
-                type: :boolean,
-                default: false,
-                desc: "Dry run - don't actually make changes"
-  method_option :plex_library,
-                type: :string,
-                aliases: 'p',
-                desc: "Plex Library to search against"
-  method_option :plex_host, 
-                type: :string,
-                desc: "Plex Server IP address" 
-  method_option :plex_port, 
-                type: :string,
-                desc: "Plex Server port" 
-  method_option :plex_token, 
-                type: :string,
-                desc: "Plex token" 
-  method_option :verbose,
-                type: :boolean,
-                aliases: 'v',
-                default: false,
-                desc: "Verbose"
-  method_option :target_path,
-                type: :string,
-                aliases: 't',
-                desc: "Target path"
-
-  def rename_colon(path)
-    p options
-    set_log_level(options[:verbose])
-    params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-    folders, junk =  MediaRename::Utils.folders(path).partition {|f| f.include?(':')}
-    folders.sort.each do |folder|
-      files = MediaRename::Utils.files(folder)
-      actions = files.map do |f|
-        "mv [#{f}]\n=> [#{f.gsub(":", "-")}]"
-      end.join("\n")
-      msg = "Folder [#{folder}]\n" + actions 
-
-      if confirmation(msg, {confirmation_required: true})
-        files.each do |file|
-          new_dest = file.gsub(":", "-")
-          MediaRename::Utils.mv(file, new_dest, params)
-        end
-        MediaRename::Utils.rm_path(folder, params)        
-      end
-    end
-  end
-  
-
-  desc "validate <path>", "compare all directories and compare vs Plex"
-  method_option :preview,
-                type: :boolean,
-                default: false,
-                desc: "Dry run - don't actually make changes"
-  method_option :plex_library,
-                type: :string,
-                aliases: 'p',
-                desc: "Plex Library to search against"
-  method_option :plex_host, 
-                type: :string,
-                desc: "Plex Server IP address" 
-  method_option :plex_port, 
-                type: :string,
-                desc: "Plex Server port" 
-  method_option :plex_token, 
-                type: :string,
-                desc: "Plex token" 
-  method_option :verbose,
-                type: :boolean,
-                aliases: 'v',
-                default: false,
-                desc: "Verbose"
-  method_option :target_path,
-                type: :string,
-                aliases: 't',
-                desc: "Target path"
-
-  def validate(path)
-    p options
-    init_plex(options)
-    set_log_level(options[:verbose])
-    params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-    renamer = MediaRename::PlexRenamer.new(path, params)
-    folders = MediaRename::Utils.folders(path)
-    folders.sort.each do |folder|
-      medias = renamer.find_plex_medias(folder)
-      files = MediaRename::Utils.media_files(folder)
-      if files.empty?
-        puts "[#{folder}] has no media files"
-        anyfiles = MediaRename::Utils.files(folder)
-        anyfolders = MediaRename::Utils.folders(folder)
-        puts "all files: #{anyfiles.inspect} #{anyfolders.inspect}"
-        if confirmation("Delete?", {confirmation_required: true})
-          MediaRename::Utils.rm_path(folder)
-        end
-      end
-
-      files.each do |file|
-        media = medias.find {|m| m[:file] == file }
-        if media
-          expected = renamer.target_name(media[:media])
-          if expected != file
-            puts "Needs renaming:\n == #{file} \n => #{expected}"
-            if confirmation('continue?', {confirmation_required: true})
-              renamer.create_entry(file, media[:media])
-            end
-          end
-        else
-          puts '-----------------'
-        end
-      end
-    end
-  end
-
-  desc "rename <path>", "rename files in path and subpaths based on latest Plex info"
-  method_option :preview,
-                type: :boolean,
-                default: false,
-                desc: "Dry run - don't actually make changes"
-  method_option :plex_library,
-                type: :string,
-                aliases: 'p',
-                desc: "Plex Library to search against"
-  method_option :plex_host, 
-                type: :string,
-                desc: "Plex Server IP address" 
-  method_option :plex_port, 
-                type: :string,
-                desc: "Plex Server port" 
-  method_option :plex_token, 
-                type: :string,
-                desc: "Plex token" 
-  method_option :verbose,
-                type: :boolean,
-                aliases: 'v',
-                default: false,
-                desc: "Verbose"
-  method_option :confirmation_required,
-                type: :boolean,
-                aliases: 'c',
-                default: true,
-                desc: "Require Confirmation"
-
-  def rename(path)
-    p options, path
-    init_plex(options)
-    set_log_level(options[:verbose])
-    params = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-    rename_media_files(path, params)
-    rename_folders(path, params) if File.exists?(path)
-  end
-
-
-  private
-
-
-  def rename_media_files(path, params)
-    files = MediaRename::Utils.media_files(path).sort
-    puts "Found [#{files.count}] media files"
-    
-    return unless files.count > 0
-    return unless confirmation(path, options)
-
-    parent_path = File.dirname(path)
-    renamer = MediaRename::PlexRenamer.new(parent_path, params)
-    puts "processing parent folder #{parent_path} for #{files.count} files"
-    renamer.rename(path)
-  end
-
-  def rename_folders(path, params)
-    renamer = MediaRename::PlexRenamer.new(path, params)
-    folders = MediaRename::Utils.folders(path).sort
-    puts "Found [#{folders.count}] folders"
-    folders.each do |folder|
-      if confirmation(folder, options)
-        puts "processing #{folder}"
-        renamer.rename(folder)
-      else
-        puts "skip"
-      end
-    end
-  end
-
-  def confirmation(msg, options)
-    return true unless options[:confirmation_required] == true
-    puts "> #{msg}?\nCONFIRM? [Y/n/q]"
-    value = STDIN.getch
-    case value
-    when 'q', "Q", "\u0003"
-      puts
-      abort("Quitting...")
-    when 'y', "Y", "\r", "\n"
-      puts
-      true
-    else
-      false
-    end
-  end
-
-  def set_log_level(verbose)
-    MediaRename.logger.level = verbose ? :debug : :info
-  end
-
-  def init_plex(options)
-    settings = MediaRename::SETTINGS
-    Plex.configure do |config|
-      if host = options.fetch(:plex_host, settings.fetch("PLEX_HOST", nil))
-        config[:host] = host
-      end
-      if port = options.fetch(:plex_port, settings.fetch("PLEX_PORT", nil))
-        config[:port] = port
-      end
-      if token = options.fetch(:plex_token, settings.fetch("PLEX_TOKEN", nil))
-        config[:token] = token
-      end
-    end
-    p Plex.config
+    puts "\nRename called on [#{path}] with #{options}\n\n"
+    renamer = MediaRename::PlexRenamer.new(path, options)
+    renamer.rename_files
+    puts
   end
 end
 

@@ -1,0 +1,113 @@
+{
+  "MediaContainer": {
+    "size": 3,
+    "allowSync": false,
+    "identifier": "com.plexapp.plugins.library",
+    "mediaTagPrefix": "/system/bundle/media/flags/",
+    "mediaTagVersion": 1574417695,
+    "title1": "Plex Library",
+    "Directory": [
+      {
+        "allowSync": true,
+        "art": "/:/resources/movie-fanart.jpg",
+        "composite": "/library/sections/3/composite/1577909641",
+        "filters": true,
+        "refreshing": false,
+        "thumb": "/:/resources/movie.png",
+        "key": "3",
+        "type": "movie",
+        "title": "4K Movies",
+        "agent": "com.plexapp.agents.imdb",
+        "scanner": "Plex Movie Scanner",
+        "language": "en",
+        "uuid": "17d230c7-2e77-4246-a5c7-a5e399e69ad6",
+        "updatedAt": 1575997273,
+        "createdAt": 1575729789,
+        "scannedAt": 1577909641,
+        "content": true,
+        "directory": true,
+        "contentChangedAt": 209472,
+        "Location": [
+          {
+            "id": 10,
+            "path": "/volume1/Media/Movies_HQ"
+          },
+          {
+            "id": 11,
+            "path": "/volume1/Media/downloads_hq"
+          }
+        ]
+      },
+      {
+        "allowSync": true,
+        "art": "/:/resources/movie-fanart.jpg",
+        "composite": "/library/sections/1/composite/1577909965",
+        "filters": true,
+        "refreshing": false,
+        "thumb": "/:/resources/movie.png",
+        "key": "1",
+        "type": "movie",
+        "title": "Movies",
+        "agent": "com.plexapp.agents.imdb",
+        "scanner": "Plex Movie Scanner",
+        "language": "en",
+        "uuid": "0f2755ad-7ed8-42fb-909a-eb2678369768",
+        "updatedAt": 1576428454,
+        "createdAt": 1575393330,
+        "scannedAt": 1577909965,
+        "content": true,
+        "directory": true,
+        "contentChangedAt": 224999,
+        "Location": [
+          {
+            "id": 15,
+            "path": "/volume1/Media/Movies_HEVC"
+          },
+          {
+            "id": 13,
+            "path": "/volume1/Media/downloads"
+          },
+          {
+            "id": 14,
+            "path": "/volume1/Media/Movies"
+          }
+        ]
+      },
+      {
+        "allowSync": true,
+        "art": "/:/resources/show-fanart.jpg",
+        "composite": "/library/sections/2/composite/1577909968",
+        "filters": true,
+        "refreshing": false,
+        "thumb": "/:/resources/show.png",
+        "key": "2",
+        "type": "show",
+        "title": "TV Shows",
+        "agent": "com.plexapp.agents.thetvdb",
+        "scanner": "Plex Series Scanner",
+        "language": "en",
+        "uuid": "70ba12bf-8ab7-40df-93c4-383b080589d5",
+        "updatedAt": 1575729869,
+        "createdAt": 1575643578,
+        "scannedAt": 1577909968,
+        "content": true,
+        "directory": true,
+        "contentChangedAt": 218127,
+        "Location": [
+          {
+            "id": 4,
+            "path": "/volume1/Media/downloads_tv"
+          },
+          {
+            "id": 2,
+            "path": "/volume1/Media/tv_downloads"
+          },
+          {
+            "id": 3,
+            "path": "/volume1/Media/TV"
+          }
+        ]
+      }
+    ]
+  }
+}

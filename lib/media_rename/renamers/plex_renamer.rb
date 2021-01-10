@@ -2,122 +2,102 @@ module MediaRename
 
   class PlexRenamer 
 
-    attr_reader :library, :options, :target_path
-    attr_accessor :path
+    attr_reader :path, :library, :options, :target_path, :settings
 
-    DEFAULT_OPTIONS = { 
-      preview: true 
-    }.freeze
-
+    # options => :preview, :verbose, :host, :port, :token, :target_path, :confirm
     def initialize(path, options = {})
-      @options     = DEFAULT_OPTIONS.merge(options)
-      @path        = File.expand_path(path)
-      @target_path = @options.fetch(:target_path, root_path)
-      @library     = load_library(options)
+      @path = path.to_s
+      sanitize_options(options)
+      set_log_level
+      @library = plex_library_from_path(@path)
       log.info("Using library [#{library.title}]")
-      log.debug("Checking files in path #{path} against Plex Library [#{library.title}]\n Options: #{options} ")
     end
 
-    def run(options = {})
-      # process each subfolder in main path
-      MediaRename::Utils.folders(path).each {|path| process_path(path)}
+    def rename_files(curr_path = @path)
+      log.info("")
+      log.info("===== Scanning for Media Files in [#{curr_path}]")
+      files = MediaRename::Utils.media_files(curr_path)
+      files.each {|file| rename_file(file, target_filename(file)) }
 
-      # process each file in main path
-      MediaRename::Utils.files(path).each {|file| process_file(file)}
+      log.info("==== Scanning for Subfolders in [#{curr_path}]")
+      subfolders = MediaRename::Utils.folders(curr_path)
+      subfolders.each {|subfolder| rename_files(subfolder) }
+      log.info("==== Done [#{curr_path}]")
     end
 
-    def rename(path)
-      # find plex entry for media files
-      MediaRename::Utils.files(path).each do |file|
-        if plex_media = @library.find_by_filename(file)
-          target = target_name(plex_media)
-          p "curr: #{file}"
-          p "====> #{target}"
-
-          if file == target 
-            puts "NO change. Skip."
-            next
-          end
-          
-          MediaRename::Utils.mv(file, target, options)
-          old_dir = File.dirname(file)
-          new_dir = File.dirname(target)
-          if old_dir != new_dir
-            MediaRename::Utils.mv_subtitles(old_dir, target, options)
-            MediaRename::Utils.mv_subfolders(old_dir, target, options)
-          end
-        else
-          puts "[Error] #{file} not found in Plex"
-        end
-      end
-      if MediaRename::Utils.empty?(path)
-        puts "old path is empty - removing"
-        MediaRename::Utils.rm_path(path, options)
-      end
-      puts
-    end
-
-    def process_path(path)
-      log.info("\n---------------------------\n")
-      log.info("Processing Path: #{path}")
-      
-      entries = find_plex_medias(path)
-      if entries.empty?
-        log.debug("No Plex Media matching filename found. Skip.")
-        return
-      end
-      log.debug("PRocessing entries: #{entries}")
-
-      process_entries(entries)
-      MediaRename::Utils.rm_path(path, options)
-    end
-
-    def process_file(file)
-      log.debug("Processing File: #{file}")
-      return unless MediaRename::Utils.media_file?(file)
-      return unless media = @library.find_by_filename(file)
-    
-      process_entries([{file: file, media: media}])
-    end
-
-
-    def process_entries(entries)
-      entries.each do |entry|
-        file  = entry[:file]
-        media = entry[:media]
-        log.info("Match: [#{library.movie_library? ? media.parent.title : "%s S%d E%d" % [media.parent.show_title, media.parent.season, media.parent.episode] }] for #{File.basename(file)}")
-        create_entry(file, media)
-      end
-    end
-
-    def find_plex_medias(path)
-      MediaRename::Utils.media_files(path).map do |file| 
-        next unless media = @library.find_by_filename(file)
-        {file: file, media: media}
-      end.compact
+    def rename_file(source, target_file = nil)
+      return unless target_file
+      log.debug("Processing media file [#{source}]")
+      subpath = File.dirname(source)
+      log.debug("Moving file")
+      MediaRename::Utils.mv(source, target_file, options)
+      log.debug("Moving subtitle files (if any)")
+      MediaRename::Utils.mv_subtitle_files(subpath, target_file, options)
+      log.debug("Moving key folders (if any)")
+      MediaRename::Utils.mv_subfolders(subpath, target_file, options)
     end
     
-    def create_entry(file, plex_media)
-      curr_file = file
-      curr_path = File.dirname(curr_file)
-      new_file  = target_name(plex_media)
-      MediaRename::Utils.mv(curr_file, new_file, options)
-      MediaRename::Utils.mv_subtitles(curr_path, new_file, options)
-      MediaRename::Utils.mv_subfolders(curr_path, new_file, options) 
-      log.info("Done [#{new_file}]")
-    end
+    def target_filename(file)
+      plexrecord = library.find_by_filename(file)
+      log.debug("No plex record found for [#{file}]") && return unless plexrecord
 
-    def target_name(plex_media)
-      templateKlass = library.movie_library? ? MediaRename::MovieTemplate : MediaRename::ShowTemplate 
-      File.join(target_path, templateKlass.new(plex_media).render)
+      if library.movie_library?
+        media = plexrecord.find_by_filename(file)
+        File.join(target_path, MediaRename::MovieTemplate.new({record: plexrecord, media: media}).render)
+      else
+        episode = plexrecord.find_by_filename(file)
+        media   = episode.media_by_filename(file)
+        File.join(target_path, MediaRename::ShowTemplate.new({record: episode, media: media}).render)
+      end
     end
 
 
     private
 
 
+    def plex_library_from_path(path)
+      @library ||= begin
+        server = MediaRename.load_plex(plex_options)
+        library = server.library_by_path(path)
+        raise MediaRename::LibraryNotFoundError if library.nil?
+        library
+      end
+    end
+
+    def plex_options
+      dlft_plex_options = {
+        host: settings.fetch("PLEX_HOST", nil),
+        port: settings.fetch("PLEX_PORT", nil),
+        token: settings.fetch("PLEX_TOKEN", nil)
+      }
+      dlft_plex_options.merge(options.slice(:host, :port, :token))
+    end
+
+    def confirm?
+      !!options[:confirm]
+    end
+
+    def verbose?
+      options.fetch(:verbose, false)
+    end
+
+    def target_path
+      options.fetch(:target_path, "")
+    end
+
+    def sanitize_options(options)
+      @settings = MediaRename::SETTINGS
+      @options = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      log.debug("Options: #{options}")
+    end
+
+    def set_log_level
+      MediaRename.logger.level = verbose? ? :debug : :info
+      log.info("Verbose logging") if verbose?
+    end
+
     def confirmation(msg = "Continue", options = @options)
-      return true unless options[:confirmation_required] == true
+      return true unless confirm?
       puts "> #{msg}?\nCONFIRM? [Y/n/q]"
       value = STDIN.getch
       case value
@@ -132,21 +112,7 @@ module MediaRename
         false
       end
     end
-
-    def root_path
-      File.expand_path(File.join(path, "../"))
-    end
-
-    def load_library(options)
-      library = if plex_id = options.fetch(:plex_library, nil)
-        Plex.server.library(plex_id)
-      else
-        Plex.server.library_by_path(@path)
-      end
-      raise MediaRename::LibraryNotFound unless library
-      library
-    end
-
+    
     def log
       @log ||= MediaRename.logger
     end

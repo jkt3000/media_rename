@@ -1,0 +1,423 @@
+{
+  "MediaContainer": {
+    "size": 1,
+    "allowSync": true,
+    "identifier": "com.plexapp.plugins.library",
+    "librarySectionID": 2,
+    "librarySectionTitle": "TV Shows",
+    "librarySectionUUID": "70ba12bf-8ab7-40df-93c4-383b080589d5",
+    "mediaTagPrefix": "/system/bundle/media/flags/",
+    "mediaTagVersion": 1574417695,
+    "Metadata": [
+      {
+        "ratingKey": "10401",
+        "key": "/library/metadata/10401/children",
+        "guid": "com.plexapp.agents.thetvdb://74205?lang=en",
+        "studio": "HBO",
+        "type": "show",
+        "title": "Band of Brothers",
+        "librarySectionTitle": "TV Shows",
+        "librarySectionID": 2,
+        "librarySectionKey": "/library/sections/2",
+        "contentRating": "TV-MA",
+        "summary": "The miniseries follows Easy Company, an army unit during World War II, from their initial training at Camp Toccoa to the conclusion of the war. The series is based on the book written by the late Stephen E. Ambrose. \r\n\r\nBand of Brothers is executive produced by Steven Spielberg and Tom Hanks, the series won 6 Emmy Awards. ",
+        "index": 1,
+        "rating": 9.4,
+        "year": 2001,
+        "thumb": "/library/metadata/10401/thumb/1575740225",
+        "art": "/library/metadata/10401/art/1575740225",
+        "banner": "/library/metadata/10401/banner/1575740225",
+        "theme": "/library/metadata/10401/theme/1575740225",
+        "duration": 3600000,
+        "originallyAvailableAt": "2001-09-09",
+        "leafCount": 10,
+        "viewedLeafCount": 10,
+        "childCount": 1,
+        "addedAt": 1575740153,
+        "updatedAt": 1575740225,
+        "Genre": [
+          {
+            "id": 22,
+            "filter": "genre=22",
+            "tag": "Action"
+          },
+          {
+            "id": 104,
+            "filter": "genre=104",
+            "tag": "Adventure"
+          },
+          {
+            "id": 105,
+            "filter": "genre=105",
+            "tag": "Drama"
+          },
+          {
+            "id": 45968,
+            "filter": "genre=45968",
+            "tag": "Mini-Series"
+          },
+          {
+            "id": 287,
+            "filter": "genre=287",
+            "tag": "War"
+          }
+        ],
+        "Role": [
+          {
+            "id": 642,
+            "filter": "actor=642",
+            "tag": "Damian Lewis",
+            "role": "Richard D. Winters",
+            "thumb": "http://image.tmdb.org/t/p/original/2RcaC1ictETsTU4ioFlQ32zGYYg.jpg"
+          },
+          {
+            "id": 14061,
+            "filter": "actor=14061",
+            "tag": "Dale Dye",
+            "role": "Robert Sink",
+            "thumb": "http://image.tmdb.org/t/p/original/vQfhfRjwOHYN3Egx1SB21ResBI2.jpg"
+          },
+          {
+            "id": 43562,
+            "filter": "actor=43562",
+            "tag": "Richard Speight Jr.",
+            "role": "Warren 'Skip' Muck",
+            "thumb": "http://image.tmdb.org/t/p/original/o5tlyRPkZXtkXOTDcwKTUfGldhM.jpg"
+          },
+          {
+            "id": 486,
+            "filter": "actor=486",
+            "tag": "James McAvoy",
+            "role": "James W. Miller",
+            "thumb": "http://image.tmdb.org/t/p/original/oPIfGm3mf4lbmO5pWwMvfTt5BM1.jpg"
+          },
+          {
+            "id": 45986,
+            "filter": "actor=45986",
+            "tag": "Nolan Hemmings",
+            "role": "Charles 'Chuck' Grant",
+            "thumb": "https://artworks.thetvdb.com/banners/actors/30990.jpg"
+          },
+          {
+            "id": 22824,
+            "filter": "actor=22824",
+            "tag": "Matthew Leitch",
+            "role": "Floyd 'Tab' Talbert",
+            "thumb": "http://image.tmdb.org/t/p/original/nIsSrvUw4HVqnhuhUijITAtQek8.jpg"
+          },
+          {
+            "id": 12150,
+            "filter": "actor=12150",
+            "tag": "Kirk Acevedo",
+            "role": "Joseph D. Toye",
+            "thumb": "http://image.tmdb.org/t/p/original/9CTkCXyKQrHTFZWFN3JtDM2mF0U.jpg"
+          },
+          {
+            "id": 3560,
+            "filter": "actor=3560",
+            "tag": "Scott Grimes",
+            "role": "Donald Malarkey",
+            "thumb": "http://image.tmdb.org/t/p/original/tm8uz3DbD0hlXRciYgCuaHrXepl.jpg"
+          },
+          {
+            "id": 5851,
+            "filter": "actor=5851",
+            "tag": "Neal McDonough",
+            "role": "Lynn 'Buck' Compton",
+            "thumb": "http://image.tmdb.org/t/p/original/8Vg7WKE4QEGz18at8mQHP9aqEbB.jpg"
+          },
+          {
+            "id": 6794,
+            "filter": "actor=6794",
+            "tag": "David Schwimmer",
+            "role": "Herbert Sobel",
+            "thumb": "http://image.tmdb.org/t/p/original/aOW62VZJMGXjiPvwP43xCHS9X4r.jpg"
+          },
+          {
+            "id": 45987,
+            "filter": "actor=45987",
+            "tag": "Nicholas Aaron",
+            "role": "Robert 'Popeye' Wynn",
+            "thumb": "https://artworks.thetvdb.com/banners/actors/30999.jpg"
+          },
+          {
+            "id": 45988,
+            "filter": "actor=45988",
+            "tag": "James Madio",
+            "role": "Frank Perconte",
+            "thumb": "https://artworks.thetvdb.com/banners/actors/31000.jpg"
+          },
+          {
+            "id": 10901,
+            "filter": "actor=10901",
+            "tag": "Peter Youngblood Hills",
+            "role": "Darrel 'Shifty' Powers",
+            "thumb": "http://image.tmdb.org/t/p/original/gpuAUjccfnOu96Uk1crvZ5Rfk0j.jpg"
+          },
+          {
+            "id": 45989,
+            "filter": "actor=45989",
+            "tag": "Robin Laing",
+            "role": "Edward 'Babe' Heffron",
+            "thumb": "https://artworks.thetvdb.com/banners/actors/31002.jpg"
+          },
+          {
+            "id": 45888,
+            "filter": "actor=45888",
+            "tag": "Frank John Hughes",
+            "role": "William 'Wild Bill' Guarnere",
+            "thumb": "http://image.tmdb.org/t/p/original/ekrBCXqhTCwk17xteJkTZM4HHdK.jpg"
+          },
+          {
+            "id": 8900,
+            "filter": "actor=8900",
+            "tag": "Rick Gomez",
+            "role": "George Luz",
+            "thumb": "http://image.tmdb.org/t/p/original/fqxDQWzG4OHZVqgnOqhS2HRSXPt.jpg"
+          },
+          {
+            "id": 25006,
+            "filter": "actor=25006",
+            "tag": "Ron Livingston",
+            "role": "Lewis Nixon",
+            "thumb": "http://image.tmdb.org/t/p/original/AjR0aCaDOK6S38I8ziICgVbxH5I.jpg"
+          },
+          {
+            "id": 45990,
+            "filter": "actor=45990",
+            "tag": "Peter McCabe",
+            "role": "Donald Hoobler",
+            "thumb": "https://artworks.thetvdb.com/banners/actors/164991.jpg"
+          },
+          {
+            "id": 45991,
+            "filter": "actor=45991",
+            "tag": "Douglas Spain",
+            "role": "Antonio C. García",
+            "thumb": "https://artworks.thetvdb.com/banners/actors/323531.jpg"
+          },
+          {
+            "id": 5638,
+            "filter": "actor=5638",
+            "tag": "Marc Warren",
+            "role": "Albert Blithe",
+            "thumb": "http://image.tmdb.org/t/p/original/q1B4nq8YDMldLpkxA9VwwNnXb2Z.jpg"
+          },
+          {
+            "id": 6346,
+            "filter": "actor=6346",
+            "tag": "Tom Hardy",
+            "role": "John Janovec",
+            "thumb": "http://image.tmdb.org/t/p/original/gQbHq8Mz4KO3E8yT2EfgllpzIx2.jpg"
+          },
+          {
+            "id": 37788,
+            "filter": "actor=37788",
+            "tag": "Eion Bailey",
+            "role": "David Kenyon Webster",
+            "thumb": "http://image.tmdb.org/t/p/original/hKqfGq1sPhZdQOlto0bS3igFZdP.jpg"
+          },
+          {
+            "id": 15346,
+            "filter": "actor=15346",
+            "tag": "Michael Cudlitz",
+            "role": "Denver 'Bull' Randleman",
+            "thumb": "http://image.tmdb.org/t/p/original/sbXRz07BE5ZNVyQsJJgrW8cZN9m.jpg"
+          },
+          {
+            "id": 45992,
+            "filter": "actor=45992",
+            "tag": "Doug Allen",
+            "role": "Alton More",
+            "thumb": "http://image.tmdb.org/t/p/original/mKLELKkJVgZY13aMNMioZ1OJiKx.jpg"
+          },
+          {
+            "id": 45993,
+            "filter": "actor=45993",
+            "tag": "Rick Warden",
+            "role": "Harry Welsh",
+            "thumb": "http://image.tmdb.org/t/p/original/aFeEZvGZ5zO6CpYemwL2w2L9iJm.jpg"
+          },
+          {
+            "id": 12967,
+            "filter": "actor=12967",
+            "tag": "Donnie Wahlberg",
+            "role": "C. Carwood Lipton",
+            "thumb": "http://image.tmdb.org/t/p/original/3AAn53k39LIQtnCfVSxDPdIbhDd.jpg"
+          },
+          {
+            "id": 45994,
+            "filter": "actor=45994",
+            "tag": "Ross McCall",
+            "role": "Joseph Liebgott",
+            "thumb": "https://artworks.thetvdb.com/banners/actors/323650.jpg"
+          },
+          {
+            "id": 7779,
+            "filter": "actor=7779",
+            "tag": "Matthew Settle",
+            "role": "Ronald Speirs",
+            "thumb": "http://image.tmdb.org/t/p/original/ic5mCoOiWn44Vf7TRIoAQ4OoVys.jpg"
+          },
+          {
+            "id": 44401,
+            "filter": "actor=44401",
+            "tag": "Shane Taylor",
+            "role": "Eugene Roe",
+            "thumb": "http://image.tmdb.org/t/p/original/3Gu2kED8msme4Adx7j3neiltXmf.jpg"
+          },
+          {
+            "id": 22818,
+            "filter": "actor=22818",
+            "tag": "Craig Heaney",
+            "role": "Roy Cobb"
+          },
+          {
+            "id": 10710,
+            "filter": "actor=10710",
+            "tag": "Simon Pegg",
+            "role": "William Evans",
+            "thumb": "http://image.tmdb.org/t/p/original/23e2uoNlpDvLumNic16fS2YjZjL.jpg"
+          },
+          {
+            "id": 11899,
+            "filter": "actor=11899",
+            "tag": "Dexter Fletcher",
+            "role": "John Martin",
+            "thumb": "http://image.tmdb.org/t/p/original/lnyfR3j6YfGD65mmCwNN24aSDbg.jpg"
+          },
+          {
+            "id": 23090,
+            "filter": "actor=23090",
+            "tag": "Ben Caplan",
+            "role": "Walter 'Smokey' Gordon",
+            "thumb": "http://image.tmdb.org/t/p/original/vYPuTXPfHccKSdjAOPp7FBE3wqm.jpg"
+          },
+          {
+            "id": 6004,
+            "filter": "actor=6004",
+            "tag": "Andrew Scott",
+            "role": "John 'Cowboy' Hall",
+            "thumb": "http://image.tmdb.org/t/p/original/3QQdJAMuXSBDK5uuTdgRNwJu1em.jpg"
+          },
+          {
+            "id": 45995,
+            "filter": "actor=45995",
+            "tag": "Peter O'Meara",
+            "role": "Norman 'Foxhole' Dike",
+            "thumb": "http://image.tmdb.org/t/p/original/slJb9Hx00fdRyyCP44A34PYzVQ8.jpg"
+          },
+          {
+            "id": 3022,
+            "filter": "actor=3022",
+            "tag": "Michael Fassbender",
+            "role": "Burton 'Pat' Christenson",
+            "thumb": "http://image.tmdb.org/t/p/original/oexNPLumoFpazzzUqzBSDDYiUg1.jpg"
+          }
+        ],
+        "Similar": [
+          {
+            "id": 45969,
+            "filter": "similar=45969",
+            "tag": "The Pacific"
+          },
+          {
+            "id": 45970,
+            "filter": "similar=45970",
+            "tag": "Rome"
+          },
+          {
+            "id": 45971,
+            "filter": "similar=45971",
+            "tag": "The Wire"
+          },
+          {
+            "id": 45972,
+            "filter": "similar=45972",
+            "tag": "The Sopranos"
+          },
+          {
+            "id": 45973,
+            "filter": "similar=45973",
+            "tag": "Deadwood"
+          },
+          {
+            "id": 45974,
+            "filter": "similar=45974",
+            "tag": "True Detective"
+          },
+          {
+            "id": 45975,
+            "filter": "similar=45975",
+            "tag": "Boardwalk Empire"
+          },
+          {
+            "id": 45976,
+            "filter": "similar=45976",
+            "tag": "Generation Kill"
+          },
+          {
+            "id": 2447,
+            "filter": "similar=2447",
+            "tag": "Fargo"
+          },
+          {
+            "id": 45977,
+            "filter": "similar=45977",
+            "tag": "House of Cards"
+          },
+          {
+            "id": 45978,
+            "filter": "similar=45978",
+            "tag": "Lost"
+          },
+          {
+            "id": 12259,
+            "filter": "similar=12259",
+            "tag": "Spartacus"
+          },
+          {
+            "id": 45979,
+            "filter": "similar=45979",
+            "tag": "Firefly"
+          },
+          {
+            "id": 45980,
+            "filter": "similar=45980",
+            "tag": "Dexter"
+          },
+          {
+            "id": 45981,
+            "filter": "similar=45981",
+            "tag": "Battlestar Galactica"
+          },
+          {
+            "id": 45982,
+            "filter": "similar=45982",
+            "tag": "Seinfeld"
+          },
+          {
+            "id": 45983,
+            "filter": "similar=45983",
+            "tag": "Justified"
+          },
+          {
+            "id": 45984,
+            "filter": "similar=45984",
+            "tag": "Planet Earth"
+          },
+          {
+            "id": 45985,
+            "filter": "similar=45985",
+            "tag": "Oz"
+          }
+        ],
+        "Location": [
+          {
+            "path": "/volume1/Media/TV/Band of Brothers"
+          }
+        ]
+      }
+    ]
+  }
+}
