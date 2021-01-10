@@ -14,45 +14,33 @@ module MediaRename
     end
 
     def rename_files(curr_path = @path)
+      log.info("")
+      log.info("===== Scanning for Media Files in [#{curr_path}]")
       files = MediaRename::Utils.media_files(curr_path)
-      log.debug("Scanning [#{curr_path}]: Found #{files.count} files")
-      files.each do |file| 
-        log.debug("===== Processing [#{file}]")
-        target_file = target_filename(file)
-        rename_file(file, target_file)
-      end
+      files.each {|file| rename_file(file, target_filename(file)) }
 
-      log.debug("")
-      log.debug("==== Rename Subfolders")
+      log.info("==== Scanning for Subfolders in [#{curr_path}]")
       subfolders = MediaRename::Utils.folders(curr_path)
-      log.debug("Scanning [#{curr_path}]: Found #{subfolders.count} subfolders")
-      subfolders.each do |subfolder|
-        rename_files(subfolder)
-      end
+      subfolders.each {|subfolder| rename_files(subfolder) }
+      log.info("==== Done [#{curr_path}]")
     end
 
     def rename_file(source, target_file = nil)
-      MediaRename::Utils.mv(source, target_file, options)
+      return unless target_file
+      log.debug("Processing media file [#{source}]")
       subpath = File.dirname(source)
+      log.debug("Moving file")
+      MediaRename::Utils.mv(source, target_file, options)
+      log.debug("Moving subtitle files (if any)")
       MediaRename::Utils.mv_subtitle_files(subpath, target_file, options)
+      log.debug("Moving key folders (if any)")
       MediaRename::Utils.mv_subfolders(subpath, target_file, options)
-    end
-
-    def rename_path(path)
-      log.debug("Renaming path [#{path}]")
-      target_file = nil
-      MediaRename::Utils.media_files(path).each do |file|
-        next unless target_file = target_filename(file)
-        log.debug("Found media file #{file}...renaming")
-        rename_file(file, target_file)
-      end
-      MediaRename::Utils.mv_subfolders(path, target_file, options)
-      MediaRename::Utils.rm_path(path, options) if MediaRename::Utils.empty?(path)
     end
     
     def target_filename(file)
       plexrecord = library.find_by_filename(file)
       log.debug("No plex record found for [#{file}]") && return unless plexrecord
+
       if library.movie_library?
         media = plexrecord.find_by_filename(file)
         File.join(target_path, MediaRename::MovieTemplate.new({record: plexrecord, media: media}).render)

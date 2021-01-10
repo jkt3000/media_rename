@@ -7,6 +7,8 @@ class MediaRename::PlexRenamerTest < ActiveSupport::TestCase
     stub_request(:get, Plex.server.query_path("/library/sections")).to_return(status: 200, body: load_response(:libraries))
   end
 
+  # new
+
   test "create a new PlexRenamer model" do
     @renamer = MediaRename::PlexRenamer.new(@lib_path, verbose: true, preview: true, confirm: true, target_path: '/Volumes/Media')
     assert @renamer.library.is_a?(Plex::Library)
@@ -22,6 +24,10 @@ class MediaRename::PlexRenamerTest < ActiveSupport::TestCase
     end
   end
 
+  # target_filename()
 
+  # rename_file()
+
+  # rename_files
 
 end
