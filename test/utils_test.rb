@@ -68,6 +68,13 @@ class MediaRename::UtilsTest < ActiveSupport::TestCase
 
   # rm_path
 
+  test '#rm_dir removes directory' do
+    path = File.expand_path("./tmp")
+    options = {preview: true}
+    FileUtils.expects(:rm_rf).with(path, anything).returns(true)
+    MediaRename::Utils.rm_path(path, options)
+  end
+
   # empty?
 
   test "#empty? returns false if path is not empty" do
