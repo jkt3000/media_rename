@@ -1,7 +1,6 @@
 GIT
   remote: git@github.com:redronin/rubyplex.git
-  revision: 2f9e03be70b2a17d3108eb35908def62471ed044
-  branch: v2
+  revision: 9b7907452f61a33033ebe0ffb575d4dc51c44325
   specs:
     rubyplex (2.0.4)
       faraday
@@ -32,7 +31,7 @@ GEM
       faraday-net_http (~> 1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
-    faraday-net_http (1.0.0)
+    faraday-net_http (1.0.1)
     hashdiff (1.0.1)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
@@ -44,7 +43,7 @@ GEM
     public_suffix (4.0.6)
     rake (13.0.1)
     rexml (3.2.4)
-    ruby2_keywords (0.0.2)
+    ruby2_keywords (0.0.4)
     thor (1.0.1)
     thread_safe (0.3.6)
     tzinfo (1.2.7)
