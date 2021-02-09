@@ -4,12 +4,14 @@ module MediaRename
 
     attr_reader :template, :attributes
 
-    def initialize(record:, media:)
+    def initialize(record:, media:, part:)
       @template   = Liquid::Template.parse(SETTINGS['MOVIE_TEMPLATE'], error_mode: :strict)
       @media      = media
       @attributes = {
         title: record.title.to_s.gsub(':', '-'),
         year: record.year,
+        parts_count: @media.parts.count,
+        part: part,
         video_format: MediaRename::Media.video_format(media.width, media.height),
         video_codec: MediaRename::Media.video_codec(media.video_codec),
         audio_codec: MediaRename::Media.audio_codec(media.audio_codec, media.audio_channels),

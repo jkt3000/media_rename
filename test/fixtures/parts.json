@@ -1,0 +1,40 @@
+{
+  "id": 43477,
+  "duration": 11161659,
+  "bitrate": 7192,
+  "width": 1920,
+  "height": 1080,
+  "aspectRatio": 1.78,
+  "audioChannels": 6,
+  "audioCodec": "aac",
+  "videoCodec": "hevc",
+  "videoResolution": "1080",
+  "container": "mkv",
+  "videoFrameRate": "24p",
+  "audioProfile": "lc",
+  "videoProfile": "main 10",
+  "Part": [
+    {
+      "id": 43630,
+      "key": "/library/parts/43630/1612799323/file.mkv",
+      "duration": 5580734,
+      "file": "/volume2/Media/downloads/The Girl with the Dragon Tattoo (2009) TV Extended Edition (1080p BluRay x265 HEVC 10bit AAC 5.1 Swedish r00t)/The Girl with the Dragon Tattoo (2009) Extended TV Edition Part 1 (1080p BluRay x265 r00t).mkv",
+      "size": 4997729618,
+      "audioProfile": "lc",
+      "container": "mkv",
+      "hasThumbnail": "1",
+      "videoProfile": "main 10"
+    },
+    {
+      "id": 43631,
+      "key": "/library/parts/43631/1612799336/file.mkv",
+      "duration": 5580925,
+      "file": "/volume2/Media/downloads/The Girl with the Dragon Tattoo (2009) TV Extended Edition (1080p BluRay x265 HEVC 10bit AAC 5.1 Swedish r00t)/The Girl with the Dragon Tattoo (2009) Extended TV Edition Part 2 (1080p BluRay x265 r00t).mkv",
+      "size": 5009771867,
+      "audioProfile": "lc",
+      "container": "mkv",
+      "hasThumbnail": "1",
+      "videoProfile": "main 10"
+    }
+  ]
+}

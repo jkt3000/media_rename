@@ -41,13 +41,20 @@ module MediaRename
       plexrecord = library.find_by_filename(file)
       log.debug("No plex record found for [#{file}]") && return unless plexrecord
 
+      part = 1
       if library.movie_library?
         media = plexrecord.find_by_filename(file)
-        File.join(target_path, MediaRename::MovieTemplate.new({record: plexrecord, media: media}).render)
+        if media.parts.size > 1
+          part = media.parts.find_index {|part| part.has_file?(file)} + 1
+        end
+        File.join(target_path, MediaRename::MovieTemplate.new({record: plexrecord, media: media, part: part}).render)
       else
         episode = plexrecord.find_by_filename(file)
         media   = episode.media_by_filename(file)
-        File.join(target_path, MediaRename::ShowTemplate.new({record: episode, media: media}).render)
+        if media.parts.size > 1
+          part = media.parts.find_index {|part| part.has_file?(file)} + 1
+        end
+        File.join(target_path, MediaRename::ShowTemplate.new({record: episode, media: media, part: part}).render)
       end
     end
 
