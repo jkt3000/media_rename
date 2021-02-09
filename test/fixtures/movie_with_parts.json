@@ -1,0 +1,139 @@
+{
+  "ratingKey": "12568",
+  "key": "/library/metadata/12568",
+  "guid": "com.plexapp.agents.imdb://tt1132620?lang=en",
+  "studio": "Det Danske Filminstitut",
+  "type": "movie",
+  "title": "The Girl with the Dragon Tattoo",
+  "titleSort": "Girl with the Dragon Tattoo",
+  "originalTitle": "Män som hatar kvinnor",
+  "contentRating": "R",
+  "summary": "Swedish thriller based on Stieg Larsson's novel about a male journalist and a young female hacker. In the opening of the movie, Mikael Blomkvist, a middle-aged publisher for the magazine Millennium, loses a libel case brought by corrupt Swedish industrialist Hans-Erik Wennerström. Nevertheless, he is hired by Henrik Vanger in order to solve a cold case, the disappearance of Vanger's niece",
+  "rating": 8.5,
+  "audienceRating": 8.7,
+  "year": 2009,
+  "tagline": "Based on the Worldwide Best Seller",
+  "thumb": "/library/metadata/12568/thumb/1612799370",
+  "art": "/library/metadata/12568/art/1612799370",
+  "duration": 5580926,
+  "originallyAvailableAt": "2009-02-27",
+  "addedAt": 1606333464,
+  "updatedAt": 1612799370,
+  "audienceRatingImage": "rottentomatoes://image.rating.upright",
+  "chapterSource": "media",
+  "primaryExtraKey": "/library/metadata/19659",
+  "ratingImage": "rottentomatoes://image.rating.ripe",
+  "Media": [
+    {
+      "id": 43367,
+      "duration": 5580926,
+      "bitrate": 7181,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.78,
+      "audioChannels": 6,
+      "audioCodec": "aac",
+      "videoCodec": "hevc",
+      "videoResolution": "1080",
+      "container": "mkv",
+      "videoFrameRate": "24p",
+      "audioProfile": "lc",
+      "videoProfile": "main 10",
+      "Part": [
+        {
+          "id": 43506,
+          "key": "/library/parts/43506/1612656506/file.mkv",
+          "duration": 5580926,
+          "file": "/volume2/Media/Movies/The Girl with the Dragon Tattoo (2009)/The Girl with the Dragon Tattoo (2009) [1080p] [HEVC] [AAC 5.1].mkv",
+          "size": 5009771867,
+          "audioProfile": "lc",
+          "container": "mkv",
+          "hasThumbnail": "1",
+          "videoProfile": "main 10"
+        }
+      ]
+    },
+    {
+      "id": 43477,
+      "duration": 11161659,
+      "bitrate": 7192,
+      "width": 1920,
+      "height": 1080,
+      "aspectRatio": 1.78,
+      "audioChannels": 6,
+      "audioCodec": "aac",
+      "videoCodec": "hevc",
+      "videoResolution": "1080",
+      "container": "mkv",
+      "videoFrameRate": "24p",
+      "audioProfile": "lc",
+      "videoProfile": "main 10",
+      "Part": [
+        {
+          "id": 43630,
+          "key": "/library/parts/43630/1612799323/file.mkv",
+          "duration": 5580734,
+          "file": "/volume2/Media/downloads/The Girl with the Dragon Tattoo (2009) TV Extended Edition (1080p BluRay x265 HEVC 10bit AAC 5.1 Swedish r00t)/The Girl with the Dragon Tattoo (2009) Extended TV Edition Part 1 (1080p BluRay x265 r00t).mkv",
+          "size": 4997729618,
+          "audioProfile": "lc",
+          "container": "mkv",
+          "hasThumbnail": "1",
+          "videoProfile": "main 10"
+        },
+        {
+          "id": 43631,
+          "key": "/library/parts/43631/1612799336/file.mkv",
+          "duration": 5580925,
+          "file": "/volume2/Media/downloads/The Girl with the Dragon Tattoo (2009) TV Extended Edition (1080p BluRay x265 HEVC 10bit AAC 5.1 Swedish r00t)/The Girl with the Dragon Tattoo (2009) Extended TV Edition Part 2 (1080p BluRay x265 r00t).mkv",
+          "size": 5009771867,
+          "audioProfile": "lc",
+          "container": "mkv",
+          "hasThumbnail": "1",
+          "videoProfile": "main 10"
+        }
+      ]
+    }
+  ],
+  "Genre": [
+    {
+      "tag": "Crime"
+    },
+    {
+      "tag": "Thriller"
+    }
+  ],
+  "Director": [
+    {
+      "tag": "Niels Arden Oplev"
+    }
+  ],
+  "Writer": [
+    {
+      "tag": "Nikolaj Arcel"
+    },
+    {
+      "tag": "Rasmus Heisterberg"
+    }
+  ],
+  "Country": [
+    {
+      "tag": "USA"
+    }
+  ],
+  "Collection": [
+    {
+      "tag": "The Millennium"
+    }
+  ],
+  "Role": [
+    {
+      "tag": "Michael Nyqvist"
+    },
+    {
+      "tag": "Noomi Rapace"
+    },
+    {
+      "tag": "Lena Endre"
+    }
+  ]
+}
