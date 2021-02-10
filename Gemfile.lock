@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    media_rename (1.0.0)
+    media_rename (1.0.1)
       liquid
       thor
 
@@ -68,4 +68,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.2.3
+   2.2.8
