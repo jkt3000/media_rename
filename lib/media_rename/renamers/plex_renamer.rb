@@ -22,6 +22,16 @@ module MediaRename
       log.info("==== Scanning for Subfolders in [#{curr_path}]")
       subfolders = MediaRename::Utils.folders(curr_path)
       subfolders.each {|subfolder| rename_files(subfolder) }
+      oth_files = MediaRename::Utils.files(curr_path) - MediaRename::Utils.media_files(curr_path) 
+
+      log.info("=== Deleting non-media files #{oth_files}")
+      oth_files.each {|f| MediaRename::Utils.rm_path(f, options) }
+
+      if (curr_path != @path)
+        log.info("=== Deleting folder if empty")
+        MediaRename::Utils.rm_path(curr_path, options) if MediaRename::Utils.empty?(curr_path)
+      end
+      
       log.info("==== Done [#{curr_path}]")
     end
 

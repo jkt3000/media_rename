@@ -72,9 +72,9 @@ module MediaRename
     end
 
     def rm_path(path, options = {})
-      log.debug("Deleting directory [#{path}]")
+      log.debug("rm -rf [#{path}]")
       FileUtils.rm_rf path, verbose: options[:verbose], noop: options[:preview] 
-    end
+    end    
 
     def empty?(path)
       Dir.glob(escape_glob("#{path}/*")).empty?
