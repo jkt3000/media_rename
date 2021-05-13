@@ -39,7 +39,6 @@ module MediaRename
 
     def rename_file(source, target_file = nil)
       return unless target_file
-      log.info("Move: <= #{source}")
       subpath = File.dirname(source)
       log.debug("Moving file")
       MediaRename::Utils.mv(source, target_file, options)
@@ -47,7 +46,6 @@ module MediaRename
       MediaRename::Utils.mv_subtitle_files(subpath, target_file, options)
       log.debug("Moving key folders (if any)")
       MediaRename::Utils.mv_subfolders(subpath, target_file, options)
-      log.info("Move: => #{target_file}")
     end
     
     def target_filename(file)
