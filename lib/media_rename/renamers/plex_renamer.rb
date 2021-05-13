@@ -14,30 +14,32 @@ module MediaRename
     end
 
     def rename_files(curr_path = @path)
-      log.info("")
-      log.info("===== Scanning for Media Files in [#{curr_path}]")
+      log.info("== Processing folder [#{curr_path}]")
       files = MediaRename::Utils.media_files(curr_path)
+      log.info("== Renaming [#{files.count}] files")
       files.each {|file| rename_file(file, target_filename(file)) }
 
-      log.info("==== Scanning for Subfolders in [#{curr_path}]")
       subfolders = MediaRename::Utils.folders(curr_path)
       subfolders.each {|subfolder| rename_files(subfolder) }
       oth_files = MediaRename::Utils.files(curr_path) - MediaRename::Utils.media_files(curr_path) 
 
-      log.info("=== Deleting non-media files #{oth_files}")
+      log.info("== Deleting [#{oth_files.count}] non-media files")
       oth_files.each {|f| MediaRename::Utils.rm_path(f, options) }
 
       if (curr_path != @path)
-        log.info("=== Deleting folder if empty")
-        MediaRename::Utils.rm_path(curr_path, options) if MediaRename::Utils.empty?(curr_path)
+        if MediaRename::Utils.empty?(curr_path)
+          log.info("== Deleting empty subfolder [#{curr_path}]")
+          MediaRename::Utils.rm_path(curr_path, options)
+        end
       end
       
-      log.info("==== Done [#{curr_path}]")
+      log.info("== Done [#{curr_path}]")
+      log.info("")
     end
 
     def rename_file(source, target_file = nil)
       return unless target_file
-      log.debug("Processing media file [#{source}]")
+      log.info("Move: <= #{source}")
       subpath = File.dirname(source)
       log.debug("Moving file")
       MediaRename::Utils.mv(source, target_file, options)
@@ -45,6 +47,7 @@ module MediaRename
       MediaRename::Utils.mv_subtitle_files(subpath, target_file, options)
       log.debug("Moving key folders (if any)")
       MediaRename::Utils.mv_subfolders(subpath, target_file, options)
+      log.info("Move: => #{target_file}")
     end
     
     def target_filename(file)
