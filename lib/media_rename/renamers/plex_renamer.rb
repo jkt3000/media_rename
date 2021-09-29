@@ -21,7 +21,6 @@ module MediaRename
 
       subfolders = MediaRename::Utils.folders(curr_path)
       subfolders.each {|subfolder| rename_files(subfolder) }
-      subfolders.each {|subfolder| MediaRename::Utils.rm_path(subfolder, options) if Dir.empty?(subfolder) }
       oth_files = MediaRename::Utils.files(curr_path) - MediaRename::Utils.media_files(curr_path) 
 
       log.info("== Deleting [#{oth_files.count}] non-media files")
