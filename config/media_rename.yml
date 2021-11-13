@@ -4,8 +4,8 @@ PLEX_HOST:
 MOVIE_TEMPLATE: "\
 {{target_path}}/\
 {% if video_format == '4K' %}Movies_HQ/{% else %}Movies/{%endif%}\
-{{title}} ({{year}}){% if tag %} {{tags}}{% endif %}/\
-{{title}} ({{year}}) {% if tag %}{{tags}} {% endif %}[{{video_format}}] \
+{{title}} ({{year}})/\
+{{title}} ({{year}}) {% if tags %}[{{tags | join: ', ' }}] {% endif %}[{{video_format}}] \
 {% if video_codec == 'HEVC' %}[HEVC] {% endif %}\
 [{{audio_codec}}]\
 {% if parts_count > 1 %} [Part {{part}}]{% endif %}\

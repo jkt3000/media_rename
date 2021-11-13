@@ -15,9 +15,11 @@ module MediaRename
         video_format: MediaRename::Media.video_format(media.width, media.height),
         video_codec: MediaRename::Media.video_codec(media.video_codec),
         audio_codec: MediaRename::Media.audio_codec(media.audio_codec, media.audio_channels),
-        tags: "",
+        tags: MediaRename::Media.tags(media),
         ext: media.container
       }
+      puts @attributes.inspect
+      @attributes
     end
 
     def render

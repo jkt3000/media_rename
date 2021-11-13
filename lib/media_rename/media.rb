@@ -77,6 +77,15 @@ module MediaRename
       [text, chan].compact.join(" ")
     end
     
+    def tags(media)
+      # if aspect_ratio = 1.78 and filename contains IMAX
+      if (media.aspect_ratio.to_f == 1.78) && (media.parts.first.file.include?('IMAX'))
+        ['IMAX']
+      else
+        []
+      end
+    end
+
   end
 
 end
