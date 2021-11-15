@@ -82,7 +82,7 @@ module MediaRename
       if (media.aspect_ratio.to_f == 1.78) && (media.parts.first.file.include?('IMAX'))
         ['IMAX']
       else
-        []
+        nil
       end
     end
 
