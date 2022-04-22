@@ -78,13 +78,22 @@ module MediaRename
     end
     
     def tags(media)
+      entries = []
       # if aspect_ratio = 1.78 and filename contains IMAX
       if (media.aspect_ratio.to_f == 1.78) && (media.parts.first.file.include?('IMAX'))
-        ['IMAX']
-      else
-        nil
+        entries.push("IMAX")
       end
+
+      # check for Dolby Vision
+      stream = media.parts.first.streams.first
+      if (stream.hash.key?("codecID") && stream.hash['codecID'] == 'dvhe') 
+        entries.push("DV")
+      end
+      
+      entries.empty? ? nil : entries
     end
+
+
 
   end
 

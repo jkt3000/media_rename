@@ -54,6 +54,7 @@ module MediaRename
 
       part = 1
       if library.movie_library?
+        plexrecord.load_details!
         media = plexrecord.find_by_filename(file)
         if media.parts.size > 1
           part = media.parts.find_index {|part| part.has_file?(file)} + 1
