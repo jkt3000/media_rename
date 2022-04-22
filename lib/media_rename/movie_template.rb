@@ -7,15 +7,19 @@ module MediaRename
     def initialize(record:, media:, part:)
       @template   = Liquid::Template.parse(SETTINGS['MOVIE_TEMPLATE'], error_mode: :strict)
       @media      = media
+      video_codec = []
+      video_codec << MediaRename::Media.video_format(media.width, media.height)
+      video_codec << MediaRename::Media.video_codec(media.video_codec)
+      video_codec << MediaRename::Media.tags(media)
+      video_codec.flatten!.compact!
       @attributes = {
         title: record.title.to_s.gsub(':', '-'),
         year: record.year,
         parts_count: @media.parts.count,
         part: part,
         video_format: MediaRename::Media.video_format(media.width, media.height),
-        video_codec: MediaRename::Media.video_codec(media.video_codec),
+        video_codec: video_codec,
         audio_codec: MediaRename::Media.audio_codec(media.audio_codec, media.audio_channels),
-        tags: MediaRename::Media.tags(media),
         ext: media.container
       }
       puts @attributes.inspect
