@@ -9,9 +9,11 @@ module MediaRename
       @media      = media
       video_codec = []
       video_codec << MediaRename::Media.video_format(media.width, media.height)
-      video_codec << MediaRename::Media.video_codec(media.video_codec)
+      if MediaRename::Media.video_codec(media.video_codec) == "HEVC"
+        video_codec << MediaRename::Media.video_codec(media.video_codec) 
+      end
       video_codec << MediaRename::Media.tags(media)
-      video_codec.flatten!.compact!
+      video_codec.compact!.flatten!
       @attributes = {
         title: record.title.to_s.gsub(':', '-'),
         year: record.year,
