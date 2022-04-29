@@ -90,7 +90,7 @@ module MediaRename
         entries.push("DV")
       end
       
-      entries.empty? ? nil : entries
+      entries
     end
 
 
