@@ -44,7 +44,7 @@ GEM
     ruby2_keywords (0.0.5)
     thor (1.0.1)
     thread_safe (0.3.6)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     webmock (3.11.0)
       addressable (>= 2.3.6)
