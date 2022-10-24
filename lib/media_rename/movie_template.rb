@@ -16,6 +16,7 @@ module MediaRename
       video_codec.compact!
       @attributes = {
         title: record.title.to_s.gsub(':', '-'),
+        edition: record.editionTitle.to_s,
         year: record.year,
         parts_count: @media.parts.count,
         part: part,

@@ -5,7 +5,10 @@ MOVIE_TEMPLATE: "\
 {{target_path}}/\
 {% if video_format == '4K' %}Movies_HQ/{% else %}Movies/{%endif%}\
 {{title}} ({{year}})/\
-{{title}} ({{year}}) [{{video_codec | join: ' '}}] [{{audio_codec}}]\
+{{title}} ({{year}})\
+{% if edition != '' %} {edition-{{edition}}}{%endif%}\
+\ [{{video_codec | join: ' '}}]\
+\ [{{audio_codec}}]\
 {% if parts_count > 1 %} [Part {{part}}]{% endif %}\
 .{{ext}}"
 TV_TEMPLATE: "{{target_path}}/TV/{{title}}/{{title}} S{{ tv_season | prepend: '0' | slice: -2, 2 }}/\
