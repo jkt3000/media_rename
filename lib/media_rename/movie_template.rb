@@ -9,9 +9,9 @@ module MediaRename
       @media      = media
       video_codec = []
       video_codec << MediaRename::Media.video_format(media.width, media.height)
-      if MediaRename::Media.video_codec(media.video_codec) == "HEVC"
-        video_codec << MediaRename::Media.video_codec(media.video_codec) 
-      end
+      # if MediaRename::Media.video_codec(media.video_codec) == "HEVC"
+      #   video_codec << MediaRename::Media.video_codec(media.video_codec) 
+      # end
       video_codec += MediaRename::Media.tags(media)
       video_codec.compact!
       @attributes = {
