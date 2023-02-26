@@ -47,7 +47,7 @@ module MediaRename
     end
 
     # "aac", "ac3", "dca", "mp3", "truehd", "wmav2"
-    def audio_codec(codec, channels = nil)
+    def audio_codec(codec, channels = nil, atmos = false)
       text = case codec
         when 'aac', 'ac3', 'mp3', 'eac3'
           codec.upcase
@@ -74,7 +74,7 @@ module MediaRename
       else
         "#{channels}.0"
       end
-      [text, chan].compact.join(" ")
+      [text, chan, (atmos ? "ATMOS" : nil)].compact.join(" ")
     end
     
     def tags(media)

@@ -12,6 +12,10 @@ module MediaRename
       # if MediaRename::Media.video_codec(media.video_codec) == "HEVC"
       #   video_codec << MediaRename::Media.video_codec(media.video_codec) 
       # end
+      
+      # find atmos tag
+      atmos = media.parts.first.hash["Stream"].any? {|x| x['title'] && x['title'].include?("Atmos") } 
+
       video_codec += MediaRename::Media.tags(media)
       video_codec.compact!
       @attributes = {
@@ -22,7 +26,7 @@ module MediaRename
         part: part,
         video_format: MediaRename::Media.video_format(media.width, media.height),
         video_codec: video_codec,
-        audio_codec: MediaRename::Media.audio_codec(media.audio_codec, media.audio_channels),
+        audio_codec: MediaRename::Media.audio_codec(media.audio_codec, media.audio_channels, atmos),
         ext: media.container
       }
       puts @attributes.inspect
