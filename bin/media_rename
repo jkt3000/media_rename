@@ -40,7 +40,9 @@ class MediaRenameCLI < Thor
                 desc: "Require Confirmation"
 
   def plex(path)
-    puts "\nRename called on [#{path}] with #{options}\n\n"
+    puts "-------------------------------------------------------------------------------"
+    puts "Rename called on [#{path}] with #{options}"
+    puts "-------------------------------------------------------------------------------\n"
     renamer = MediaRename::PlexRenamer.new(path, options)
     renamer.rename_files
     puts

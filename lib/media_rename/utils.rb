@@ -60,8 +60,10 @@ module MediaRename
       log.debug("Move: Dest does not exist..skip") && return if dest.nil?
       log.debug("Move: Source does not exist..skip") && return unless File.exist?(source)
       log.debug("Move: Source and Dest are the same...skip.") && return if source == dest
-      log.info("Move: Src: #{File.basename(source)}")
-      log.info("Move:   => #{dest}")
+      log.info("====================================================================")
+      log.info("[SRC ] #{File.basename(source)}")
+      log.info("[DEST] #{dest}")
+      log.info("====================================================================\n")
       mkdir(File.dirname(dest), options)
       FileUtils.mv source, dest, verbose: options[:verbose], noop: options[:preview]
     end

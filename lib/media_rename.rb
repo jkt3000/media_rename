@@ -27,7 +27,7 @@ module MediaRename
     @logger ||= begin
       logger = Logger.new(STDOUT)
       logger.formatter = proc do |severity, datetime, progname, msg|
-        "#{datetime.strftime("%H:%M:%S")}: #{msg}\n"
+        "#{msg}\n"
       end
       logger
     end

@@ -29,7 +29,6 @@ module MediaRename
         audio_codec: MediaRename::Media.audio_codec(media.audio_codec, media.audio_channels, atmos),
         ext: media.container
       }
-      puts @attributes.inspect
       @attributes
     end
 
