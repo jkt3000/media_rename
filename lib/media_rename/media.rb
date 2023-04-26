@@ -84,6 +84,10 @@ module MediaRename
         entries.push("IMAX")
       end
 
+      if (media.parts.first.file.include?('REMUX'))
+        entries.push("REMUX") 
+      end
+
       # check for Dolby Vision
       stream = media.parts.first.streams.first
       if (stream.hash.key?("codecID") && stream.hash['codecID'] == 'dvhe') 
