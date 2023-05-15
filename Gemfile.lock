@@ -1,8 +1,8 @@
 GIT
-  remote: git@github.com:jt8675309/rubyplex.git
-  revision: 9b7907452f61a33033ebe0ffb575d4dc51c44325
+  remote: git@github.com:johntajima/rubyplex.git
+  revision: 2aeae499edf50a1fe6d9fa25c9dd5d886cc1aa6f
   specs:
-    rubyplex (2.0.4)
+    rubyplex (2.0.6)
       faraday
       json
 
@@ -16,44 +16,44 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.0.2.2)
+    activesupport (6.1.7.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (>= 0.7, < 2)
-      minitest (~> 5.1)
-      tzinfo (~> 1.1)
-      zeitwerk (~> 2.2)
-    addressable (2.7.0)
-      public_suffix (>= 2.0.2, < 5.0)
-    concurrent-ruby (1.1.6)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+      zeitwerk (~> 2.3)
+    addressable (2.8.4)
+      public_suffix (>= 2.0.2, < 6.0)
+    concurrent-ruby (1.2.2)
     crack (0.4.5)
       rexml
-    faraday (2.2.0)
-      faraday-net_http (~> 2.0)
+    faraday (2.7.4)
+      faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
-    faraday-net_http (2.0.1)
+    faraday-net_http (3.0.2)
     hashdiff (1.0.1)
-    i18n (1.8.2)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
-    json (2.6.1)
-    liquid (5.0.0)
-    minitest (5.14.0)
-    mocha (1.12.0)
-    public_suffix (4.0.6)
-    rake (13.0.1)
-    rexml (3.2.4)
+    json (2.6.3)
+    liquid (5.3.0)
+    minitest (5.18.0)
+    mocha (2.0.2)
+      ruby2_keywords (>= 0.0.5)
+    public_suffix (5.0.1)
+    rake (13.0.6)
+    rexml (3.2.5)
     ruby2_keywords (0.0.5)
-    thor (1.0.1)
-    thread_safe (0.3.6)
-    tzinfo (1.2.7)
-      thread_safe (~> 0.1)
-    webmock (3.11.0)
-      addressable (>= 2.3.6)
+    thor (1.2.2)
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+    webmock (3.18.1)
+      addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    zeitwerk (2.3.0)
+    zeitwerk (2.6.8)
 
 PLATFORMS
-  ruby
+  -darwin-20
 
 DEPENDENCIES
   activesupport
