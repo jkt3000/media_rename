@@ -8,11 +8,8 @@ module MediaRename
       @template   = Liquid::Template.parse(SETTINGS['MOVIE_TEMPLATE'], error_mode: :strict)
       @media      = media
       video_codec = []
-      video_codec << MediaRename::Media.video_format(media.width, media.height)
-      # if MediaRename::Media.video_codec(media.video_codec) == "HEVC"
-      #   video_codec << MediaRename::Media.video_codec(media.video_codec) 
-      # end
-      
+      video_codec << MediaRename::Media.video_format(media.width, media.height, media.video_codec)
+
       # find atmos tag
       atmos = media.parts.first.hash["Stream"].any? {|x| x['title'] && x['title'].include?("Atmos") } 
 

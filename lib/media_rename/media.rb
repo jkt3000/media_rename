@@ -12,11 +12,11 @@ module MediaRename
     # 720p    1280x720
     # 480p    640x480
     # 360p    480x360
-    def video_format(width, height)
+    def video_format(width, height, codec = nil)
       return unless width && width
-      if width >= 7600 || height >= 4300
+      text = if width >= 7600 || height >= 4300
         "8K"
-      elsif width >= 3800 || height > 2100
+      elsif width >= 3800 || height >= 2100
         "4K"
       elsif width >= 1900 || height >= 1000
         "1080p"
@@ -29,6 +29,8 @@ module MediaRename
       else
         "SD"
       end
+      value = video_codec(codec)
+      [text, value].compact.join(" ")
     end
 
     # hevc, h264, mpeg4, msmpeg4, vc1
@@ -40,7 +42,9 @@ module MediaRename
       when "mpeg4", "mp4"
         'MP4'
       when 'hevc', 'h265'
-        "HEVC"
+        nil
+      when 'av1'
+        "AV1"
       else
         nil
       end
@@ -48,7 +52,7 @@ module MediaRename
 
     # "aac", "ac3", "dca", "mp3", "truehd", "wmav2"
     def audio_codec(codec, channels = nil, atmos = false)
-      text = case codec
+      text = case codec.downcase
         when 'aac', 'ac3', 'mp3', 'eac3'
           codec.upcase
         when 'dca', 'dts'
@@ -57,6 +61,8 @@ module MediaRename
           'TRUEHD'
         when 'dca-ma'
           'DTS-HD'
+        when 'opus'
+          'OPUS'
         else
           'OTH'
         end
