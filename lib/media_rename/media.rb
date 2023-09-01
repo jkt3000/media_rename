@@ -38,7 +38,7 @@ module MediaRename
       codec = codec.to_s.downcase
       case codec
       when "h264"
-        'H264'
+        nil
       when "mpeg4", "mp4"
         'MP4'
       when 'hevc', 'h265'

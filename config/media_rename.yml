@@ -12,6 +12,7 @@ MOVIE_TEMPLATE: "\
 {% if parts_count > 1 %} [Part {{part}}]{% endif %}\
 .{{ext}}"
 TV_TEMPLATE: "{{target_path}}/TV/{{title}}/{{title}} S{{ tv_season | prepend: '0' | slice: -2, 2 }}/\
-{{title}} S{{tv_season | prepend: '0' | slice: -2, 2 }}E{{tv_episode | prepend: '0' | slice: -2, 2 }} \
-[{{video_format}}]{% if parts_count > 1 %} [Part {{part}}]{% endif %}\
+{{title}} S{{tv_season | prepend: '0' | slice: -2, 2 }}E{{tv_episode | prepend: '0' | slice: -2, 2 }}\
+\ [{{video_format}}]\
+{% if parts_count > 1 %} [Part {{part}}]{% endif %}\
 .{{ext}}"
