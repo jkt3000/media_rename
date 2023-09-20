@@ -88,7 +88,9 @@ module MediaRename
       # if aspect_ratio = 1.78 and filename contains IMAX
       if (media.aspect_ratio.to_f == 1.78) && (media.parts.first.file.include?('IMAX'))
         entries.push("IMAX")
-      end
+      elsif (media.height >= 1000) && (media.width == 1920)
+        entries.push("IMAX")
+      end 
 
       if (media.parts.first.file.include?('REMUX'))
         entries.push("REMUX") 
