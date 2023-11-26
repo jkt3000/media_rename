@@ -4,14 +4,24 @@ module MediaRename
 
     attr_reader :template, :attributes
 
-    def initialize(record:, media:, part:)
+    def initialize(record:, media:, part:, file:)
       @template   = Liquid::Template.parse(SETTINGS['MOVIE_TEMPLATE'], error_mode: :strict)
       @media      = media
       video_codec = []
       video_codec << MediaRename::Media.video_format(media.width, media.height, media.video_codec)
 
+      mediainfo = MediaInfo.get_info(file)
+
       # find atmos tag
-      atmos = media.parts.first.hash["Stream"].any? {|x| x['title'] && x['title'].include?("Atmos") } 
+      atmos = media.parts.first.hash["Stream"].any? {|x| x['title'] && x['title'].include?("Atmos") }
+      mediainfo["media"]["track"].select do |track|
+        track["type"] == "Audio"
+      end.each do |track|
+        next unless track["format_commercial_if_any"]
+        if track["format_commercial_if_any"].include?("Atmos")
+          atmos = true
+        end
+      end
 
       video_codec += MediaRename::Media.tags(media)
       video_codec.compact!

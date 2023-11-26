@@ -36,7 +36,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "activesupport"
   spec.add_development_dependency "mocha"
-  
+
   spec.add_dependency "liquid"
   spec.add_dependency "thor"
+  #spec.add_dependency "active_support", require: 'active_support/inflector'
+
 end

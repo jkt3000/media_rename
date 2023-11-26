@@ -1,6 +1,6 @@
 module MediaRename
 
-  class PlexRenamer 
+  class PlexRenamer
 
     attr_reader :path, :library, :options, :target_path, :settings
 
@@ -21,7 +21,7 @@ module MediaRename
 
       subfolders = MediaRename::Utils.folders(curr_path)
       subfolders.each {|subfolder| rename_files(subfolder) }
-      oth_files = MediaRename::Utils.files(curr_path) - MediaRename::Utils.media_files(curr_path) 
+      oth_files = MediaRename::Utils.files(curr_path) - MediaRename::Utils.media_files(curr_path)
 
       log.debug("Deleting [#{oth_files.count}] non-media files")
       oth_files.each {|f| MediaRename::Utils.rm_path(f, options) }
@@ -32,7 +32,7 @@ module MediaRename
           MediaRename::Utils.rm_path(curr_path, options)
         end
       end
-      
+
       log.debug("== Done [#{curr_path}]")
     end
 
@@ -46,11 +46,10 @@ module MediaRename
       log.debug("Moving key folders (if any)")
       MediaRename::Utils.mv_subfolders(subpath, target_file, options)
     end
-    
+
     def target_filename(file)
       plexrecord = library.find_by_filename(file)
       log.debug("No plex record found for [#{file}]") && return unless plexrecord
-
       part = 1
       if library.movie_library?
         plexrecord.load_details!
@@ -58,14 +57,14 @@ module MediaRename
         if media.parts.size > 1
           part = media.parts.find_index {|part| part.has_file?(file)} + 1
         end
-        File.join(target_path, MediaRename::MovieTemplate.new({record: plexrecord, media: media, part: part}).render)
+        File.join(target_path, MediaRename::MovieTemplate.new({record: plexrecord, media: media, part: part, file: file}).render)
       else
         episode = plexrecord.find_by_filename(file)
         media   = episode.media_by_filename(file)
         if media.parts.size > 1
           part = media.parts.find_index {|part| part.has_file?(file)} + 1
         end
-        File.join(target_path, MediaRename::ShowTemplate.new({record: episode, media: media, part: part}).render)
+        File.join(target_path, MediaRename::ShowTemplate.new({record: episode, media: media, part: part, file: file}).render)
       end
     end
 
@@ -130,7 +129,7 @@ module MediaRename
         false
       end
     end
-    
+
     def log
       @log ||= MediaRename.logger
     end
