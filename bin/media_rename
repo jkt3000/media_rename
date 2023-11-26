@@ -10,19 +10,20 @@ require 'io/console'
 class MediaRenameCLI < Thor
 
   desc "plex <path>", "Rename media files based on data from Plex database"
+
   method_option :preview,
                 type: :boolean,
                 default: false,
                 desc: "Dry run - don't actually make changes"
-  method_option :host, 
+  method_option :host,
                 type: :string,
-                desc: "Plex Server host/ip address (use https://x.x.x.x for https or ip address for http)" 
-  method_option :port, 
+                desc: "Plex Server host/ip address (use https://x.x.x.x for https or ip address for http)"
+  method_option :port,
                 type: :string,
-                desc: "Plex Server port" 
-  method_option :token, 
+                desc: "Plex Server port"
+  method_option :token,
                 type: :string,
-                desc: "Plex token" 
+                desc: "Plex token"
   method_option :verbose,
                 type: :boolean,
                 aliases: 'v',
@@ -40,9 +41,16 @@ class MediaRenameCLI < Thor
                 desc: "Require Confirmation"
 
   def plex(path)
+    paths  = Dir.glob(path+"*").flatten.compact
     puts "-------------------------------------------------------------------------------"
-    puts "Rename called on [#{path}] with #{options}"
+    puts "Rename called on #{paths} with #{options}"
     puts "-------------------------------------------------------------------------------\n"
+    paths.each {|path| rename(path.strip)}
+  end
+
+  private
+
+  def rename(path)
     renamer = MediaRename::PlexRenamer.new(path, options)
     renamer.rename_files
     puts

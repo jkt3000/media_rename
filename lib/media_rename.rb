@@ -7,6 +7,7 @@ require 'logger'
 require "media_rename/version"
 require "media_rename/media"
 require "media_rename/utils"
+require 'media_rename/media_info'
 require "media_rename/renamers/plex_renamer"
 require "media_rename/movie_template"
 require "media_rename/show_template"
