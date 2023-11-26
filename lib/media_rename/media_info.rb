@@ -4,7 +4,7 @@ require 'active_support/inflector'
 
 module MediaInfo
   def self.get_info(file_path)
-    output = `mediainfo --Output=JSON "#{file_path}"`
+    output = `mediainfo --ParseSpeed=0 --Output=JSON "#{file_path}"`
     MediaInfo.create_media(JSON.parse(output))
   end
 
