@@ -11,15 +11,19 @@ module MediaRename
       #video_codec += MediaRename::Media.tags(media)
 
       mediainfo = MediaInfo.get_info(file)
-      pp mediainfo
+
       # find atmos tag
       atmos = false
+      ddplus = false
       mediainfo["media"]["track"].select do |track|
         track["type"] == "Audio"
       end.each do |track|
         next unless track["format_commercial_if_any"]
         if track["format_commercial_if_any"].include?("Atmos")
           atmos = true
+        end
+        if track["format_commercial_if_any"].include?("Dolby Digital Plus")
+          ddplus = true
         end
       end
 
@@ -29,7 +33,7 @@ module MediaRename
         year: (record.year rescue ''),
         video_format: MediaRename::Media.video_format(media.width, media.height, media.video_codec),
         video_codec: video_codec,
-        audio_codec: MediaRename::Media.audio_codec(media.audio_codec, media.audio_channels, atmos),
+        audio_codec: MediaRename::Media.audio_codec(media.audio_codec, media.audio_channels, atmos, ddplus),
         tags: "",
         part: part,
         ext: media.container,

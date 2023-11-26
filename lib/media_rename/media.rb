@@ -1,7 +1,7 @@
 module MediaRename
 
   module Media
-    
+
     extend self
 
     # given a width and height, returns back video format
@@ -51,7 +51,7 @@ module MediaRename
     end
 
     # "aac", "ac3", "dca", "mp3", "truehd", "wmav2"
-    def audio_codec(codec, channels = nil, atmos = false)
+    def audio_codec(codec, channels = nil, atmos = false, ddplus = false)
       text = case codec.downcase
         when 'aac', 'ac3', 'mp3', 'eac3'
           codec.upcase
@@ -80,26 +80,30 @@ module MediaRename
       else
         "#{channels}.0"
       end
+      if ddplus
+        text = "DD+"
+        chan = nil
+      end
       [text, chan, (atmos ? "ATMOS" : nil)].compact.join(" ")
     end
-    
+
     def tags(media)
       entries = []
       # if aspect_ratio = 1.78 and filename contains IMAX
       if (media.aspect_ratio.to_f == 1.78) && (media.parts.first.file.include?('IMAX'))
         entries.push("IMAX")
-      end 
+      end
 
       if (media.parts.first.file.include?('REMUX'))
-        entries.push("REMUX") 
+        entries.push("REMUX")
       end
 
       # check for Dolby Vision
       stream = media.parts.first.streams.first
-      if (stream.hash.key?("codecID") && stream.hash['codecID'] == 'dvhe') 
+      if (stream.hash.key?("codecID") && stream.hash['codecID'] == 'dvhe')
         entries.push("DV")
       end
-      
+
       entries
     end
 
