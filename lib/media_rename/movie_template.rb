@@ -24,6 +24,15 @@ module MediaRename
       end
 
       video_codec += MediaRename::Media.tags(media)
+
+      # find dolby vision in mediainfo
+      dolby_vision = mediainfo["media"]["track"].select do |track|
+        track["type"] == "Video"
+      end.any? do |track|
+        track["hdr_format"].include?("Dolby Vision")
+      end
+      video_codec << "DV" if dolby_vision
+
       video_codec.compact!
       @attributes = {
         title: record.title.to_s.gsub(':', '-'),
