@@ -33,6 +33,7 @@ module MediaRename
       dolby_vision = mediainfo["media"]["track"].select do |track|
         track["type"] == "Video"
       end.any? do |track|
+        next unless track["hdr_format"]
         track["hdr_format"].include?("Dolby Vision")
       end
       video_codec << "DV" if dolby_vision
