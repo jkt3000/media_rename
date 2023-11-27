@@ -100,7 +100,7 @@ module MediaRename
 
       # check for Dolby Vision
       stream = media.parts.first.streams.first
-      if (stream.hash.key?("codecID") && stream.hash['codecID'] == 'dvhe')
+      if (stream && stream.hash.key?("codecID") && stream.hash['codecID'] == 'dvhe')
         entries.push("DV")
       end
 

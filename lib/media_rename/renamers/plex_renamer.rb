@@ -59,8 +59,10 @@ module MediaRename
         end
         File.join(target_path, MediaRename::MovieTemplate.new({record: plexrecord, media: media, part: part, file: file}).render)
       else
+
         episode = plexrecord.find_by_filename(file)
         media   = episode.media_by_filename(file)
+
         if media.parts.size > 1
           part = media.parts.find_index {|part| part.has_file?(file)} + 1
         end
