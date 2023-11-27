@@ -41,7 +41,7 @@ class MediaRenameCLI < Thor
                 desc: "Require Confirmation"
 
   def plex(path)
-    paths  = Dir.glob(path+"*").flatten.compact
+    paths = path.end_with?("/") ? [path] : Dir.glob(path+"*").flatten.compact
     puts "-------------------------------------------------------------------------------"
     puts "Rename called on #{paths} with #{options}"
     puts "-------------------------------------------------------------------------------\n"
