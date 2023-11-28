@@ -39,7 +39,7 @@ module MediaRename
       video_codec << MediaRename::Media.video_format(media.width, media.height, media.video_codec)
       video_codec += MediaRename::Media.tags(media)
       video_codec << "DV" if dolby_vision?
-      video_codec.compact
+      video_codec.uniq.compact
     end
 
     def atmos?
