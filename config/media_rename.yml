@@ -3,7 +3,7 @@ PLEX_PORT:
 PLEX_HOST:  
 MOVIE_TEMPLATE: "\
 {{target_path}}/\
-{% if video_format == '4K' %}Movies_HQ/{% else %}Movies/{%endif%}\
+{% if video_format == '4K' %}Movies_HQ/{% else %}Movies/{% endif %}\
 {{title}} ({{year}})/\
 {{title}} ({{year}})\
 {% if edition != '' %} {edition-{{edition}}}{%endif%}\
@@ -11,7 +11,10 @@ MOVIE_TEMPLATE: "\
 \ [{{audio_codec}}]\
 {% if parts_count > 1 %} [Part {{part}}]{% endif %}\
 .{{ext}}"
-TV_TEMPLATE: "{{target_path}}/TV/{{title}}/{{title}} S{{ tv_season | prepend: '0' | slice: -2, 2 }}/\
+TV_TEMPLATE: "\
+{{target_path}}/\
+{% if video_format == '4K' %}TV_HQ/{% else %}TV/{% endif %}\
+{{title}}/{{title}} S{{ tv_season | prepend: '0' | slice: -2, 2 }}/\
 {{title}} S{{tv_season | prepend: '0' | slice: -2, 2 }}E{{tv_episode | prepend: '0' | slice: -2, 2 }}\
 \ [{{video_codec | join: ' '}}]\
 \ [{{audio_codec}}]\
