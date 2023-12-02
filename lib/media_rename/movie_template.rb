@@ -39,6 +39,7 @@ module MediaRename
       video_codec << MediaRename::Media.video_format(media.width, media.height, media.video_codec)
       video_codec += MediaRename::Media.tags(media)
       video_codec << "DV" if dolby_vision?
+      video_codec << "HDR" if hdr?
       video_codec.uniq.compact
     end
 
@@ -54,6 +55,10 @@ module MediaRename
 
     def dolby_vision?
       video_tracks.any? { |track| track["hdr_format"] && track["hdr_format"].include?("Dolby Vision") }
+    end
+
+    def hdr?
+      video_tracks.any? { |track| track["transfer_characteristics"] && track["transfer_characteristics"].include?("PQ") }
     end
 
     def audio_tracks
