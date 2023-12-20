@@ -33,6 +33,11 @@ class MediaRenameCLI < Thor
                 type: :string,
                 aliases: 't',
                 desc: "Target path"
+  method_option :parse_level,
+                type: :numeric,
+                aliases: 'l',
+                desc: "Parse level",
+                default: 0.2
 
   method_option :confirm,
                 type: :boolean,

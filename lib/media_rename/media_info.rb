@@ -2,7 +2,6 @@ require 'json'
 require 'ostruct'
 require 'active_support/inflector'
 
-
 module MediaInfo
 
   VIDEO_TAGS = %w|
@@ -31,8 +30,9 @@ module MediaInfo
     title
   |
 
-  def self.get_info(file_path)
-    output = `mediainfo --ParseSpeed=0 --Output=JSON "#{file_path}"`
+  def self.get_info(file_path, options = {})
+    parse_level = options[:parse_level] || 0.2
+    output = `mediainfo --ParseSpeed=#{parse_level} --Output=JSON "#{file_path}"`
     MediaInfo.create_media(JSON.parse(output))
   end
 

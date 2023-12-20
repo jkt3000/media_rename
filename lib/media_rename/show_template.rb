@@ -3,7 +3,7 @@ module MediaRename
   class ShowTemplate < MovieTemplate
 
     # record => episode
-    def initialize(record:, media:, part:, file:)
+    def initialize(record:, media:, part:, file:, options: {})
       super(record: record, media: media, part: part, file: file)
       @template   = Liquid::Template.parse(SETTINGS['TV_TEMPLATE'], error_mode: :strict)
     end

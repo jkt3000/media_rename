@@ -1,13 +1,14 @@
 module MediaRename
   class MovieTemplate
-    attr_reader :template, :media, :record, :part, :file
+    attr_reader :template, :media, :record, :part, :file, :options
 
-    def initialize(record:, media:, part:, file:)
+    def initialize(record:, media:, part:, file:, options: {})
       @template = Liquid::Template.parse(SETTINGS['MOVIE_TEMPLATE'], error_mode: :strict)
       @media    = media
       @record   = record
       @part     = part
       @file     = file
+      @options  = options
     end
 
     def render
@@ -70,7 +71,7 @@ module MediaRename
     end
 
     def mediainfo
-      @mediainfo ||= MediaInfo.get_info(file)
+      @mediainfo ||= MediaInfo.get_info(file, @options)
     end
   end
 end
