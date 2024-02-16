@@ -4,7 +4,7 @@ module MediaRename
 
     # record => episode
     def initialize(record:, media:, part:, file:, options: {})
-      super(record: record, media: media, part: part, file: file)
+      super(record: record, media: media, part: part, file: file, options: options)
       @template   = Liquid::Template.parse(SETTINGS['TV_TEMPLATE'], error_mode: :strict)
     end
 

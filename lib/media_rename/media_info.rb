@@ -1,6 +1,7 @@
 require 'json'
 require 'ostruct'
 require 'active_support/inflector'
+require 'logger'
 
 module MediaInfo
 
@@ -31,7 +32,9 @@ module MediaInfo
   |
 
   def self.get_info(file_path, options = {})
-    parse_level = options[:parse_level] || 0.2
+    return {} if options[:skip_mediainfo]
+    parse_level = options[:parse_level] || 0
+    logger.debug("Mediainfo parse level: #{parse_level}")
     output = `mediainfo --ParseSpeed=#{parse_level} --Output=JSON "#{file_path}"`
     MediaInfo.create_media(JSON.parse(output))
   end
@@ -52,5 +55,17 @@ module MediaInfo
     # only keep audio tags
     obj = obj.select { |k, v| AUDIO_TAGS.include?(k) } if obj["type"] == "Audio"
     obj
+  end
+
+  extend self
+
+  def logger
+    @logger ||= begin
+      logger = Logger.new(STDOUT)
+      logger.formatter = proc do |severity, datetime, progname, msg|
+        "#{msg}\n"
+      end
+      logger
+    end
   end
 end

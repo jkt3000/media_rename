@@ -63,10 +63,12 @@ module MediaRename
     end
 
     def audio_tracks
+      return [] unless mediainfo["media"] && mediainfo["media"]["track"]
       mediainfo["media"]["track"].select { |track| track["type"] == "Audio" }
     end
 
     def video_tracks
+      return [] unless mediainfo["media"] && mediainfo["media"]["track"]
       mediainfo["media"]["track"].select { |track| track["type"] == "Video" }
     end
 

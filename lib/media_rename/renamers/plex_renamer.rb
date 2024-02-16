@@ -107,7 +107,7 @@ module MediaRename
     def sanitize_options(options)
       @settings = MediaRename::SETTINGS
       @options = options.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-      log.debug("Options: #{options}")
+      log.debug("Options: #{@options}")
     end
 
     def set_log_level
