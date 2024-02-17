@@ -55,11 +55,11 @@ module MediaRename
         mv(subfolder, dest_file, options)
       end
     end
-    
+
     def mv(source, dest, options = {})
       log.debug("Move: Dest does not exist..skip") && return if dest.nil?
       log.debug("Move: Source does not exist..skip") && return unless File.exist?(source)
-      log.debug("Move: Source and Dest are the same...skip.") && return if source == dest
+      log.info("Move: Source and Dest are the same...skip.") && return if source == dest
       log.info("====================================================================")
       log.info("[SRC ] #{File.basename(source)}")
       log.info("[DEST] #{dest}")
@@ -76,8 +76,8 @@ module MediaRename
 
     def rm_path(path, options = {})
       log.debug("rm -rf [#{path}]")
-      FileUtils.rm_rf path, verbose: options[:verbose], noop: options[:preview] 
-    end    
+      FileUtils.rm_rf path, verbose: options[:verbose], noop: options[:preview]
+    end
 
     def empty?(path)
       Dir.glob(escape_glob("#{path}/*")).empty?

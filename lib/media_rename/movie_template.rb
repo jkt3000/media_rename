@@ -9,6 +9,7 @@ module MediaRename
       @part     = part
       @file     = file
       @options  = options
+      MediaRename.logger.info("Mediainfo: #{JSON.pretty_generate mediainfo}")
     end
 
     def render
@@ -63,17 +64,15 @@ module MediaRename
     end
 
     def audio_tracks
-      return [] unless mediainfo["media"] && mediainfo["media"]["track"]
       mediainfo["media"]["track"].select { |track| track["type"] == "Audio" }
     end
 
     def video_tracks
-      return [] unless mediainfo["media"] && mediainfo["media"]["track"]
       mediainfo["media"]["track"].select { |track| track["type"] == "Video" }
     end
 
     def mediainfo
-      @mediainfo ||= MediaInfo.get_info(file, @options)
+      @mediainfo ||= options[:skip_mediainfo] ? {"media" => {"track" => []}} : MediaInfo.get_info(file, options)
     end
   end
 end

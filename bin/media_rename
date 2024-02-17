@@ -32,7 +32,8 @@ class MediaRenameCLI < Thor
   method_option :target_path,
                 type: :string,
                 aliases: 't',
-                desc: "Target path"
+                desc: "Target path",
+                default: '/Volumes/Media'
   method_option :parse_level,
                 type: :numeric,
                 aliases: 'l',
