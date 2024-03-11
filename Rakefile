@@ -17,15 +17,16 @@ task :default => :test
 
 desc "List movies that have stereo sound only"
 task :stereo_movies do
-  
-  library = Plex.server.libraries.second
+
+  library = Plex.server.libraries[1]
   movies = library.all
 
     stereo_only = []
     multi       = []
     movies.each do |movie|
       medias = movie.medias
-      next unless medias.any? {|x| x.audio_channels == 2}
+      channels = medias.map(&:audio_channels).sort
+      next if channels.any? {|c| c > 2}
       if medias.count > 1
         multi << movie
       else
@@ -35,8 +36,8 @@ task :stereo_movies do
 
 
     open("./stereo_movies.csv", 'wb') do |f|
-      f.write "Movies that have Stero sound only\n"
-      stereo_only.map {|m| f.write "#{m.title}, #{m.year}\n"}
+      f.write "# Movies that have Stero sound only\n"
+      stereo_only.map {|m| f.write "#{m.files.first.split("Media/Movies/").last}\n"}
       multi.map {|m| f.write "#{m.title}, #{m.year}, #{m.medias.map(&:audio_channels).sort.join(", ")}\n" }
     end
 

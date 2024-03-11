@@ -9,7 +9,7 @@ module MediaRename
       @part     = part
       @file     = file
       @options  = options
-      MediaRename.logger.info("Mediainfo: #{JSON.pretty_generate mediainfo}")
+      MediaRename.logger.debug("Mediainfo: #{JSON.pretty_generate mediainfo}")
     end
 
     def render
