@@ -69,7 +69,13 @@ module MediaRename
 
       text = case codec.downcase
         when 'aac', 'ac3', 'mp3', 'eac3'
-          ddplus ? 'DD+' : codec.upcase
+          if ddplus
+            chan = nil
+            'DD+'
+          else
+            codec.upcase
+          end
+
         when 'dca', 'dts'
           'DTS'
         when 'truehd'
