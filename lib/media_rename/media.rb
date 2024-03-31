@@ -52,9 +52,24 @@ module MediaRename
 
     # "aac", "ac3", "dca", "mp3", "truehd", "wmav2"
     def audio_codec(codec, channels = nil, atmos = false, ddplus = false)
+      chan = case channels
+        when 3
+          '2.1'
+        when 6
+          '5.1'
+        when 7
+          '6.1'
+        when 8
+          '7.1'
+        when nil
+          nil
+        else
+          "#{channels}.0"
+      end
+
       text = case codec.downcase
         when 'aac', 'ac3', 'mp3', 'eac3'
-          codec.upcase
+          ddplus ? 'DD+' : codec.upcase
         when 'dca', 'dts'
           'DTS'
         when 'truehd'
@@ -65,25 +80,8 @@ module MediaRename
           'OPUS'
         else
           'OTH'
-        end
-      chan = case channels
-      when 3
-        '2.1'
-      when 6
-        '5.1'
-      when 7
-        '6.1'
-      when 8
-        '7.1'
-      when nil
-        nil
-      else
-        "#{channels}.0"
       end
-      if ddplus
-        text = "DD+"
-        chan = nil
-      end
+
       [text, chan, (atmos ? "ATMOS" : nil)].compact.join(" ")
     end
 
